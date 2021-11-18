@@ -1,0 +1,10 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Module1",
+    "\\Module1\\StronglyNamedAssembly",
+    "\\Module1\\StronglyNamedAssembly\\StronglyNamedAssembly"
+  ],
+  "SelectedNode": "\\Module1\\MyDll.dll",
+  "PreviewInSolutionExplorer": false
+}
