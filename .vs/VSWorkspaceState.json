@@ -1,10 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Module1",
-    "\\Module1\\StronglyNamedAssembly",
-    "\\Module1\\StronglyNamedAssembly\\StronglyNamedAssembly"
+    "\\Module1"
   ],
-  "SelectedNode": "\\Module1\\MyDll.dll",
+  "SelectedNode": "\\Module1\\SecondFile.cs",
   "PreviewInSolutionExplorer": false
 }

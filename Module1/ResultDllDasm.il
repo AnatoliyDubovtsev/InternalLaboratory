@@ -26,7 +26,7 @@
 // ----- COFF Header:
 // Machine:                    0x014c
 // Number of sections:         0x0003
-// Time-date stamp:            0x61965b86
+// Time-date stamp:            0x61972e9c
 // Ptr to symbol table:        0x00000000
 // Number of symbols:          0x00000000
 // Size of optional header:    0x00e0
@@ -38,7 +38,7 @@
 // Size of code:                   0x00000600
 // Size of init.data:              0x00000600
 // Size of uninit.data:            0x00000000
-// Addr. of entry point:           0x000024fa
+// Addr. of entry point:           0x000023fe
 // Base of code:                   0x00002000
 // Base of data:                   0x00004000
 // Image base:                     0x10000000
@@ -62,7 +62,7 @@
 // Loader flags:                   0x00000000
 // Directories:                    0x00000010
 // 0x00000000 [0x00000000] address [size] of Export Directory:          
-// 0x000024a8 [0x0000004f] address [size] of Import Directory:          
+// 0x000023ac [0x0000004f] address [size] of Import Directory:          
 // 0x00004000 [0x000002a8] address [size] of Resource Directory:        
 // 0x00000000 [0x00000000] address [size] of Exception Directory:       
 // 0x00000000 [0x00000000] address [size] of Security Directory:        
@@ -80,7 +80,7 @@
 
 // Image sections:
 //              .text
-//              0x00000500 Virtual Size
+//              0x00000404 Virtual Size
 //              0x00002000 Virtual Address
 //              0x00000600 Size of Raw Data
 //              0x00000200 Pointer to Raw Data
@@ -124,13 +124,13 @@
 //              0x00002000 Page RVA
 //              0x0000000c Block Size
 //              0x00000002 Number of Entries
-//              Entry 1: Type 0x3 Offset 0x000004fc
+//              Entry 1: Type 0x3 Offset 0x00000400
 //              Entry 2: Type 0x0 Offset 0x00000000
 
 // Import Address Table
 //     DLL : mscoree.dll
 //              0x00002000 Import Address Table
-//              0x000024ea Import Name Table
+//              0x000023ee Import Name Table
 //              0          Time Date Stamp
 //              0          Index of First Forwarder Reference
 //
@@ -147,7 +147,7 @@
 // Header size:                        0x00000048
 // Major runtime version:              0x0002
 // Minor runtime version:              0x0005
-// 0x00002098 [0x00000410] address [size] of Metadata Directory:        
+// 0x00002084 [0x00000328] address [size] of Metadata Directory:        
 // Flags:                              0x00000001
 // Entry point token:                  0x00000000
 // 0x00000000 [0x00000000] address [size] of Resources Directory:       
@@ -170,23 +170,23 @@
 //                  0x0005 Number of Streams
 //    Stream 1:
 //              0x0000006c Offset
-//              0x00000160 Size
+//              0x00000140 Size
 //              '#~' Name
 //    Stream 2:
-//              0x000001cc Offset
-//              0x00000148 Size
+//              0x000001ac Offset
+//              0x00000110 Size
 //              '#Strings' Name
 //    Stream 3:
-//              0x00000314 Offset
-//              0x00000060 Size
+//              0x000002bc Offset
+//              0x00000004 Size
 //              '#US' Name
 //    Stream 4:
-//              0x00000374 Offset
+//              0x000002c0 Offset
 //              0x00000010 Size
 //              '#GUID' Name
 //    Stream 5:
-//              0x00000384 Offset
-//              0x0000008c Size
+//              0x000002d0 Offset
+//              0x00000058 Size
 //              '#Blob' Name
 
 //    Metadata Stream Header:
@@ -195,7 +195,7 @@
 //                    0x00 Minor
 //                    0x00 Heaps
 //                    0x01 Rid
-//      0x000000c904021447 MaskValid
+//      0x0000000900001557 MaskValid
 //      0x000016003301fa00 Sorted
 
 // Code Manager Table:
@@ -210,53 +210,50 @@
 // PE additional info   : 851               (23.74%)
 // Num.of PE sections   : 3
 // CLR header size     : 72                 ( 2.01%)
-// CLR meta-data size  : 1040               (29.02%)
+// CLR meta-data size  : 808                (22.54%)
 // CLR additional info : 0                  ( 0.00%)
-// CLR method headers  : 13                 ( 0.36%)
-// Managed code         : 56                ( 1.56%)
+// CLR method headers  : 4                  ( 0.11%)
+// Managed code         : 48                ( 1.34%)
 // Data                 : 1536              (42.86%)
-// Unaccounted          : -496              (-13.84%)
+// Unaccounted          : -247              (-6.89%)
 
 // Num.of PE sections   : 3
 //   .text    - 1536
 //   .rsrc    - 1024
 //   .reloc   - 512
 
-// CLR meta-data size  : 1040
+// CLR meta-data size  : 808
 //   Module        -    1 (10 bytes)
-//   TypeDef       -    2 (28 bytes)      0 interfaces, 0 explicit layout
-//   TypeRef       -    8 (48 bytes)
-//   MethodDef     -    2 (28 bytes)      0 abstract, 0 native, 2 bodies
-//   MemberRef     -    9 (54 bytes)
+//   TypeDef       -    3 (42 bytes)      0 interfaces, 0 explicit layout
+//   TypeRef       -    6 (36 bytes)
+//   MethodDef     -    4 (56 bytes)      0 abstract, 0 native, 4 bodies
+//   FieldDef      -    1 (6 bytes)       0 constant
+//   MemberRef     -    5 (30 bytes)
+//   ParamDef      -    2 (12 bytes)
 //   CustomAttribute-    3 (18 bytes)
-//   StandAloneSig -    1 (2 bytes)
-//   ModuleRef     -    2 (4 bytes)
 //   Assembly      -    1 (22 bytes)
 //   AssemblyRef   -    1 (20 bytes)
-//   File          -    2 (16 bytes)
-//   ExportedType  -    2 (28 bytes)
-//   Strings       -   325 bytes
-//   Blobs         -   140 bytes
-//   UserStrings   -    96 bytes
+//   Strings       -   271 bytes
+//   Blobs         -    88 bytes
+//   UserStrings   -     4 bytes
 //   Guids         -    16 bytes
-//   Uncategorized -   185 bytes
+//   Uncategorized -   177 bytes
 
-// CLR method headers : 13
-//   Num.of method bodies  - 2
-//   Num.of fat headers    - 1
-//   Num.of tiny headers   - 1
+// CLR method headers : 4
+//   Num.of method bodies  - 4
+//   Num.of fat headers    - 0
+//   Num.of tiny headers   - 4
 
-// Managed code : 56
-//   Ave method size - 28
+// Managed code : 48
+//   Ave method size - 12
 // Classes defined in this module:
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// Class Program                        (public) (auto) (ansi) 
+// Class SecondFile                     (public) (auto) (ansi) 
+// Class FirstFile                      (public) (abstract) (auto) (ansi) (sealed) 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 // Metadata version: v4.0.30319
-.module extern SecondFile.netmodule /*1A000001*/
-.module extern FirstFile.netmodule /*1A000002*/
 .assembly extern /*23000001*/ mscorlib
 {
   .publickeytoken = (B7 7A 5C 56 19 34 E0 89 )                         // .z\V.4..
@@ -274,77 +271,88 @@
   .hash algorithm 0x00008004
   .ver 0:0:0:0
 }
-.file /*26000001*/ FirstFile.netmodule
-    .hash = (4B E1 4D A7 65 CF ED D8 74 63 C0 97 77 56 39 59   // K.M.e...tc..wV9Y
-             66 B8 CA 7C )                                     // f..|
-.file /*26000002*/ SecondFile.netmodule
-    .hash = (DD 11 9C 92 BE 54 EF 72 52 CA 30 30 A0 7F D4 8D   // .....T.rR.00....
-             CB C0 CD B0 ) 
-.class extern /*27000001*/ public FirstFile.FirstFile
-{
-  .file FirstFile.netmodule/*26000001*/ 
-  .class 0x02000002
-}
-.class extern /*27000002*/ public SecondFile.SecondFile
-{
-  .file SecondFile.netmodule/*26000002*/ 
-  .class 0x02000002
-}
 .module ResultDll.dll
-// MVID: {7752E240-FC54-4EDE-8B20-FD78EACC6DFC}
+// MVID: {13CD9D89-27D8-4935-89CB-F6CAEF821B3C}
 .imagebase 0x10000000
 .file alignment 0x00000200
 .stackreserve 0x00100000
 .subsystem 0x0003       // WINDOWS_CUI
 .corflags 0x00000001    //  ILONLY
-// Image base: 0x05C10000
+// Image base: 0x06D10000
 
 
 // =============== CLASS MEMBERS DECLARATION ===================
 
-.class /*02000002*/ public auto ansi beforefieldinit Program
+.class /*02000002*/ public auto ansi beforefieldinit SecondFile.SecondFile
        extends [mscorlib/*23000001*/]System.Object/*01000005*/
 {
-  .method /*06000001*/ public hidebysig static 
-          void  Main() cil managed
-  // SIG: 00 00 01
-  {
-    // Метод начинается по RVA 0x2050
-    // Размер кода:       48 (0x30)
-    .maxstack  1
-    .locals /*11000001*/ init (class [.module SecondFile.netmodule/*1A000001*/]SecondFile.SecondFile/*01000006*/ V_0)
-    IL_0000:  /* 00   |                  */ nop
-    IL_0001:  /* 72   | (70)000001       */ ldstr      "Class Program" /* 70000001 */
-    IL_0006:  /* 28   | (0A)000004       */ call       void [mscorlib/*23000001*/]System.Console/*01000007*/::WriteLine(string) /* 0A000004 */
-    IL_000b:  /* 00   |                  */ nop
-    IL_000c:  /* 72   | (70)00001D       */ ldstr      "Class FirstFile" /* 7000001D */
-    IL_0011:  /* 28   | (0A)000005       */ call       void [.module FirstFile.netmodule/*1A000002*/]FirstFile.FirstFile/*01000008*/::ShowMessage(string) /* 0A000005 */
-    IL_0016:  /* 00   |                  */ nop
-    IL_0017:  /* 72   | (70)00003D       */ ldstr      "Class SecondFile" /* 7000003D */
-    IL_001c:  /* 73   | (0A)000006       */ newobj     instance void [.module SecondFile.netmodule/*1A000001*/]SecondFile.SecondFile/*01000006*/::.ctor(string) /* 0A000006 */
-    IL_0021:  /* 0A   |                  */ stloc.0
-    IL_0022:  /* 06   |                  */ ldloc.0
-    IL_0023:  /* 6F   | (0A)000007       */ callvirt   instance void [.module SecondFile.netmodule/*1A000001*/]SecondFile.SecondFile/*01000006*/::ShowMessage() /* 0A000007 */
-    IL_0028:  /* 00   |                  */ nop
-    IL_0029:  /* 28   | (0A)000008       */ call       string [mscorlib/*23000001*/]System.Console/*01000007*/::ReadLine() /* 0A000008 */
-    IL_002e:  /* 26   |                  */ pop
-    IL_002f:  /* 2A   |                  */ ret
-  } // end of method Program::Main
-
-  .method /*06000002*/ public hidebysig specialname rtspecialname 
+  .field /*04000001*/ private string _message
+  .method /*06000001*/ public hidebysig specialname rtspecialname 
           instance void  .ctor() cil managed
   // SIG: 20 00 01
   {
-    // Метод начинается по RVA 0x208c
-    // Размер кода:       8 (0x8)
+    // Метод начинается по RVA 0x2050
+    // Размер кода:       9 (0x9)
     .maxstack  8
     IL_0000:  /* 02   |                  */ ldarg.0
-    IL_0001:  /* 28   | (0A)000009       */ call       instance void [mscorlib/*23000001*/]System.Object/*01000005*/::.ctor() /* 0A000009 */
+    IL_0001:  /* 28   | (0A)000004       */ call       instance void [mscorlib/*23000001*/]System.Object/*01000005*/::.ctor() /* 0A000004 */
     IL_0006:  /* 00   |                  */ nop
-    IL_0007:  /* 2A   |                  */ ret
-  } // end of method Program::.ctor
+    IL_0007:  /* 00   |                  */ nop
+    IL_0008:  /* 2A   |                  */ ret
+  } // end of method SecondFile::.ctor
 
-} // end of class Program
+  .method /*06000002*/ public hidebysig specialname rtspecialname 
+          instance void  .ctor(string message) cil managed
+  // SIG: 20 01 01 0E
+  {
+    // Метод начинается по RVA 0x205a
+    // Размер кода:       16 (0x10)
+    .maxstack  8
+    IL_0000:  /* 02   |                  */ ldarg.0
+    IL_0001:  /* 28   | (0A)000004       */ call       instance void [mscorlib/*23000001*/]System.Object/*01000005*/::.ctor() /* 0A000004 */
+    IL_0006:  /* 00   |                  */ nop
+    IL_0007:  /* 00   |                  */ nop
+    IL_0008:  /* 02   |                  */ ldarg.0
+    IL_0009:  /* 03   |                  */ ldarg.1
+    IL_000a:  /* 7D   | (04)000001       */ stfld      string SecondFile.SecondFile/*02000002*/::_message /* 04000001 */
+    IL_000f:  /* 2A   |                  */ ret
+  } // end of method SecondFile::.ctor
+
+  .method /*06000003*/ public hidebysig instance void 
+          ShowMessage() cil managed
+  // SIG: 20 00 01
+  {
+    // Метод начинается по RVA 0x206b
+    // Размер кода:       14 (0xe)
+    .maxstack  8
+    IL_0000:  /* 00   |                  */ nop
+    IL_0001:  /* 02   |                  */ ldarg.0
+    IL_0002:  /* 7B   | (04)000001       */ ldfld      string SecondFile.SecondFile/*02000002*/::_message /* 04000001 */
+    IL_0007:  /* 28   | (0A)000005       */ call       void [mscorlib/*23000001*/]System.Console/*01000006*/::WriteLine(string) /* 0A000005 */
+    IL_000c:  /* 00   |                  */ nop
+    IL_000d:  /* 2A   |                  */ ret
+  } // end of method SecondFile::ShowMessage
+
+} // end of class SecondFile.SecondFile
+
+.class /*02000003*/ public abstract auto ansi sealed beforefieldinit FirstFile.FirstFile
+       extends [mscorlib/*23000001*/]System.Object/*01000005*/
+{
+  .method /*06000004*/ public hidebysig static 
+          void  ShowMessage(string message) cil managed
+  // SIG: 00 01 01 0E
+  {
+    // Метод начинается по RVA 0x207a
+    // Размер кода:       9 (0x9)
+    .maxstack  8
+    IL_0000:  /* 00   |                  */ nop
+    IL_0001:  /* 02   |                  */ ldarg.0
+    IL_0002:  /* 28   | (0A)000005       */ call       void [mscorlib/*23000001*/]System.Console/*01000006*/::WriteLine(string) /* 0A000005 */
+    IL_0007:  /* 00   |                  */ nop
+    IL_0008:  /* 2A   |                  */ ret
+  } // end of method FirstFile::ShowMessage
+
+} // end of class FirstFile.FirstFile
 
 
 // =============================================================
