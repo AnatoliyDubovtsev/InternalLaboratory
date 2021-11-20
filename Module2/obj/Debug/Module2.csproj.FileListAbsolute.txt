@@ -1,0 +1,7 @@
+D:\EPAM\InternalLaboratory\Module2\bin\Debug\Module2.pdb
+D:\EPAM\InternalLaboratory\Module2\obj\Debug\Module2.csproj.CoreCompileInputs.cache
+D:\EPAM\InternalLaboratory\Module2\obj\Debug\Module2.pdb
+D:\EPAM\InternalLaboratory\Module2\bin\Debug\Module2.dll.config
+D:\EPAM\InternalLaboratory\Module2\bin\Debug\Module2.dll
+D:\EPAM\InternalLaboratory\Module2\obj\Debug\Module2.dll
+D:\EPAM\InternalLaboratory\Module2\obj\Debug\Module2.csproj.AssemblyReference.cache
