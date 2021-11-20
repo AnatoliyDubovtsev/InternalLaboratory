@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="InsertNumberTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RecursiveSearchTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
