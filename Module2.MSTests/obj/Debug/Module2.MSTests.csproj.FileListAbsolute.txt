@@ -17,3 +17,4 @@ D:\EPAM\InternalLaboratory\Module2.MSTests\obj\Debug\Module2.MSTests.csproj.Asse
 D:\EPAM\InternalLaboratory\Module2.MSTests\obj\Debug\Module2.MSTests.csproj.CoreCompileInputs.cache
 D:\EPAM\InternalLaboratory\Module2.MSTests\obj\Debug\Module2.MSTests.dll
 D:\EPAM\InternalLaboratory\Module2.MSTests\obj\Debug\Module2.MSTests.pdb
+D:\EPAM\InternalLaboratory\Module2.MSTests\obj\Debug\Module2.MSTests.csproj.CopyComplete
