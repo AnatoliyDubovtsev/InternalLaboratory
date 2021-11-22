@@ -15,6 +15,6 @@ D:\EPAM\InternalLaboratory\Module2.MSTests\bin\Debug\Microsoft.VisualStudio.Test
 D:\EPAM\InternalLaboratory\Module2.MSTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
 D:\EPAM\InternalLaboratory\Module2.MSTests\obj\Debug\Module2.MSTests.csproj.AssemblyReference.cache
 D:\EPAM\InternalLaboratory\Module2.MSTests\obj\Debug\Module2.MSTests.csproj.CoreCompileInputs.cache
+D:\EPAM\InternalLaboratory\Module2.MSTests\obj\Debug\Module2.MSTests.csproj.CopyComplete
 D:\EPAM\InternalLaboratory\Module2.MSTests\obj\Debug\Module2.MSTests.dll
 D:\EPAM\InternalLaboratory\Module2.MSTests\obj\Debug\Module2.MSTests.pdb
-D:\EPAM\InternalLaboratory\Module2.MSTests\obj\Debug\Module2.MSTests.csproj.CopyComplete
