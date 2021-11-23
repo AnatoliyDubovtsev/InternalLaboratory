@@ -9,12 +9,14 @@ D:\EPAM\InternalLaboratory\Module2.MSTests\bin\Debug\Module2.MSTests.pdb
 D:\EPAM\InternalLaboratory\Module2.MSTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
 D:\EPAM\InternalLaboratory\Module2.MSTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
 D:\EPAM\InternalLaboratory\Module2.MSTests\bin\Debug\Module2.dll
+D:\EPAM\InternalLaboratory\Module2.MSTests\bin\Debug\System.Data.SqlClient.dll
 D:\EPAM\InternalLaboratory\Module2.MSTests\bin\Debug\Module2.pdb
 D:\EPAM\InternalLaboratory\Module2.MSTests\bin\Debug\Module2.dll.config
 D:\EPAM\InternalLaboratory\Module2.MSTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
 D:\EPAM\InternalLaboratory\Module2.MSTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+D:\EPAM\InternalLaboratory\Module2.MSTests\bin\Debug\System.Data.SqlClient.xml
 D:\EPAM\InternalLaboratory\Module2.MSTests\obj\Debug\Module2.MSTests.csproj.AssemblyReference.cache
 D:\EPAM\InternalLaboratory\Module2.MSTests\obj\Debug\Module2.MSTests.csproj.CoreCompileInputs.cache
-D:\EPAM\InternalLaboratory\Module2.MSTests\obj\Debug\Module2.MSTests.csproj.CopyComplete
 D:\EPAM\InternalLaboratory\Module2.MSTests\obj\Debug\Module2.MSTests.dll
 D:\EPAM\InternalLaboratory\Module2.MSTests\obj\Debug\Module2.MSTests.pdb
+D:\EPAM\InternalLaboratory\Module2.MSTests\bin\Debug\ExternalFilesForDDT\FilterDigitTestData.xml
