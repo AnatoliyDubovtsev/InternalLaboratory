@@ -9,7 +9,6 @@ D:\EPAM\InternalLaboratory\Module2.NUnitTest\bin\Debug\net472\nunit.framework.dl
 D:\EPAM\InternalLaboratory\Module2.NUnitTest\bin\Debug\net472\Module2.dll
 D:\EPAM\InternalLaboratory\Module2.NUnitTest\bin\Debug\net472\Module2.pdb
 D:\EPAM\InternalLaboratory\Module2.NUnitTest\bin\Debug\net472\Module2.dll.config
-D:\EPAM\InternalLaboratory\Module2.NUnitTest\obj\Debug\net472\Module2.NUnitTests.csproj.AssemblyReference.cache
 D:\EPAM\InternalLaboratory\Module2.NUnitTest\obj\Debug\net472\Module2.NUnitTests.GeneratedMSBuildEditorConfig.editorconfig
 D:\EPAM\InternalLaboratory\Module2.NUnitTest\obj\Debug\net472\Module2.NUnitTests.AssemblyInfoInputs.cache
 D:\EPAM\InternalLaboratory\Module2.NUnitTest\obj\Debug\net472\Module2.NUnitTests.AssemblyInfo.cs

@@ -4,6 +4,7 @@
     {
         public static int IndexOfElementWithEqualSumOnBothSides(double[] arr)
         {
+            const double percent = 0.0001;
             double leftSum = 0;
             double rightSum = 0;
             for (int i = 1; i < arr.Length; i++)
@@ -11,7 +12,6 @@
                 rightSum += arr[i];
             }
 
-            double percent = 0.0001;
             int index = 0;
             while (index < arr.Length)
             {

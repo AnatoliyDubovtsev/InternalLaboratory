@@ -9,6 +9,7 @@ namespace Module2.MSTests
         private const string _provider = @"Microsoft.VisualStudio.TestTools.DataSource.XML";
         private const string _connectionString = "ExternalFilesForDDT/FilterDigitTestData.xml";
         private const string _tableName = "Data";
+
         public TestContext TestContext { get; set; }
 
         [DataSource(_provider, _connectionString, _tableName, DataAccessMethod.Sequential)]
