@@ -13,7 +13,6 @@ D:\EPAM\InternalLaboratory\ConsoleApp\obj\Debug\net5.0\ConsoleApp.GeneratedMSBui
 D:\EPAM\InternalLaboratory\ConsoleApp\obj\Debug\net5.0\ConsoleApp.AssemblyInfoInputs.cache
 D:\EPAM\InternalLaboratory\ConsoleApp\obj\Debug\net5.0\ConsoleApp.AssemblyInfo.cs
 D:\EPAM\InternalLaboratory\ConsoleApp\obj\Debug\net5.0\ConsoleApp.csproj.CoreCompileInputs.cache
-D:\EPAM\InternalLaboratory\ConsoleApp\obj\Debug\net5.0\ConsoleApp.csproj.CopyComplete
 D:\EPAM\InternalLaboratory\ConsoleApp\obj\Debug\net5.0\ConsoleApp.dll
 D:\EPAM\InternalLaboratory\ConsoleApp\obj\Debug\net5.0\ref\ConsoleApp.dll
 D:\EPAM\InternalLaboratory\ConsoleApp\obj\Debug\net5.0\ConsoleApp.pdb

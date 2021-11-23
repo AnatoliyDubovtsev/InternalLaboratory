@@ -18,11 +18,18 @@ namespace Module2.NUnitTests
         [TestCase(10, ExpectedResult = -1)]
         [TestCase(20, ExpectedResult = -1)]
         public int FindNextBiggerNumber_ReturnsResultNumber(int number)
-            => Task5.FindNextBiggerNumber(number, out double elapsedMilliseconds);
+            => Task5.FindNextBiggerNumber(number, out double _);
 
         [TestCase(0)]
         [TestCase(-1)]
         public void FindNextBiggerNumber_ThrowsArgumentException(int number)
             => Assert.Throws<ArgumentException>(() => Task5.FindNextBiggerNumber(number, out double elapsedMilliseconds));
+
+        [TestCase(165743210)]
+        public void FindNextBiggerNumber_ReturnsElapsedMilliseconds(int number)
+        {
+            Task5.FindNextBiggerNumber(number, out double elapsedMilliseconds);
+            Assert.True(elapsedMilliseconds > 0.0);
+        }
     }
 }
