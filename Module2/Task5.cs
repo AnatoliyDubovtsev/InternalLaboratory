@@ -34,12 +34,9 @@ namespace Module2
                 }
             }
 
-            TimeSpan timeSpan;
             if (!isFoundBiggerNumber)
             {
-                stopwatch.Stop();
-                timeSpan = stopwatch.Elapsed;
-                elapsedMilliseconds = timeSpan.TotalMilliseconds;
+                elapsedMilliseconds = Common.ElapsedMilliseconds(stopwatch);
                 return -1;
             }
 
@@ -53,9 +50,7 @@ namespace Module2
                 }
             }
 
-            stopwatch.Stop();
-            timeSpan = stopwatch.Elapsed;
-            elapsedMilliseconds = timeSpan.TotalMilliseconds;
+            elapsedMilliseconds = Common.ElapsedMilliseconds(stopwatch);
             return resultNumber;
         }
 

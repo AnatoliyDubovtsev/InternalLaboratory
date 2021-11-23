@@ -18,9 +18,7 @@ namespace Module2.MSTests
         [DataRow(55, 3520, 6, 12, 4151)]
         [DataRow(1984, 1999, 0, 2, 1991)]
         public void InsertNumber_ReturnsResultNumber(int numberSource, int numberIn, int i, int j, int expectedResult)
-        {
-            Assert.AreEqual(expectedResult, Task1.InsertNumber(numberSource, numberIn, i, j));
-        }
+            => Assert.AreEqual(expectedResult, Task1.InsertNumber(numberSource, numberIn, i, j));
 
         [DataTestMethod]
         [DataRow(5, 15, -1, 0)]
@@ -30,8 +28,6 @@ namespace Module2.MSTests
         [DataRow(5, 15, 1, 32)]
         [DataRow(5, 15, 32, 1)]
         public void InsertNumber_IncorrectInput_ThrowsArgumentException(int numberSource, int numberIn, int i, int j)
-        {
-            Assert.ThrowsException<ArgumentException>(() => Task1.InsertNumber(numberSource, numberIn, i, j));
-        }
+            => Assert.ThrowsException<ArgumentException>(() => Task1.InsertNumber(numberSource, numberIn, i, j));
     }
 }

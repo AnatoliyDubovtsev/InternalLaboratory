@@ -14,15 +14,11 @@ namespace Module2.MSTests
         [DataRow(new int[1] { 0 }, 0)]
         [DataRow(new int[3] { 1, 1, 1 }, 1)]
         public void RecursiveSearch_ReturnsMaxNumber(int[] arr, int expectedResult)
-        {
-            Assert.AreEqual(expectedResult, Task2.RecursiveSearch(arr));
-        }
+            => Assert.AreEqual(expectedResult, Task2.RecursiveSearch(arr));
 
         [DataTestMethod]
         [DataRow(new int[] { })]
         public void RecursiveSearch_ThrowsArgumentExceptionIfArrLengthIsZero(int[] arr)
-        {
-            Assert.ThrowsException<ArgumentException>(() => Task2.RecursiveSearch(arr));
-        }
+            => Assert.ThrowsException<ArgumentException>(() => Task2.RecursiveSearch(arr));
     }
 }

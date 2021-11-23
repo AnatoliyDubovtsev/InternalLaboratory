@@ -15,3 +15,5 @@ D:\EPAM\InternalLaboratory\Module2.NUnitTest\obj\Debug\net472\Module2.NUnitTests
 D:\EPAM\InternalLaboratory\Module2.NUnitTest\obj\Debug\net472\Module2.NUnitTests.csproj.CoreCompileInputs.cache
 D:\EPAM\InternalLaboratory\Module2.NUnitTest\obj\Debug\net472\Module2.NUnitTests.dll
 D:\EPAM\InternalLaboratory\Module2.NUnitTest\obj\Debug\net472\Module2.NUnitTests.pdb
+D:\EPAM\InternalLaboratory\Module2.NUnitTest\obj\Debug\net472\Module2.NUnitTests.csproj.AssemblyReference.cache
+D:\EPAM\InternalLaboratory\Module2.NUnitTest\obj\Debug\net472\Module2.NUnitTests.csproj.CopyComplete

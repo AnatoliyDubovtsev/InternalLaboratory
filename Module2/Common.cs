@@ -1,4 +1,7 @@
-﻿namespace Module2
+﻿using System;
+using System.Diagnostics;
+
+namespace Module2
 {
     public static class Common
     {
@@ -7,6 +10,13 @@
             T temp = left;
             left = right;
             right = temp;
+        }
+
+        public static double ElapsedMilliseconds(Stopwatch stopwatch)
+        {
+            stopwatch.Stop();
+            TimeSpan timeSpan = stopwatch.Elapsed;
+            return timeSpan.TotalMilliseconds;
         }
     }
 }
