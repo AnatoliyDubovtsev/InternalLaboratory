@@ -17,4 +17,3 @@ D:\EPAM\InternalLaboratory\ConsoleApp\obj\Debug\net5.0\ConsoleApp.dll
 D:\EPAM\InternalLaboratory\ConsoleApp\obj\Debug\net5.0\ref\ConsoleApp.dll
 D:\EPAM\InternalLaboratory\ConsoleApp\obj\Debug\net5.0\ConsoleApp.pdb
 D:\EPAM\InternalLaboratory\ConsoleApp\obj\Debug\net5.0\ConsoleApp.genruntimeconfig.cache
-D:\EPAM\InternalLaboratory\ConsoleApp\obj\Debug\net5.0\ConsoleApp.csproj.CopyComplete
