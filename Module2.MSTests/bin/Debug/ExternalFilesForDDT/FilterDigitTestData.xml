@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<DataForTests>
-	<Data inputArray="5 10 7 15 13 2 17" digit="5" outputArray="5 15"></Data>
-	<Data inputArray="5 10 7 15 13 2 17" digit="7" outputArray="7 17"></Data>
-	<Data inputArray="5 10 7 15 13 2 17" digit="1" outputArray="10 15 13 17"></Data>
-	<Data inputArray="5 10 7 15 13 2 17" digit="9" outputArray=""></Data>
-	<Data inputArray="" digit="5" outputArray=""></Data>
-</DataForTests>
