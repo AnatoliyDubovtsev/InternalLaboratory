@@ -14,7 +14,7 @@ namespace Common
         public static int CountSumOfElementsInMatrixRow(int[,] matrix, int row)
         {
             int sum = 0;
-            for (int col = 0; col < matrix.Length; col++)
+            for (int col = 0; col < matrix.GetLength(0); col++)
             {
                 sum += matrix[row, col];
             }
@@ -32,7 +32,7 @@ namespace Common
         public static int FindMinElementInMatrixRow(int[,] matrix, int row)
         {
             int min = int.MaxValue;
-            for (int col = 0; col < matrix.GetLength(row); col++)
+            for (int col = 0; col < matrix.GetLength(0); col++)
             {
                 if (min > matrix[row, col])
                 {
@@ -46,7 +46,7 @@ namespace Common
         public static int FindMaxElementInMatrixRow(int[,] matrix, int row)
         {
             int max = int.MinValue;
-            for (int col = 0; col < matrix.GetLength(row); col++)
+            for (int col = 0; col < matrix.GetLength(0); col++)
             {
                 if (max < matrix[row, col])
                 {
@@ -59,9 +59,9 @@ namespace Common
 
         public static void ShowMatrix(int[,] matrix)
         {
-            for (int row = 0; row < matrix.Rank; row++)
+            for (int row = 0; row <= matrix.Rank; row++)
             {
-                for (int col = 0; col < matrix.GetLength(row); col++)
+                for (int col = 0; col < matrix.GetLength(0); col++)
                 {
                     Console.Write(matrix[row, col] + " ");
                 }
@@ -72,7 +72,7 @@ namespace Common
 
         public static void SwapElementsInMatrixRows(int[,] matrix, int upperRow, int lowerRow)
         {
-            for (int col = 0; col < matrix.GetLength(upperRow); col++)
+            for (int col = 0; col < matrix.GetLength(0); col++)
             {
                 SwapElements<int>(ref matrix[upperRow, col], ref matrix[lowerRow, col]);
             }
