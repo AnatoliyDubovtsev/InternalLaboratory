@@ -2,6 +2,16 @@
   "version": 3,
   "targets": {
     "net5.0": {
+      "Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Common.dll": {}
+        }
+      },
       "Module2/1.0.0": {
         "type": "project",
         "compile": {
@@ -10,19 +20,43 @@
         "runtime": {
           "bin/placeholder/Module2.dll": {}
         }
+      },
+      "Module3/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Common": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Module3.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Module3.dll": {}
+        }
       }
     }
   },
   "libraries": {
+    "Common/1.0.0": {
+      "type": "project",
+      "path": "../Common/Common.csproj",
+      "msbuildProject": "../Common/Common.csproj"
+    },
     "Module2/1.0.0": {
       "type": "project",
       "path": "../Module2/Module2.csproj",
       "msbuildProject": "../Module2/Module2.csproj"
+    },
+    "Module3/1.0.0": {
+      "type": "project",
+      "path": "../Module3/Module3.csproj",
+      "msbuildProject": "../Module3/Module3.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
-      "Module2 >= 1.0.0"
+      "Module2 >= 1.0.0",
+      "Module3 >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -62,6 +96,9 @@
           "projectReferences": {
             "D:\\EPAM\\InternalLaboratory\\Module2\\Module2.csproj": {
               "projectPath": "D:\\EPAM\\InternalLaboratory\\Module2\\Module2.csproj"
+            },
+            "D:\\EPAM\\InternalLaboratory\\Module3\\Module3.csproj": {
+              "projectPath": "D:\\EPAM\\InternalLaboratory\\Module3\\Module3.csproj"
             }
           }
         }

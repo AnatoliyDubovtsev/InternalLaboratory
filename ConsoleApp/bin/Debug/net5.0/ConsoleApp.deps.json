@@ -8,15 +8,29 @@
     ".NETCoreApp,Version=v5.0": {
       "ConsoleApp/1.0.0": {
         "dependencies": {
-          "Module2": "1.0.0"
+          "Module2": "1.0.0",
+          "Module3": "1.0.0"
         },
         "runtime": {
           "ConsoleApp.dll": {}
         }
       },
+      "Common/1.0.0": {
+        "runtime": {
+          "Common.dll": {}
+        }
+      },
       "Module2/1.0.0": {
         "runtime": {
           "Module2.dll": {}
+        }
+      },
+      "Module3/1.0.0": {
+        "dependencies": {
+          "Common": "1.0.0"
+        },
+        "runtime": {
+          "Module3.dll": {}
         }
       }
     }
@@ -27,7 +41,17 @@
       "serviceable": false,
       "sha512": ""
     },
+    "Common/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "Module2/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Module3/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

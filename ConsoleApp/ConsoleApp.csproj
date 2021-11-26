@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Module2\Module2.csproj" />
+    <ProjectReference Include="..\Module3\Module3.csproj" />
   </ItemGroup>
 
 </Project>

@@ -15,9 +15,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp", "ConsoleApp\Co
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Module3", "Module3", "{7A023375-9CB1-4CB7-A73A-B26F6631B415}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Module3", "Module3\Module3.csproj", "{7DB19A5A-B8A1-400B-AAF8-F500B0FD8C2F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Module3", "Module3\Module3.csproj", "{7DB19A5A-B8A1-400B-AAF8-F500B0FD8C2F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Module3.Tests", "Module3.Tests\Module3.Tests.csproj", "{5CBE4E36-19DC-4039-9085-9BDB4BD76ED4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Module3.Tests", "Module3.Tests\Module3.Tests.csproj", "{5CBE4E36-19DC-4039-9085-9BDB4BD76ED4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{24FDC64D-9F78-4E9C-BFDD-A9F4FD2DBD3C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +51,10 @@ Global
 		{5CBE4E36-19DC-4039-9085-9BDB4BD76ED4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5CBE4E36-19DC-4039-9085-9BDB4BD76ED4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5CBE4E36-19DC-4039-9085-9BDB4BD76ED4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24FDC64D-9F78-4E9C-BFDD-A9F4FD2DBD3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24FDC64D-9F78-4E9C-BFDD-A9F4FD2DBD3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24FDC64D-9F78-4E9C-BFDD-A9F4FD2DBD3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24FDC64D-9F78-4E9C-BFDD-A9F4FD2DBD3C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
