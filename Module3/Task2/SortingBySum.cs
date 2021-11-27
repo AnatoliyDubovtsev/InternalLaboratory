@@ -6,17 +6,21 @@ namespace Module3.Task2
     {
         public int[,] SortMatrix(int[,] matrix, bool isAscendingSorting)
         {
-            CommonMethods.IndexBorderIterationForMatrixSorting(out int row, out int border, out int iteration, matrix.GetLength(matrix.Rank - 1), isAscendingSorting);
             int currentSum, nextSum;
-            for (; row != border; row += iteration)
+            int border = matrix.GetLength(matrix.Rank - 1);
+            for (int row = 1; row < border; row++)
             {
-                for (int nextRow = row + iteration; nextRow != border; nextRow += iteration)
+                for (int nextRow = 0; nextRow < border - row; nextRow++)
                 {
-                    currentSum = CommonMethods.CountSumOfElementsInMatrixRow(matrix, row);
-                    nextSum = CommonMethods.CountSumOfElementsInMatrixRow(matrix, nextRow);
-                    if (currentSum > nextSum)
+                    currentSum = CommonMethods.CountSumOfElementsInMatrixRow(matrix, nextRow);
+                    nextSum = CommonMethods.CountSumOfElementsInMatrixRow(matrix, nextRow + 1);
+                    if (currentSum > nextSum && isAscendingSorting)
                     {
-                        CommonMethods.SwapElementsInMatrixRows(matrix, row, nextRow);
+                        CommonMethods.SwapElementsInMatrixRows<int>(matrix, nextRow, nextRow + 1);
+                    }
+                    else if (currentSum < nextSum && !isAscendingSorting)
+                    {
+                        CommonMethods.SwapElementsInMatrixRows<int>(matrix, nextRow, nextRow + 1);
                     }
                 }
             }

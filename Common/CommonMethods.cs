@@ -22,9 +22,9 @@ namespace Common
             return sum;
         }
 
-        public static void IndexBorderIterationForMatrixSorting(out int index, out int border, out int iteration, int matrixRowLength, bool isAscending)
+        public static void IndexBorderIterationForMatrixSorting(out int row, out int border, out int iteration, int matrixRowLength, bool isAscending)
         {
-            index = isAscending ? 0 : matrixRowLength - 1;
+            row = isAscending ? 0 : matrixRowLength - 1;
             border = isAscending ? matrixRowLength : -1;
             iteration = isAscending ? 1 : -1;
         }
@@ -57,7 +57,7 @@ namespace Common
             return max;
         }
 
-        public static void ShowMatrix(int[,] matrix)
+        public static void ShowMatrix<T>(T[,] matrix)
         {
             for (int row = 0; row <= matrix.Rank; row++)
             {
@@ -70,11 +70,11 @@ namespace Common
             }
         }
 
-        public static void SwapElementsInMatrixRows(int[,] matrix, int upperRow, int lowerRow)
+        public static void SwapElementsInMatrixRows<T>(T[,] matrix, int upperRow, int lowerRow)
         {
             for (int col = 0; col < matrix.GetLength(0); col++)
             {
-                SwapElements<int>(ref matrix[upperRow, col], ref matrix[lowerRow, col]);
+                SwapElements<T>(ref matrix[upperRow, col], ref matrix[lowerRow, col]);
             }
         }
     }

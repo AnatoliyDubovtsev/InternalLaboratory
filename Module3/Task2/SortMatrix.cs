@@ -52,10 +52,10 @@ namespace Module3.Task2
             }
 
             Console.WriteLine("Matrix before sorting");
-            CommonMethods.ShowMatrix(matrix);
+            CommonMethods.ShowMatrix<int>(matrix);
             sortingStrategy.SortMatrix(matrix, isAscendingSorting);
             Console.WriteLine("Matrix after sorting");
-            CommonMethods.ShowMatrix(matrix);
+            CommonMethods.ShowMatrix<int>(matrix);
         }
     }
 }
