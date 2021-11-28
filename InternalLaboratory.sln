@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Module3", "Module3\Module3.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Module3.Tests", "Module3.Tests\Module3.Tests.csproj", "{5CBE4E36-19DC-4039-9085-9BDB4BD76ED4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{24FDC64D-9F78-4E9C-BFDD-A9F4FD2DBD3C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{24FDC64D-9F78-4E9C-BFDD-A9F4FD2DBD3C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

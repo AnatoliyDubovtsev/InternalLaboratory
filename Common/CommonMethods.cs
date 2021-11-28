@@ -22,13 +22,6 @@ namespace Common
             return sum;
         }
 
-        public static void IndexBorderIterationForMatrixSorting(out int row, out int border, out int iteration, int matrixRowLength, bool isAscending)
-        {
-            row = isAscending ? 0 : matrixRowLength - 1;
-            border = isAscending ? matrixRowLength : -1;
-            iteration = isAscending ? 1 : -1;
-        }
-
         public static int FindMinElementInMatrixRow(int[,] matrix, int row)
         {
             int min = int.MaxValue;
@@ -75,6 +68,15 @@ namespace Common
             for (int col = 0; col < matrix.GetLength(0); col++)
             {
                 SwapElements<T>(ref matrix[upperRow, col], ref matrix[lowerRow, col]);
+            }
+        }
+
+        public static void ShowCollectionItems<T>(T[] collection)
+        {
+            int i = 0;
+            foreach(var item in collection)
+            {
+                Console.WriteLine($"{i++} {item}");
             }
         }
     }
