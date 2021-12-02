@@ -7,24 +7,22 @@ namespace Module2
         public static int[] FilterDigit(int[] arr, int digit)
         {
             int countResultArraySize = arr.Length;
+            int lastFreeIndex = 0;
             for (int i = 0; i < arr.Length; i++)
             {
                 if (!isContainsDigit(arr[i], digit))
                 {
-                    arr[i] = 0;
                     countResultArraySize--;
+                }
+                else
+                {
+                    Common.SwapElements<int>(ref arr[i], ref arr[lastFreeIndex]);
+                    lastFreeIndex++;
                 }
             }
 
             int[] resultArr = new int[countResultArraySize];
-            for (int i = 0, j = 0; i < arr.Length; i++)
-            {
-                if (arr[i] != 0)
-                {
-                    resultArr[j++] = arr[i];
-                }
-            }
-
+            Array.Copy(arr, resultArr, countResultArraySize);
             return resultArr;
         }
 
@@ -32,15 +30,18 @@ namespace Module2
         {
             bool isContains = false;
             number = Math.Abs(number);
-            while (number > 0)
+            while (!isContains)
             {
                 if (number % 10 == digit)
                 {
                     isContains = true;
-                    break;
                 }
 
                 number /= 10;
+                if (number == 0)
+                {
+                    break;
+                }
             }
 
             return isContains;
