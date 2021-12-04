@@ -24,6 +24,10 @@ jobs:
       run: dotnet --version
     - name: Restore dependencies
       run: dotnet restore
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v1.0.5
+    - name: Restore NuGet packages
+      run: nuget restore InternalLaboratory.sln
     - name: Build
       run: dotnet build --no-restore
     - name: Test
