@@ -11,13 +11,16 @@ namespace Module3.Tests
         [TestCase("2")]
         public void ChooseSortingStrategy_InputCorrectNumber_ReturnsSortingStrategy(string input)
         {
+            //arrange
             using (var reader = new StringReader(input))
             {
                 Console.SetIn(reader);
                 var sortMatrix = new Task2.SortMatrix();
 
+                //act
                 var result = sortMatrix.ChooseSortingStrategy();
 
+                //assert
                 Assert.IsInstanceOf<Task2.ISortingStrategy>(result);
             }
         }

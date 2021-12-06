@@ -7,7 +7,7 @@ namespace Module3.Task2
         public int[,] SortMatrix(int[,] matrix, bool isAscendingSorting)
         {
             int currentMin, nextMin;
-            int border = matrix.GetLength(matrix.Rank - 1);
+            int border = matrix.GetLength(0);
             for (int row = 1; row < border; row++)
             {
                 for (int nextRow = 0; nextRow < border - row; nextRow++)

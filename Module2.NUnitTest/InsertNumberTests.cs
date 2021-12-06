@@ -3,7 +3,6 @@ using System;
 
 namespace Module2.NUnitTests
 {
-    [TestFixture]
     public class InsertNumberTests
     {
         [TestCase(15, 15, 0, 0, ExpectedResult = 15)]

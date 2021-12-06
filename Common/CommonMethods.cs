@@ -1,4 +1,5 @@
-﻿using System;
+﻿#pragma warning disable S2368
+using System;
 
 namespace Common
 {
@@ -52,9 +53,14 @@ namespace Common
 
         public static void ShowMatrix<T>(T[,] matrix)
         {
-            for (int row = 0; row <= matrix.Rank; row++)
+            if (matrix == null)
             {
-                for (int col = 0; col < matrix.GetLength(0); col++)
+                throw new ArgumentNullException(nameof(matrix), "Matrix is a null.");
+            }
+
+            for (int row = 0; row < matrix.GetLength(0); row++)
+            {
+                for (int col = 0; col < matrix.GetLength(1); col++)
                 {
                     Console.Write(matrix[row, col] + " ");
                 }
@@ -73,6 +79,11 @@ namespace Common
 
         public static void ShowCollectionItems<T>(T[] collection)
         {
+            if (collection == null)
+            {
+                throw new ArgumentNullException(nameof(collection), "Collection is a null");
+            }
+
             int i = 0;
             foreach(var item in collection)
             {

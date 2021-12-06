@@ -1,4 +1,5 @@
-﻿using Common;
+﻿#pragma warning disable S2368
+using Common;
 using System;
 
 namespace Module3.Task2
@@ -28,13 +29,12 @@ namespace Module3.Task2
 
         public ISortingStrategy ChooseSortingStrategy()
         {
-            int sortingStrategy;
             ISortingStrategy sortingStrategyMethod = null;
             do
             {
                 Console.Write(Environment.NewLine + "Please, choose the sorting strategy -> ");
                 string choice = Console.ReadLine();
-                if (!int.TryParse(choice, out sortingStrategy))
+                if (!int.TryParse(choice, out int sortingStrategy))
                 {
                     Console.WriteLine("Entered data is not a number. Please, try again");
                     continue;

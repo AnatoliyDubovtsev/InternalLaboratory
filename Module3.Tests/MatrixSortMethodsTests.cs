@@ -5,7 +5,7 @@ namespace Module3.Tests
     [TestFixture]
     public class MatrixSortMethodsTests
     {
-        private const int quantity = 5;
+        private const int quantity = 6;
         private int[][,] inputMatrixes;
         private int[][,] expectedMatrixes_SortingBySum_Ascending;
         private int[][,] expectedMatrixes_SortingBySum_Discending;
@@ -20,6 +20,7 @@ namespace Module3.Tests
             inputMatrixes = new int[][,]
             {
                 new int[,] { },
+                new int[1, 0],
                 new int[,] { { 1 } },
                 new int[,] { { 1, 2, 3 }, { 4, 0, 8 }, { 6, 5, 6 } },
                 new int[,] { { 1, 5, 7, 9 }, { 2, 0, 8, 5 }, { 3, 2, 5, 2 }, { 5, 4, 7, 10 } },
@@ -29,6 +30,7 @@ namespace Module3.Tests
             expectedMatrixes_SortingBySum_Ascending = new int[][,]
             {
                 new int[,] { },
+                new int[1, 0],
                 new int[,] { { 1 } },
                 new int[,] { { 1, 2, 3 }, { 4, 0, 8 }, { 6, 5, 6 } },
                 new int[,] { { 3, 2, 5, 2 }, { 2, 0, 8, 5 }, { 1, 5, 7, 9 }, { 5, 4, 7, 10 } },
@@ -38,6 +40,7 @@ namespace Module3.Tests
             expectedMatrixes_SortingByMin_Ascending = new int[][,]
             {
                 new int[,] { },
+                new int[1, 0],
                 new int[,] { { 1 } },
                 new int[,] { { 4, 0, 8 }, { 1, 2, 3 }, { 6, 5, 6 } },
                 new int[,] { { 2, 0, 8, 5 }, { 1, 5, 7, 9 }, { 3, 2, 5, 2 }, { 5, 4, 7, 10} },
@@ -47,6 +50,7 @@ namespace Module3.Tests
             expectedMatrixes_SortingByMax_Ascending = new int[][,]
             {
                 new int[,] { },
+                new int[1, 0],
                 new int[,] { { 1 } },
                 new int[,] { { 1, 2, 3 }, { 6, 5, 6 }, { 4, 0, 8 } },
                 new int[,] { { 3, 2, 5, 2 }, { 2, 0, 8, 5 }, { 1, 5, 7, 9 }, { 5, 4, 7, 10 } },
@@ -107,10 +111,10 @@ namespace Module3.Tests
             int[][,] result = new int[matrix.Length][,];
             for(int outerRow = 0; outerRow < matrix.Length; outerRow++)
             {
-                result[outerRow] = new int[matrix[outerRow].GetLength(0), matrix[outerRow].GetLength(0)];
+                result[outerRow] = new int[matrix[outerRow].GetLength(0), matrix[outerRow].GetLength(1)];
                 for (int row = 0, sourceRow = matrix[outerRow].GetLength(0) - 1; row < matrix[outerRow].GetLength(0); row++, sourceRow--)
                 {
-                    for (int col = 0; col < matrix[outerRow].GetLength(0); col++)
+                    for (int col = 0; col < matrix[outerRow].GetLength(1); col++)
                     {
                         result[outerRow][row, col] = matrix[outerRow][sourceRow, col];
                     }

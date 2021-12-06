@@ -14,6 +14,11 @@ namespace Module2
 
         public static double ElapsedMilliseconds(Stopwatch stopwatch)
         {
+            if (stopwatch == null)
+            {
+                throw new ArgumentNullException(nameof(stopwatch), "Stopwatch is a null.");
+            }
+
             stopwatch.Stop();
             TimeSpan timeSpan = stopwatch.Elapsed;
             return timeSpan.TotalMilliseconds;

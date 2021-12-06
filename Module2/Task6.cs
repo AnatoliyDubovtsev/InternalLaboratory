@@ -10,7 +10,7 @@ namespace Module2
             int lastFreeIndex = 0;
             for (int i = 0; i < arr.Length; i++)
             {
-                if (!isContainsDigit(arr[i], digit))
+                if (!IsContainsDigit(arr[i], digit))
                 {
                     countResultArraySize--;
                 }
@@ -26,7 +26,7 @@ namespace Module2
             return resultArr;
         }
 
-        internal static bool isContainsDigit(int number, int digit)
+        internal static bool IsContainsDigit(int number, int digit)
         {
             bool isContains = false;
             number = Math.Abs(number);
