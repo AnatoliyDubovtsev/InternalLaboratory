@@ -1,4 +1,6 @@
-﻿namespace ConsoleApp
+﻿using Module3.Task2;
+
+namespace ConsoleApp
 {
     static class Program
     {
@@ -18,8 +20,10 @@
                 { 4, 0, 6 }
             };
 
-            var sortMatrix = new Module3.Task2.SortMatrix();
-            sortMatrix.Sorting(matrix);
+            ISortingStrategy sortingStrategy = SortingConfiguration.ChooseSortingStrategy();
+            SortMatrix sortMatrix = new(sortingStrategy);
+            SortingConfiguration.ChooseTypeOfSorting(out bool isAscendingSorting);
+            sortMatrix.Sorting(matrix, isAscendingSorting); 
         }
     }
 }

@@ -14,18 +14,16 @@ namespace Common.Tests
         public void ShowMatrix_ReturnsResult(int numberOfRows, int numberOfColumns)
         {
             //arrange
-            using (var writer = new StringWriter())
-            {
-                Console.SetOut(writer);
-                int[,] matrixForTests = CreateMatrixForTestsAndExpectedResultString(numberOfRows, numberOfColumns, out string expectedResult);
+            using var writer = new StringWriter();
+            Console.SetOut(writer);
+            var matrixForTests = CreateMatrixForTestsAndExpectedResultString(numberOfRows, numberOfColumns, out string expectedResult);
 
-                //act
-                CommonMethods.ShowMatrix<int>(matrixForTests);
-                string actual = writer.ToString();
+            //act
+            CommonMethods.ShowMatrix<int>(matrixForTests);
+            var actual = writer.ToString();
 
-                //assert
-                Assert.AreEqual(expectedResult, actual);
-            }
+            //assert
+            Assert.AreEqual(expectedResult, actual);
         }
 
         [TestCase(null)]
@@ -34,8 +32,8 @@ namespace Common.Tests
 
         private static int[,] CreateMatrixForTestsAndExpectedResultString(int numberOfRows, int numberOfColumns, out string expectedResult)
         {
-            int[,] matrixForTests = new int[numberOfRows, numberOfColumns];
-            StringBuilder stringBuilder = new StringBuilder();
+            var matrixForTests = new int[numberOfRows, numberOfColumns];
+            var stringBuilder = new StringBuilder();
             for (int row = 0; row < numberOfRows; row++)
             {
                 for (int col = 0; col < numberOfColumns; col++)

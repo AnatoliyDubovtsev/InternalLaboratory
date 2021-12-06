@@ -19,9 +19,9 @@ namespace Common.Tests
             expectedResult = CreateExpectedString<int>(arr);
         }
 
-        public string CreateExpectedString<T>(T[] arr)
+        public static string CreateExpectedString<T>(T[] arr)
         {
-            StringBuilder stringBuilder = new StringBuilder();
+            var stringBuilder = new StringBuilder();
             for(int i = 0; i < arr.Length; i++)
             {
                 stringBuilder.Append(i + " " + arr[i] + Environment.NewLine);
@@ -34,17 +34,15 @@ namespace Common.Tests
         public void ShowCollectionItem_ReturnsIndexAndItem()
         {
             //arrange
-            using (var writer = new StringWriter())
-            {
-                Console.SetOut(writer);
+            using var writer = new StringWriter();
+            Console.SetOut(writer);
 
-                //act
-                CommonMethods.ShowCollectionItems<int>(inputCollection);
-                var actual = writer.ToString();
+            //act
+            CommonMethods.ShowCollectionItems<int>(inputCollection);
+            var actual = writer.ToString();
 
-                //assert
-                Assert.AreEqual(actual, expectedResult);
-            }
+            //assert
+            Assert.AreEqual(actual, expectedResult);
         }
 
         [TestCase(null)]
