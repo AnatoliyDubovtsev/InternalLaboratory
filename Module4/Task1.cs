@@ -42,7 +42,7 @@ namespace Module4
             }
 
             int residualZeros = 64 - wholePartInBinaryFormat.Length - floatingPointPartInBinaryFormat.Length - exponentInBinaryFormat.Length;
-            StringBuilder resultStringBuilder = new StringBuilder();
+            StringBuilder resultStringBuilder = new();
             if (isPositive)
             {
                 resultStringBuilder.Append(0);
