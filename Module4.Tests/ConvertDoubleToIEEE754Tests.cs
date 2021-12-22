@@ -19,8 +19,7 @@ namespace Module4.Tests
         public void ConvertDoubleToIEEE754_ReturnsResult(double input, string expected)
         {
             var result = input.ConvertDoubleToIEEE754();
-            Assert.True(expected.Contains(result));
-            Assert.AreEqual(expected.Length, result.Length);
+            Assert.AreEqual(expected, result);
         }
     }
 }
