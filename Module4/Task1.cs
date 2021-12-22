@@ -8,20 +8,27 @@ namespace Module4
     {
         public static string ConvertDoubleToIEEE754(this double number)
         {
-            bool isPositive = number > 0;
+            bool isPositive = number >= 0;
             number = Math.Abs(number);
-            string numberString = number.ToString();
-            //int index = numberString.IndexOf('E');
-            //numberString = numberString.Remove(index);
+            string numberString = number.ToString();            
             string[] wholeAndFloatingPointParts = numberString.Split(',');
             bool isContainsComma = wholeAndFloatingPointParts.Length == 2;
+            /*int decExp = 0;
+            if (isContainsComma && wholeAndFloatingPointParts[1].Contains('E'))
+            {
+                int index = wholeAndFloatingPointParts[1].IndexOf('E');
+                string exp = wholeAndFloatingPointParts[1].Substring(index + 1);
+                decExp = int.Parse(exp);
+                wholeAndFloatingPointParts[1] = wholeAndFloatingPointParts[1].Remove(index);
+            }*/
+
             int count = 1;
             
             long wholePartOfNumber = Convert.ToInt64(wholeAndFloatingPointParts[0]);
             char[] wholePartInBinaryFormat = OperationsWithElements.WholeDecNumberToBin(wholePartOfNumber).ToCharArray();
             Array.Reverse(wholePartInBinaryFormat);
             count += wholePartInBinaryFormat.Length;
-            
+
             int exponent = wholePartInBinaryFormat.Length - 1;
             char[] exponentInBinaryFormat = OperationsWithElements.WholeDecNumberToBin(exponent + 1023).ToCharArray();
             Array.Reverse(exponentInBinaryFormat);

@@ -17,6 +17,6 @@ namespace Module4.Tests
         [TestCase(-0.0, ExpectedResult = "1000000000000000000000000000000000000000000000000000000000000000")]
         [TestCase(0.0, ExpectedResult = "0000000000000000000000000000000000000000000000000000000000000000")]*/
         public string ConvertDoubleToIEEE754_ReturnsResult(double input)
-            => Task1.ConvertDoubleToIEEE754(input);
+            => input.ConvertDoubleToIEEE754();
     }
 }
