@@ -24,7 +24,7 @@ namespace Module4
 
             int count = 1;
             
-            long wholePartOfNumber = Convert.ToInt64(wholeAndFloatingPointParts[0]);
+            long.TryParse(wholeAndFloatingPointParts[0], out long wholePartOfNumber);
             char[] wholePartInBinaryFormat = OperationsWithElements.WholeDecNumberToBin(wholePartOfNumber).ToCharArray();
             Array.Reverse(wholePartInBinaryFormat);
             count += wholePartInBinaryFormat.Length;
@@ -37,7 +37,7 @@ namespace Module4
             char[] floatingPointPartInBinaryFormat = new char[] { };
             if (isContainsComma)
             {
-                double floatingPointPart = Convert.ToDouble("0," + wholeAndFloatingPointParts[1]);
+                double.TryParse("0," + wholeAndFloatingPointParts[1], out double floatingPointPart);
                 floatingPointPartInBinaryFormat = OperationsWithElements.FloatingPointDecNumberToBin(floatingPointPart, 64 - count).ToCharArray();
             }
 
