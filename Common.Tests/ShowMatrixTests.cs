@@ -19,7 +19,7 @@ namespace Common.Tests
             var matrixForTests = CreateMatrixForTestsAndExpectedResultString(numberOfRows, numberOfColumns, out string expectedResult);
 
             //act
-            CommonMethods.ShowMatrix<int>(matrixForTests);
+            MatrixCommonMethods.ShowMatrix<int>(matrixForTests);
             var actual = writer.ToString();
 
             //assert
@@ -28,7 +28,7 @@ namespace Common.Tests
 
         [TestCase(null)]
         public void ShowMatrix_ThrowsArgumentNullException(int[,] matrix)
-            => Assert.Throws<ArgumentNullException>(() => CommonMethods.ShowMatrix<int>(matrix));
+            => Assert.Throws<ArgumentNullException>(() => MatrixCommonMethods.ShowMatrix<int>(matrix));
 
         private static int[,] CreateMatrixForTestsAndExpectedResultString(int numberOfRows, int numberOfColumns, out string expectedResult)
         {

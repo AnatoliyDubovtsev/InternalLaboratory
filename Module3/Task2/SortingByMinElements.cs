@@ -12,15 +12,15 @@ namespace Module3.Task2
             {
                 for (int nextRow = 0; nextRow < border - row; nextRow++)
                 {
-                    currentMin = CommonMethods.FindMinElementInMatrixRow(matrix, nextRow);
-                    nextMin = CommonMethods.FindMinElementInMatrixRow(matrix, nextRow + 1);
+                    currentMin = MatrixCommonMethods.FindMinElementInMatrixRow(matrix, nextRow);
+                    nextMin = MatrixCommonMethods.FindMinElementInMatrixRow(matrix, nextRow + 1);
                     if (currentMin > nextMin && isAscendingSorting)
                     {
-                        CommonMethods.SwapElementsInMatrixRows<int>(matrix, nextRow, nextRow + 1);
+                        MatrixCommonMethods.SwapElementsInMatrixRows<int>(matrix, nextRow, nextRow + 1);
                     }
                     else if (currentMin < nextMin && !isAscendingSorting)
                     {
-                        CommonMethods.SwapElementsInMatrixRows<int>(matrix, nextRow, nextRow + 1);
+                        MatrixCommonMethods.SwapElementsInMatrixRows<int>(matrix, nextRow, nextRow + 1);
                     }
                 }
             }

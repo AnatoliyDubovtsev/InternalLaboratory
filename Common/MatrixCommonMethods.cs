@@ -3,15 +3,8 @@ using System;
 
 namespace Common
 {
-    public static class CommonMethods
+    public static class MatrixCommonMethods
     {
-        public static void SwapElements<T>(ref T left, ref T right)
-        {
-            T temp = left;
-            left = right;
-            right = temp;
-        }
-
         public static int CountSumOfElementsInMatrixRow(int[,] matrix, int row)
         {
             int sum = 0;
@@ -73,21 +66,7 @@ namespace Common
         {
             for (int col = 0; col < matrix.GetLength(0); col++)
             {
-                SwapElements<T>(ref matrix[upperRow, col], ref matrix[lowerRow, col]);
-            }
-        }
-
-        public static void ShowCollectionItems<T>(T[] collection)
-        {
-            if (collection == null)
-            {
-                throw new ArgumentNullException(nameof(collection), "Collection is a null");
-            }
-
-            int i = 0;
-            foreach(var item in collection)
-            {
-                Console.WriteLine($"{i++} {item}");
+                OperationsWithElements.SwapElements<T>(ref matrix[upperRow, col], ref matrix[lowerRow, col]);
             }
         }
     }

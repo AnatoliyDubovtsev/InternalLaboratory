@@ -12,15 +12,15 @@ namespace Module3.Task2
             {
                 for (int nextRow = 0; nextRow < border - row; nextRow++)
                 {
-                    currentMax = CommonMethods.FindMaxElementInMatrixRow(matrix, nextRow);
-                    nextMax = CommonMethods.FindMaxElementInMatrixRow(matrix, nextRow + 1);
+                    currentMax = MatrixCommonMethods.FindMaxElementInMatrixRow(matrix, nextRow);
+                    nextMax = MatrixCommonMethods.FindMaxElementInMatrixRow(matrix, nextRow + 1);
                     if (currentMax > nextMax && isAscendingSorting)
                     {
-                        CommonMethods.SwapElementsInMatrixRows<int>(matrix, nextRow, nextRow + 1);
+                        MatrixCommonMethods.SwapElementsInMatrixRows<int>(matrix, nextRow, nextRow + 1);
                     }
                     else if (currentMax < nextMax && !isAscendingSorting)
                     {
-                        CommonMethods.SwapElementsInMatrixRows<int>(matrix, nextRow, nextRow + 1);
+                        MatrixCommonMethods.SwapElementsInMatrixRows<int>(matrix, nextRow, nextRow + 1);
                     }
                 }
             }

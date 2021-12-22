@@ -25,7 +25,7 @@ namespace Module3.Task2
 
         public static ISortingStrategy ChooseSortingStrategy()
         {
-            CommonMethods.ShowCollectionItems(Enum.GetValues<SortingStrategies>());
+            CollectionsCommonMethods.ShowCollectionItems(Enum.GetValues<SortingStrategies>());
             ISortingStrategy sortingStrategyMethod = null;
             do
             {

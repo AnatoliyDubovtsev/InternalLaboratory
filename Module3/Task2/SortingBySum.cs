@@ -12,15 +12,15 @@ namespace Module3.Task2
             {
                 for (int nextRow = 0; nextRow < border - row; nextRow++)
                 {
-                    currentSum = CommonMethods.CountSumOfElementsInMatrixRow(matrix, nextRow);
-                    nextSum = CommonMethods.CountSumOfElementsInMatrixRow(matrix, nextRow + 1);
+                    currentSum = MatrixCommonMethods.CountSumOfElementsInMatrixRow(matrix, nextRow);
+                    nextSum = MatrixCommonMethods.CountSumOfElementsInMatrixRow(matrix, nextRow + 1);
                     if (currentSum > nextSum && isAscendingSorting)
                     {
-                        CommonMethods.SwapElementsInMatrixRows<int>(matrix, nextRow, nextRow + 1);
+                        MatrixCommonMethods.SwapElementsInMatrixRows<int>(matrix, nextRow, nextRow + 1);
                     }
                     else if (currentSum < nextSum && !isAscendingSorting)
                     {
-                        CommonMethods.SwapElementsInMatrixRows<int>(matrix, nextRow, nextRow + 1);
+                        MatrixCommonMethods.SwapElementsInMatrixRows<int>(matrix, nextRow, nextRow + 1);
                     }
                 }
             }

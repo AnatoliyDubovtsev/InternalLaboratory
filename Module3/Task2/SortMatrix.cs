@@ -16,10 +16,10 @@ namespace Module3.Task2
         public void Sorting(int[,] matrix, bool isAscendingSorting)
         {
             Console.WriteLine("Matrix before sorting");
-            CommonMethods.ShowMatrix<int>(matrix);
+            MatrixCommonMethods.ShowMatrix<int>(matrix);
             _sortingStrategy.SortMatrix(matrix, isAscendingSorting);
             Console.WriteLine("Matrix after sorting");
-            CommonMethods.ShowMatrix<int>(matrix);
+            MatrixCommonMethods.ShowMatrix<int>(matrix);
         }
     }
 }

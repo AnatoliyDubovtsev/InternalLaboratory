@@ -38,7 +38,7 @@ namespace Common.Tests
             Console.SetOut(writer);
 
             //act
-            CommonMethods.ShowCollectionItems<int>(inputCollection);
+            CollectionsCommonMethods.ShowCollectionItems<int>(inputCollection);
             var actual = writer.ToString();
 
             //assert
@@ -47,6 +47,6 @@ namespace Common.Tests
 
         [TestCase(null)]
         public void ShowCollectionItem_ThrowsArgumentNullException(int[] arr)
-            => Assert.Throws<ArgumentNullException>(() => CommonMethods.ShowCollectionItems<int>(arr));
+            => Assert.Throws<ArgumentNullException>(() => CollectionsCommonMethods.ShowCollectionItems<int>(arr));
     }
 }
