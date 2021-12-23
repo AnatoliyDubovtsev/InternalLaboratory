@@ -80,5 +80,16 @@ namespace Common
 
             return number;
         }
+
+        public static void AbsNumbersInCollection(ref int[] numbers)
+        {
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                if (numbers[i] < 0)
+                {
+                    numbers[i] = Math.Abs(numbers[i]);
+                }
+            }
+        }
     }
 }

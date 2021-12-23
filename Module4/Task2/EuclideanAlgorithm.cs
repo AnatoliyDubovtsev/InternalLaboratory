@@ -7,19 +7,12 @@ namespace Module4.Task2
     {
         public int FindGcd(params int[] numbers)
         {
-            if (numbers.Length == 1)
+            if (numbers.Length < 2)
             {
                 throw new ArgumentException("Quantity of numbers must be 2 or more");
             }
-            
-            for (int i = 0; i < numbers.Length; i++)
-            {
-                if (numbers[i] < 0)
-                {
-                    numbers[i] = Math.Abs(numbers[i]);
-                }
-            }
 
+            CollectionsCommonMethods.AbsNumbersInCollection(ref numbers);
             bool isOnlyOneNumberMoreThanZero = CollectionsCommonMethods.IsOnlyOneNumberMoreThanZero(numbers);
             while (!isOnlyOneNumberMoreThanZero)
             {

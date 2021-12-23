@@ -2,7 +2,7 @@
 
 namespace Module4.Tests
 {
-    public class EuclideanAlgorithmTests
+    public class BinaryEuclideanAlgorithmTests 
     {
         [TestCase(1071, 462, ExpectedResult = 21)]
         [TestCase(105, 210, 315, ExpectedResult = 105)]
@@ -11,7 +11,7 @@ namespace Module4.Tests
         [TestCase(-105, -210, -315, ExpectedResult = 105)]
         [TestCase(21, 21, 21, ExpectedResult = 21)]
         [TestCase(42, 84, 126, 252, ExpectedResult = 42)]
-        public int EuclideanAlgorithm_FindGcd_ReturnsResult(params int[] numbers)
-            => new Task2.EuclideanAlgorithm().FindGcd(numbers);
+        public int BinaryEuclideanAlgorithm_FindGcd_ReturnsResult(params int[] numbers)
+            => new Task2.BinaryEuclideanAlgorithm().FindGcd(numbers);
     }
 }
