@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Common
 {
@@ -15,7 +12,7 @@ namespace Common
             right = temp;
         }
 
-        public static string WholeDecNumberToBin(long number)
+        public static string WholeDecNumberToBin(double number)
         {
             StringBuilder stringBuilder = new();
             while (number >= 1)
@@ -26,7 +23,7 @@ namespace Common
                     break;
                 }
 
-                stringBuilder.Append(number % 2);
+                stringBuilder.Append(Math.Truncate(number % 2));
                 number /= 2;
             }
 
