@@ -11,6 +11,7 @@ namespace Module4.Tests
         [TestCase(-105, -210, -315, ExpectedResult = 105)]
         [TestCase(21, 21, 21, ExpectedResult = 21)]
         [TestCase(42, 84, 126, 252, ExpectedResult = 42)]
+        [TestCase(1375800, 9876090, 3859650, 456000, 756890, 957000, ExpectedResult = 10)]
         public int EuclideanAlgorithm_FindGcd_ReturnsResult(params int[] numbers)
             => new Task2.EuclideanAlgorithm().FindGcd(numbers);
     }

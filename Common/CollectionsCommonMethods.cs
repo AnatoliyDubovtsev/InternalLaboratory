@@ -31,13 +31,13 @@ namespace Common
             return -1;
         }
 
-        public static int FindMinElement(int[] numbers, out int indexOfMin)
+        public static int FindMinElementMoreThanZero(int[] numbers, out int indexOfMin)
         {
             int min = numbers[0];
             indexOfMin = 0;
             for (int i = 1; i < numbers.Length; i++)
             {
-                if (min > numbers[i])
+                if (min > numbers[i] && numbers[i] != 0)
                 {
                     min = numbers[i];
                     indexOfMin = i;

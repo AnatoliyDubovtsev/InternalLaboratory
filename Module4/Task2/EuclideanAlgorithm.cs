@@ -16,7 +16,7 @@ namespace Module4.Task2
             bool isOnlyOneNumberMoreThanZero = CollectionsCommonMethods.IsOnlyOneNumberMoreThanZero(numbers);
             while (!isOnlyOneNumberMoreThanZero)
             {
-                int min = CollectionsCommonMethods.FindMinElement(numbers, out int indexOfMin);
+                int min = CollectionsCommonMethods.FindMinElementMoreThanZero(numbers, out int indexOfMin);
                 bool isMoreThanMin;
                 do
                 {
