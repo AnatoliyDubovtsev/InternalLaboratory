@@ -1,12 +1,15 @@
 ﻿using System;
+using System.Diagnostics;
 using Common;
 
 namespace Module4.Task2
 {
     public class BinaryEuclideanAlgorithm : IGcdAlgorithm
     {
-        public int FindGcd(params int[] numbers)
+        public int FindGcd(out double elapsedMilliseconds, params int[] numbers)
         {
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
             if (numbers.Length < 2)
             {
                 throw new ArgumentException("Quantity of numbers must be 2 or more");
@@ -54,6 +57,9 @@ namespace Module4.Task2
             }
 
             result *= CollectionsCommonMethods.FindNotZeroElement(numbers);
+            stopwatch.Stop();
+            TimeSpan timeSpan = stopwatch.Elapsed;
+            elapsedMilliseconds = timeSpan.TotalMilliseconds;
             return result;
         }
     }

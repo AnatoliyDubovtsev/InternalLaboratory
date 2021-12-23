@@ -2,6 +2,6 @@
 {
     public interface IGcdAlgorithm
     {
-        public int FindGcd(params int[] numbers);
+        public int FindGcd(out double elapsedMilliseconds, params int[] numbers);
     }
 }

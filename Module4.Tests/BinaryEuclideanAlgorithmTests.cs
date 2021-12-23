@@ -13,6 +13,6 @@ namespace Module4.Tests
         [TestCase(42, 84, 126, 252, ExpectedResult = 42)]
         [TestCase(1375800, 9876090, 3859650, 456000, 756890, 957000, ExpectedResult = 10)]
         public int BinaryEuclideanAlgorithm_FindGcd_ReturnsResult(params int[] numbers)
-            => new Task2.BinaryEuclideanAlgorithm().FindGcd(numbers);
+            => new Task2.BinaryEuclideanAlgorithm().FindGcd(out _, numbers);
     }
 }

@@ -1,4 +1,6 @@
 ﻿using Module3.Task2;
+using Module4.Task2;
+using System;
 
 namespace ConsoleApp
 {
@@ -13,7 +15,7 @@ namespace ConsoleApp
             Console.WriteLine($"New number: {newNumber}, Elapsed time: {elapsedMilliseconds} ms");*/
 
             // Module 3, Task 2
-            int[,] matrix = new int[,]
+            /*int[,] matrix = new int[,]
             {
                 { 1, 2, 3 },
                 { 3, 4, 5 },
@@ -23,7 +25,19 @@ namespace ConsoleApp
             ISortingStrategy sortingStrategy = SortingConfiguration.ChooseSortingStrategy();
             SortMatrix sortMatrix = new(sortingStrategy);
             SortingConfiguration.ChooseTypeOfSorting(out bool isAscendingSorting);
-            sortMatrix.Sorting(matrix, isAscendingSorting); 
+            sortMatrix.Sorting(matrix, isAscendingSorting);*/
+
+            // Module 4, Task 2
+            Console.WriteLine("Euclidean algorithm");
+            IGcdAlgorithm gcdAlgorithm = new EuclideanAlgorithm();
+            int gcdEuclideanAlgorithm = gcdAlgorithm.FindGcd(out double elapsedMillisecondsEuclideanAlgorithm, new int[]
+                { 1375800, 9876090, 3859650, 456000, 756890, 957000 });
+            Console.WriteLine($"GCD: {gcdEuclideanAlgorithm}, Time: {elapsedMillisecondsEuclideanAlgorithm}");
+
+            gcdAlgorithm = new BinaryEuclideanAlgorithm();
+            int gcdBinaryEuclideanAlgorithm = gcdAlgorithm.FindGcd(out double elapsedMillisecondsBinaryEuclideanAlgorithm, new int[]
+                { 1375800, 9876090, 3859650, 456000, 756890, 957000 });
+            Console.WriteLine($"GCD: {gcdBinaryEuclideanAlgorithm}, Time: {elapsedMillisecondsBinaryEuclideanAlgorithm}");
         }
     }
 }
