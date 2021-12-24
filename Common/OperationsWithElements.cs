@@ -30,10 +30,10 @@ namespace Common
             return stringBuilder.ToString();
         }
 
-        public static string FloatingPointDecNumberToBin(double number, int count)
+        public static string FloatingPointDecNumberToBinWithLast64Bits(double number)
         {
             StringBuilder stringBuilder = new();
-            while (number != 0.0 && count != 0)
+            while (number != 0.0)
             {
                 number *= 2;
                 if (number >= 1)
@@ -49,11 +49,19 @@ namespace Common
                 {
                     number -= 1;
                 }
-
-                count--;
             }
 
-            return stringBuilder.ToString();
+            string result;
+            if (stringBuilder.Length > 64)
+            {
+                result = stringBuilder.ToString().Substring(stringBuilder.Length - 63);
+            }
+            else
+            {
+                result = stringBuilder.ToString();
+            }
+
+            return result;
         }
     }
 }

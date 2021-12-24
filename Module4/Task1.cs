@@ -24,40 +24,49 @@ namespace Module4
             bool isPositive = number >= 0;
             number = Math.Abs(number);
             string numberString = number.ToString();
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append(number);
-            string[] wholeAndFloatingPointParts;
+            string[] wholeAndFloatingPointParts = null;
+            double wholePartOfNumber = 0;
+            double floatingPointPart = 0;
+            bool hasWholePartOfNumber = true;
             if (numberString.Contains("E-"))
             {
-                wholeAndFloatingPointParts = new string[] { "0", numberString };
+                floatingPointPart = number;
+                hasWholePartOfNumber = false;
             }
             else if (numberString.Contains('E'))
             {
-                wholeAndFloatingPointParts = new string[] { numberString };
+                wholePartOfNumber = number;
             }
             else
             {
                 wholeAndFloatingPointParts = numberString.Split(',');
             }
 
-            bool isContainsComma = wholeAndFloatingPointParts.Length == 2;
-            int count = 1;
-            double.TryParse(wholeAndFloatingPointParts[0], out double wholePartOfNumber);
-            char[] wholePartInBinaryFormat = OperationsWithElements.WholeDecNumberToBin(wholePartOfNumber).ToCharArray();
-            Array.Reverse(wholePartInBinaryFormat);
-            count += wholePartInBinaryFormat.Length;
+            bool isArrayOfNumbersPartsNull = wholeAndFloatingPointParts == null;
+            if (!isArrayOfNumbersPartsNull)
+            {
+                double.TryParse(wholeAndFloatingPointParts[0], out wholePartOfNumber);
+            }
+
+            char[] wholePartInBinaryFormat = new char[] { };
+            if (hasWholePartOfNumber)
+            {
+                wholePartInBinaryFormat = OperationsWithElements.WholeDecNumberToBin(wholePartOfNumber).ToCharArray();
+                Array.Reverse(wholePartInBinaryFormat);
+            }
+            
             int length = wholePartInBinaryFormat.Length;
             int exponent = length == 0 ? -1023 : length - 1;
             char[] exponentInBinaryFormat = OperationsWithElements.WholeDecNumberToBin(exponent + 1023).ToCharArray();
             Array.Reverse(exponentInBinaryFormat);
-            count += exponentInBinaryFormat.Length;
-            char[] floatingPointPartInBinaryFormat = new char[] { };
-            if (isContainsComma)
+            char[] floatingPointPartInBinaryFormat;
+
+            if (wholeAndFloatingPointParts != null && wholeAndFloatingPointParts.Length == 2)
             {
-                double.TryParse("0," + wholeAndFloatingPointParts[1], out double floatingPointPart);
-                floatingPointPartInBinaryFormat = OperationsWithElements.FloatingPointDecNumberToBin(floatingPointPart, 64 - count).ToCharArray();
+                double.TryParse("0," + wholeAndFloatingPointParts[1], out floatingPointPart);
             }
 
+            floatingPointPartInBinaryFormat = OperationsWithElements.FloatingPointDecNumberToBinWithLast64Bits(floatingPointPart).ToCharArray();
             int residualZeros = 64 - wholePartInBinaryFormat.Length - floatingPointPartInBinaryFormat.Length - exponentInBinaryFormat.Length;
             StringBuilder resultStringBuilder = new();
             if (isPositive)
@@ -71,24 +80,17 @@ namespace Module4
 
             foreach(var item in exponentInBinaryFormat)
             {
-                if (resultStringBuilder.Length == 64)
-                {
-                    break;
-                }
                 resultStringBuilder.Append(item);
             }
 
-            for(int i = 1; i < wholePartInBinaryFormat.Length && resultStringBuilder.Length < 64; i++)
+            for (int i = 1; i < wholePartInBinaryFormat.Length && resultStringBuilder.Length < 64; i++)
             {
                 resultStringBuilder.Append(wholePartInBinaryFormat[i]);
             }
 
-            if (isContainsComma)
+            for (int i = 0; i < floatingPointPartInBinaryFormat.Length && resultStringBuilder.Length < 64; i++)
             {
-                for(int i = 0; i < floatingPointPartInBinaryFormat.Length && resultStringBuilder.Length < 64; i++)
-                {
-                    resultStringBuilder.Append(floatingPointPartInBinaryFormat[i]);
-                }
+                resultStringBuilder.Append(floatingPointPartInBinaryFormat[i]);
             }
 
             for (int i = 0; i < residualZeros && resultStringBuilder.Length < 64; i++)
