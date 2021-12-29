@@ -4,15 +4,15 @@ namespace Module6.Task2.Implementations
 {
     public class Triangle : Shape
     {
-        private int lengthOfBase;
-        private int height;
+        private double lengthOfBase;
+        private double height;
 
-        public int LengthOfBase
+        public double LengthOfBase
         {
             get => lengthOfBase;
             set
             {
-                if (value < 0)
+                if (value <= 0)
                 {
                     throw new ArgumentException("Length of the base can not be less than zero");
                 }
@@ -21,12 +21,12 @@ namespace Module6.Task2.Implementations
             }
         }
 
-        public int Height
+        public double Height
         {
             get => height;
             set
             {
-                if (value < 0)
+                if (value <= 0)
                 {
                     throw new ArgumentException("Height can not be less than zero");
                 }
@@ -35,7 +35,7 @@ namespace Module6.Task2.Implementations
             }
         }
 
-        public Triangle(string title, int lengthOfBase, int height) : base(title)
+        public Triangle(string title, double lengthOfBase, double height) : base(title)
         {
             LengthOfBase = lengthOfBase;
             Height = height;

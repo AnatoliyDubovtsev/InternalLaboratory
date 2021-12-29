@@ -4,14 +4,14 @@ namespace Module6.Task2.Implementations
 {
     public class Circle : Shape
     {
-        private int radius;
+        private double radius;
 
-        public int Radius
+        public double Radius
         {
             get => radius;
             set
             {
-                if (value < 0)
+                if (value <= 0)
                 {
                     throw new ArgumentException("Radius can not be less than zero");
                 }
@@ -20,7 +20,7 @@ namespace Module6.Task2.Implementations
             }
         }
 
-        public Circle(string title, int radius) : base(title)
+        public Circle(string title, double radius) : base(title)
         {
             Radius = radius;
         }

@@ -4,16 +4,16 @@ namespace Module6.Task2.Implementations
 {
     public class ShapesAreaVisitor : IVisitor
     {
-        public double VisitCircle(int radius)
-            => 2 * Math.PI * radius;
+        public double VisitCircle(double radius)
+            => Math.PI * Math.Pow(radius, 2);
 
-        public double VisitRectangle(int length, int width)
+        public double VisitRectangle(double length, double width)
             => length * width;
 
-        public double VisitSquare(int length)
+        public double VisitSquare(double length)
             => Math.Pow(length, 2);
 
-        public double VisitTriangle(int lengthOfBase, int height)
+        public double VisitTriangle(double lengthOfBase, double height)
             => lengthOfBase * height / 2;
     }
 }

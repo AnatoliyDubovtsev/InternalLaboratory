@@ -4,15 +4,15 @@ namespace Module6.Task2.Implementations
 {
     public class Rectangle : Shape
     {
-        private int width;
-        private int length;
+        private double width;
+        private double length;
         
-        public int Width
+        public double Width
         {
             get => width;
             set
             {
-                if (value < 0)
+                if (value <= 0)
                 {
                     throw new ArgumentException("Width can not be less than zero");
                 }
@@ -21,12 +21,12 @@ namespace Module6.Task2.Implementations
             }
         }
 
-        public int Length
+        public double Length
         {
             get => length;
             set
             {
-                if (value < 0)
+                if (value <= 0)
                 {
                     throw new ArgumentException("Length can not be less than zero");
                 }
@@ -35,7 +35,7 @@ namespace Module6.Task2.Implementations
             }
         }
 
-        public Rectangle(string title, int length, int width) : base(title)
+        public Rectangle(string title, double length, double width) : base(title)
         {
             Length = length;
             Width = width;

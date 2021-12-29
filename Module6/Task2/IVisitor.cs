@@ -2,9 +2,9 @@
 {
     public interface IVisitor
     {
-        double VisitCircle(int radius);
-        double VisitTriangle(int lengthOfBase, int height);
-        double VisitSquare(int length);
-        double VisitRectangle(int length, int width);
+        double VisitCircle(double radius);
+        double VisitTriangle(double lengthOfBase, double height);
+        double VisitSquare(double length);
+        double VisitRectangle(double length, double width);
     }
 }

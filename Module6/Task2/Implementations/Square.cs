@@ -4,14 +4,14 @@ namespace Module6.Task2.Implementations
 {
     public class Square : Shape
     {
-        private int length;
+        private double length;
 
-        public int Length
+        public double Length
         {
             get => length;
             set
             {
-                if (value < 0)
+                if (value <= 0)
                 {
                     throw new ArgumentException("Length can not be less than zero");
                 }
@@ -20,7 +20,7 @@ namespace Module6.Task2.Implementations
             }
         }
 
-        public Square(string title, int length) : base(title)
+        public Square(string title, double length) : base(title)
         {
             Length = length;
         }
