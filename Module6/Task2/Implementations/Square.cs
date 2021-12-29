@@ -27,5 +27,8 @@ namespace Module6.Task2.Implementations
 
         public override double Area(IVisitor visitor)
             => visitor.VisitSquare(Length);
+
+        public override double Perimeter(IVisitor visitor)
+            => visitor.VisitSquare(Length);
     }
 }

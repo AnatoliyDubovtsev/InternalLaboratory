@@ -10,5 +10,6 @@
         }
 
         public abstract double Area(IVisitor visitor);
+        public abstract double Perimeter(IVisitor visitor);
     }
 }

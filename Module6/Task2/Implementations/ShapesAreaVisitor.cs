@@ -13,7 +13,12 @@ namespace Module6.Task2.Implementations
         public double VisitSquare(double length)
             => Math.Pow(length, 2);
 
-        public double VisitTriangle(double lengthOfBase, double height)
-            => lengthOfBase * height / 2;
+        public double VisitTriangle(double side1, double side2, double side3)
+        {
+            double halfOfPerimeter = (side1 + side2 + side3) / 2;
+            double middleResult = halfOfPerimeter * (halfOfPerimeter - side1) * (halfOfPerimeter - side2) * (halfOfPerimeter - side3);
+            double area = Math.Sqrt(middleResult);
+            return area;
+        }
     }
 }
