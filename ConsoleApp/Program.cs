@@ -2,6 +2,7 @@
 using Module4.Task2;
 using Module6.Task2;
 using Module6.Task2.Implementations;
+using Module6.Task3;
 using System;
 using System.Collections.Generic;
 
@@ -56,6 +57,21 @@ namespace ConsoleApp
             {
                 Console.WriteLine(shape.Area(visitor));
             }*/
+
+            // Module 6, Task 3
+            Console.WriteLine("Input polynomial. Use whitespace to divide coefficients. " + Environment.NewLine + "Example: a * x^0 + b * x^1 + c * x^2 + ... + d * x^n");
+            //string input1 = Console.ReadLine();
+            string input1 = "1 2 3 4 5 6 7 8";
+            int[] array1 = Polynomial.ConvertToArray(input1);
+            //string input2 = Console.ReadLine();
+            string input2 = "1 -2 3 4 5 6";
+            int[] array2 = Polynomial.ConvertToArray(input2);
+            Polynomial polynomial1 = new Polynomial(array1);
+            Polynomial polynomial2 = new Polynomial(array2);
+            Polynomial plus = polynomial1 + polynomial2;
+            Console.WriteLine("1: " + polynomial1.ToString());
+            Console.WriteLine("2: " + polynomial2.ToString());
+            Console.WriteLine("1 + 2: " + plus.ToString());
         }
     }
 }
