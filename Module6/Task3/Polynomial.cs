@@ -47,6 +47,32 @@ namespace Module6.Task3
             return resultString.ToString();
         }
 
+        public override bool Equals(object obj)
+        {
+            Polynomial polynomial = obj as Polynomial;
+            if (polynomial == null)
+            {
+                throw new InvalidCastException("Invalid type");
+            }
+            else if (polynomial.Coefficients.Length != this.Coefficients.Length)
+            {
+                return false;
+            }
+            
+            for (int i = 0; i < this.Coefficients.Length; i++)
+            {
+                if (this.Coefficients[i] != polynomial.Coefficients[i])
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public override int GetHashCode()
+            => this.ToString().GetHashCode();
+
         public static Polynomial operator +(Polynomial left, Polynomial right)
         {
             int max = Math.Max(left.Coefficients.Length, right.Coefficients.Length);
@@ -111,25 +137,15 @@ namespace Module6.Task3
                     {
                         resultArr[row][col] = left.Coefficients[leftIndex++] * right.Coefficients[rightIndex];
                     }
-                    else if (leftIndex >= left.Coefficients.Length)
-                    {
-                        resultArr[row][col] = 0;
-                    }
                 }
 
                 shift++;
             }
 
-            Polynomial[] polynomials = new Polynomial[right.Coefficients.Length];
-            for (int i = 0; i < right.Coefficients.Length; i++)
-            {
-                polynomials[i] = new Polynomial(resultArr[i]);
-            }
-
             Polynomial resultPolynomial = new Polynomial(new int[max]);
-            for (int i = 0; i < polynomials.Length; i++)
+            for (int i = 0; i < resultArr.Length; i++)
             {
-                resultPolynomial += polynomials[i];
+                resultPolynomial += new Polynomial(resultArr[i]);
             }
 
             return resultPolynomial;

@@ -27,6 +27,50 @@ namespace Module6.Tests.Task3Tests
             => Assert.Throws<OverflowException>(() => Polynomial.ConvertToArray(input));
         #endregion
 
+        #region EqualsMethodTests
+        [TestCase(new int[] { 1, 2, 3 }, new int[] { 1, 2, 3 }, true)]
+        [TestCase(new int[] { 1, 2, 3 }, new int[] { 3, 2, 1 }, false)]
+        [TestCase(new int[] { 1 }, new int[] { 1, 2, 3 }, false)]
+        public void Polynomial_EqualsMethod_ReturnBoolean(int[] leftArray, int[] rightArray, bool expected)
+        {
+            //arrange
+            var left = new Polynomial(leftArray);
+            var right = new Polynomial(rightArray);
+
+            //act
+            var result = left.Equals(right);
+
+            //assert
+            Assert.AreEqual(result, expected);
+        }
+
+        [Test]
+        public void Polynomial_EqualsMethod_NotPolynomialTypeInput_ThrowsInvalidCastException()
+        {
+            var polynomial = new Polynomial();
+            var notPolynomial = DateTime.Now;
+            Assert.Throws<InvalidCastException>(() => polynomial.Equals(notPolynomial));
+        }
+        #endregion
+
+        #region ToStringMethodTests
+
+        [TestCase(new int[] { 1, 2, 3 }, "1x^0+2x^1+3x^2")]
+        [TestCase(new int[] { }, "")]
+        public void Polynomial_ToStringMethod_ReturnsPolynomialAsAString(int[] coefficients, string expected)
+        {
+            //arrange
+            var polynomial = new Polynomial(coefficients);
+
+            //act
+            var result = polynomial.ToString();
+
+            //assert
+            Assert.AreEqual(expected, result);
+        }
+        #endregion
+
+        #region OperatorsTests
         [TestCase(new int[] { 0, 1, 2, 3, 4 }, new int[] { 1, 2, 3 }, new int[] { 1, 3, 5, 3, 4 })]
         [TestCase(new int[] { 1 }, new int[] { 1, -1, 5, -6 }, new int[] { 2, -1, 5, -6 })]
         [TestCase(new int[] { -1, -5, 6, 2 }, new int[] { 3, 5, -2, 2 }, new int[] { 2, 0, 4, 4 })]
@@ -75,5 +119,6 @@ namespace Module6.Tests.Task3Tests
             //assert
             CollectionAssert.AreEqual(expected, result.Coefficients);
         }
+        #endregion
     }
 }
