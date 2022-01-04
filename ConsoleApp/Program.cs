@@ -59,7 +59,7 @@ namespace ConsoleApp
             }*/
 
             // Module 6, Task 3
-            Console.WriteLine("Input polynomial. Use whitespace to divide coefficients. " + Environment.NewLine + "Example: a * x^0 + b * x^1 + c * x^2 + ... + d * x^n");
+            /*Console.WriteLine("Input polynomial. Use whitespace to divide coefficients. " + Environment.NewLine + "Example: a * x^0 + b * x^1 + c * x^2 + ... + d * x^n");
             //string input1 = Console.ReadLine();
             string input1 = "1 2 3 4 5 6 7 8";
             int[] array1 = Polynomial.ConvertToArray(input1);
@@ -71,7 +71,7 @@ namespace ConsoleApp
             Polynomial plus = polynomial1 + polynomial2;
             Console.WriteLine("1: " + polynomial1.ToString());
             Console.WriteLine("2: " + polynomial2.ToString());
-            Console.WriteLine("1 + 2: " + plus.ToString());
+            Console.WriteLine("1 + 2: " + plus.ToString());*/
         }
     }
 }
