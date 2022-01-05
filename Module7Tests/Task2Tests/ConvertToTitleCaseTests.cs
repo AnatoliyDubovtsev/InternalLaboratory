@@ -8,6 +8,8 @@ namespace Module7Tests.Task2Tests
     {
         [TestCase("a clash of KINGS", "a of", "A Clash of Kings")]
         [TestCase("THE WIND IN THE WILLOWS", "The In", "The Wind in the Willows")]
+        [TestCase("THE WIND IN THE WILLOWS", "The", "The Wind In the Willows")]
+        [TestCase("THE WIND IN THE WILLOWS", null, "The Wind In The Willows")]
         [TestCase("the quick brown fox", null, "The Quick Brown Fox")]
         public void ConvertStringToTitleCase_ReturnsResult(string inputString, string minorWords, string expected)
         {
