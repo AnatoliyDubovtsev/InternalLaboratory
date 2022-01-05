@@ -1,5 +1,6 @@
 ﻿using Module7.Task4;
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 
 namespace Module7Tests.Task4Tests
@@ -36,5 +37,9 @@ namespace Module7Tests.Task4Tests
             var result = WorkWithIEnumerable.UniqueInOrder<char>(input);
             CollectionAssert.AreEqual(expected, result);
         }
+
+        [TestCase(null)]
+        public void UniqueInOrder_NullInput_ThrowsArgumentNullException(string input)
+            => Assert.Throws<ArgumentNullException>(() => WorkWithIEnumerable.UniqueInOrder<char>(input));
     }
 }

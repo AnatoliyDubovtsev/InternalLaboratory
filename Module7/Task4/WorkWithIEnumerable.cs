@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Module7.Task4
@@ -7,6 +8,11 @@ namespace Module7.Task4
     {
         public static List<T> UniqueInOrder<T>(IEnumerable<T> collection)
         {
+            if (collection == null)
+            {
+                throw new ArgumentNullException(nameof(collection), "Collection is null or empty");
+            }
+
             List<T> inputCollection = collection.ToList();
             for (int i = 0; i < inputCollection.Count; i++)
             {
