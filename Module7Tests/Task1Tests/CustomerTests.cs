@@ -17,8 +17,8 @@ namespace Module7Tests.Task1Tests
         {
             //arrange
             var customer = new Customer(name, contactPhone, revenue);
-            StringBuilder expected = new StringBuilder("Customer record: ");
-            int length = expected.Length;
+            var expected = new StringBuilder("Customer record: ");
+            var length = expected.Length;
             if (!string.IsNullOrEmpty(name))
             {
                 expected.Append(name);
