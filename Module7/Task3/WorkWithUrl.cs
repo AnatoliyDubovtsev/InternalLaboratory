@@ -16,6 +16,16 @@ namespace Module7.Task3
                 throw new ArgumentNullException(nameof(keyValueParameter), "KeyValue parameter is null or empty");
             }
 
+            if (url.StartsWith(' ') || url.EndsWith(' '))
+            {
+                url = url.Trim();
+            }
+
+            if (keyValueParameter.StartsWith(' ') || keyValueParameter.EndsWith(' '))
+            {
+                keyValueParameter = keyValueParameter.Trim();
+            }
+
             string keys = null;
             if (url.Contains("?"))
             {

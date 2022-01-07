@@ -16,6 +16,16 @@ namespace Module7.Task6
                 throw new ArgumentNullException(nameof(right), "Right string is null or empty");
             }
 
+            if (left.StartsWith(' ') || left.EndsWith(' '))
+            {
+                left = left.Trim();
+            }
+            
+            if (right.StartsWith(' ') || right.EndsWith(' '))
+            {
+                right = right.Trim();
+            }
+
             BigInteger result;
             try
             {

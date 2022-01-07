@@ -12,6 +12,11 @@ namespace Module7.Task5
                 throw new ArgumentNullException(nameof(input), "String is null or empty");
             }
 
+            if (input.StartsWith(' ') || input.EndsWith(' '))
+            {
+                input = input.Trim();
+            }
+
             StringBuilder result = new StringBuilder(input.Length);
             string[] words = input.Split(' ');
             for (int i = words.Length - 1; i >= 0; i--)

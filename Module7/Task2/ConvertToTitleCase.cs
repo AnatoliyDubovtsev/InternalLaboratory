@@ -13,6 +13,16 @@ namespace Module7.Task2
                 throw new ArgumentNullException(nameof(inputString), "Input string is null or empty");
             }
 
+            if (inputString.StartsWith(' ') || inputString.EndsWith(' '))
+            {
+                inputString = inputString.Trim();
+            }
+
+            if (!string.IsNullOrEmpty(minorWords) && (minorWords.StartsWith(' ') || minorWords.EndsWith(' ')))
+            {
+                minorWords = minorWords.Trim();
+            }
+
             StringBuilder result = new StringBuilder(inputString.Length);
             string[] inputStringWords = inputString.ToLower().Split(' ');
             string[] minorWordsArray = string.IsNullOrEmpty(minorWords) ? Array.Empty<string>() : minorWords.ToLower().Split(' ');

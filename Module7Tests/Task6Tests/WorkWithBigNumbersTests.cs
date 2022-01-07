@@ -19,7 +19,8 @@ namespace Module7Tests.Task6Tests
             => WorkWithBigNumbers.Sum(left, right);
 
         [TestCase("9223372036854775807", "9223372036854775807", ExpectedResult = "18446744073709551614")] // long.MaxValue && long.MaxValue
-        [TestCase("1", "1", ExpectedResult = "2")]
+        [TestCase("   9223372036854775807   ", "    9223372036854775807", ExpectedResult = "18446744073709551614")] // long.MaxValue && long.MaxValue
+        [TestCase("1    ", "   1", ExpectedResult = "2")]
         public string Sum_CorrectStringInput_ReturnsResultString(string left, string right)
             => WorkWithBigNumbers.Sum(left, right);
     }

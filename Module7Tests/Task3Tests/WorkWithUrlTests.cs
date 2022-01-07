@@ -18,6 +18,7 @@ namespace Module7Tests.Task3Tests
         [TestCase("www.example.com?key=oldValue", "key=newValue", "www.example.com?key=newValue")]
         [TestCase("www.example.com?key1=oldValue1&&key2=oldValue2", "key1=newValue1", "www.example.com?key1=newValue1&&key2=oldValue2")]
         [TestCase("www.example.com?key1=oldValue1&&key2=oldValue2", "key2=newValue2", "www.example.com?key1=oldValue1&&key2=newValue2")]
+        [TestCase("  www.example.com?key1=oldValue1&&key2=oldValue2    ", "   key2=newValue2   ", "www.example.com?key1=oldValue1&&key2=newValue2")]
         public void AddOrChangeUrlParameter_CorrectInput_ReturnsResultString(string url, string keyValueParameter, string expected)
         {
             var result = WorkWithUrl.AddOrChangeUrlParameter(url, keyValueParameter);
