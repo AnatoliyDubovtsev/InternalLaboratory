@@ -26,19 +26,19 @@ namespace Module7.Task6
                 right = right.Trim();
             }
 
-            BigInteger result;
+            string result;
             try
             {
                 BigInteger leftNumber = BigInteger.Parse(left);
                 BigInteger rightNumber = BigInteger.Parse(right);
-                result = leftNumber + rightNumber;
+                result = (leftNumber + rightNumber).ToString();
             }
             catch(FormatException ex)
             {
-                return ex.Message;
+                result = ex.Message;
             }
 
-            return result.ToString();
+            return result;
         }
     }
 }
