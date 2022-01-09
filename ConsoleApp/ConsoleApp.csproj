@@ -10,6 +10,7 @@
     <ProjectReference Include="..\Module3\Module3.csproj" />
     <ProjectReference Include="..\Module4\Module4.csproj" />
     <ProjectReference Include="..\Module6\Module6.csproj" />
+    <ProjectReference Include="..\Module9\Module9.csproj" />
   </ItemGroup>
 
 </Project>

@@ -3,6 +3,7 @@ using Module4.Task2;
 using Module6.Task2;
 using Module6.Task2.Implementations;
 using Module6.Task3;
+using Module9.Task1;
 using System;
 using System.Collections.Generic;
 
@@ -72,6 +73,9 @@ namespace ConsoleApp
             Console.WriteLine("1: " + polynomial1.ToString());
             Console.WriteLine("2: " + polynomial2.ToString());
             Console.WriteLine("1 + 2: " + plus.ToString());*/
+
+            //Module 9, Task 1
+            Console.WriteLine(Gcd.FindGcd());
         }
     }
 }
