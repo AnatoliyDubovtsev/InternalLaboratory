@@ -74,8 +74,12 @@ namespace ConsoleApp
             Console.WriteLine("2: " + polynomial2.ToString());
             Console.WriteLine("1 + 2: " + plus.ToString());*/
 
-            //Module 9, Task 1
-            Console.WriteLine(Gcd.FindGcd());
+            // Module 9, Task 1
+            //Console.WriteLine(Gcd.FindGcd());
+
+            // Module 9, Task 2
+            Console.WriteLine(Module9.Task2.SortingMatrix.Sort(new int[,] { { 1, 2, 3 }, { 4, 0, 8 }, { 6, 5, 6 } }, false));
+            Console.WriteLine(Module9.Task2.SortingMatrix.Sort(new int[,] { { 1, 2, 3 }, { 4, 0, 8 }, { 6, 15, 6 } }, true));
         }
     }
 }

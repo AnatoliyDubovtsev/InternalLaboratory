@@ -1,5 +1,6 @@
 ﻿#pragma warning disable S2368
 using System;
+using System.Text;
 
 namespace Common
 {
@@ -60,6 +61,34 @@ namespace Common
 
                 Console.WriteLine();
             }
+        }
+
+        public static string MatrixToString<T>(T[,] matrix)
+        {
+            if (matrix == null)
+            {
+                throw new ArgumentNullException(nameof(matrix), "Matrix is a null.");
+            }
+
+            StringBuilder stringBuilder = new StringBuilder();
+            for (int row = 0; row < matrix.GetLength(0); row++)
+            {
+                for (int col = 0; col < matrix.GetLength(1); col++)
+                {
+                    stringBuilder.Append(matrix[row, col]);
+                    if (col != matrix.GetLength(1) - 1)
+                    {
+                        stringBuilder.Append(" ");
+                    }
+                }
+
+                if (row != matrix.GetLength(0) - 1)
+                {
+                    stringBuilder.Append(Environment.NewLine);
+                }
+            }
+
+            return stringBuilder.ToString();
         }
 
         public static void SwapElementsInMatrixRows<T>(T[,] matrix, int upperRow, int lowerRow)
