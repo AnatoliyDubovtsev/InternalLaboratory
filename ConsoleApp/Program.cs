@@ -4,6 +4,7 @@ using Module6.Task2;
 using Module6.Task2.Implementations;
 using Module6.Task3;
 using Module9.Task1;
+using Module9.Task3;
 using System;
 using System.Collections.Generic;
 
@@ -78,8 +79,11 @@ namespace ConsoleApp
             //Console.WriteLine(Gcd.FindGcd());
 
             // Module 9, Task 2
-            Console.WriteLine(Module9.Task2.SortingMatrix.Sort(new int[,] { { 1, 2, 3 }, { 4, 0, 8 }, { 6, 5, 6 } }, false));
-            Console.WriteLine(Module9.Task2.SortingMatrix.Sort(new int[,] { { 1, 2, 3 }, { 4, 0, 8 }, { 6, 15, 6 } }, true));
+            //Console.WriteLine(Module9.Task2.SortingMatrix.Sort(new int[,] { { 1, 2, 3 }, { 4, 0, 8 }, { 6, 5, 6 } }, false));
+            //Console.WriteLine(Module9.Task2.SortingMatrix.Sort(new int[,] { { 1, 2, 3 }, { 4, 0, 8 }, { 6, 15, 6 } }, true));
+
+            //Module 9, Task 3
+            ExampleRun.Task3Run();
         }
     }
 }
