@@ -5,7 +5,7 @@ namespace Module9.Task3
 {
     public class Countdown
     {
-        private delegate void MessageHandler(string message);
+        public delegate void MessageHandler(string message);
         private event MessageHandler SendMessage;
 
         /// <summary>
@@ -20,14 +20,14 @@ namespace Module9.Task3
             SendMessage?.Invoke(message);
         }
 
-        public void Subscribe(IObserver observer)
+        public void Subscribe(MessageHandler method)
         {
-            SendMessage += observer.GetMessage;
+            SendMessage += method;
         }
 
-        public void Unsubscribe(IObserver observer)
+        public void Unsubscribe(MessageHandler method)
         {
-            SendMessage -= observer.GetMessage;
+            SendMessage -= method;
         }
     }
 }

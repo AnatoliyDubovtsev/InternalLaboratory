@@ -14,14 +14,14 @@ namespace Module9.Task3
             Client clientFromAktau = new Client(mobilePhoneAktau, laptopAktau);
             Countdown countdown = new Countdown();
 
-            countdown.Subscribe(clientFromAlmaty.MobilePhone);
-            countdown.Subscribe(clientFromAlmaty.Laptop);
-            countdown.Subscribe(clientFromAktau.MobilePhone);
+            countdown.Subscribe(clientFromAlmaty.MobilePhone.GetMessage);
+            countdown.Subscribe(clientFromAlmaty.Laptop.GetMessage);
+            countdown.Subscribe(clientFromAktau.MobilePhone.GetMessage);
             countdown.SendMessages(2, "Good morning, colleagues!");
 
             Console.WriteLine(Environment.NewLine);
 
-            countdown.Unsubscribe(clientFromAlmaty.MobilePhone);
+            countdown.Unsubscribe(clientFromAlmaty.MobilePhone.GetMessage);
             countdown.SendMessages(3, "Good evening, colleagues!");
         }
     }
