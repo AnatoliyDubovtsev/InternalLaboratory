@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Text;
 using Common;
 
@@ -25,7 +26,7 @@ namespace Module4
 
             bool isPositive = number >= 0;
             number = Math.Abs(number);
-            string numberString = number.ToString();
+            string numberString = number.ToString(new CultureInfo("ru-RU"));
             string[] wholeAndFloatingPointParts = null;
             double wholePartOfNumber = 0;
             double floatingPointPart = 0;
@@ -47,10 +48,10 @@ namespace Module4
             bool isArrayOfNumbersPartsNull = wholeAndFloatingPointParts == null;
             if (!isArrayOfNumbersPartsNull)
             {
-                double.TryParse(wholeAndFloatingPointParts[0], out wholePartOfNumber);
+                double.TryParse(wholeAndFloatingPointParts[0], NumberStyles.Float, new CultureInfo("ru-RU"), out wholePartOfNumber);
             }
 
-            char[] wholePartInBinaryFormat = new char[] { };
+            char[] wholePartInBinaryFormat = Array.Empty<char>();
             if (hasWholePartOfNumber)
             {
                 wholePartInBinaryFormat = OperationsWithElements.WholeDecNumberToBin(wholePartOfNumber).ToCharArray();
@@ -65,7 +66,7 @@ namespace Module4
 
             if (!isArrayOfNumbersPartsNull && wholeAndFloatingPointParts.Length == 2)
             {
-                double.TryParse("0," + wholeAndFloatingPointParts[1], out floatingPointPart);
+                double.TryParse("0," + wholeAndFloatingPointParts[1], NumberStyles.Float, new CultureInfo("ru-RU"), out floatingPointPart);
             }
 
             floatingPointPartInBinaryFormat = OperationsWithElements.FloatingPointDecNumberToBinWithLast64Bits(floatingPointPart).ToCharArray();
