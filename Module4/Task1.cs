@@ -63,7 +63,6 @@ namespace Module4
             char[] exponentInBinaryFormat = OperationsWithElements.WholeDecNumberToBin(exponent + exponentOffset).ToCharArray();
             Array.Reverse(exponentInBinaryFormat);
             char[] floatingPointPartInBinaryFormat;
-
             if (!isArrayOfNumbersPartsNull && wholeAndFloatingPointParts.Length == 2)
             {
                 double.TryParse("0," + wholeAndFloatingPointParts[1], NumberStyles.Float, new CultureInfo("ru-RU"), out floatingPointPart);
@@ -72,16 +71,8 @@ namespace Module4
             floatingPointPartInBinaryFormat = OperationsWithElements.FloatingPointDecNumberToBinWithLast64Bits(floatingPointPart).ToCharArray();
             int residualZeros = bits - wholePartInBinaryFormat.Length - floatingPointPartInBinaryFormat.Length - exponentInBinaryFormat.Length;
             StringBuilder resultStringBuilder = new();
-            if (isPositive)
-            {
-                resultStringBuilder.Append(0);
-            }
-            else
-            {
-                resultStringBuilder.Append(1);
-            }
-
-            foreach(var item in exponentInBinaryFormat)
+            _ = isPositive ? resultStringBuilder.Append(0) : resultStringBuilder.Append(1);
+            foreach (var item in exponentInBinaryFormat)
             {
                 resultStringBuilder.Append(item);
             }
