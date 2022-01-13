@@ -49,9 +49,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Module9Tests", "Module9Test
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Module10", "Module10", "{FD42F66C-4843-4C1F-9ADC-225FBA095211}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Module10.Tests", "Module10.Tests\Module10.Tests.csproj", "{A47F31FE-F0E7-4108-B2BC-1E43BB02DD1D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Module10.Tests", "Module10.Tests\Module10.Tests.csproj", "{A47F31FE-F0E7-4108-B2BC-1E43BB02DD1D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Module10", "Module10\Module10.csproj", "{A343B262-EF8C-4573-8D8C-BBB2882ABCDB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Module10", "Module10\Module10.csproj", "{A343B262-EF8C-4573-8D8C-BBB2882ABCDB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
