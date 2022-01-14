@@ -63,5 +63,7 @@ namespace Common
 
             return result;
         }
+
+        public static bool IsPowerOfTwo(long x) => (x != 0) && ((x & (x - 1)) == 0);
     }
 }
