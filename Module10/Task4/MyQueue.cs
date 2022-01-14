@@ -11,7 +11,7 @@ namespace Module10.Task4
         private T[] _items;
         private int _currentIndex = 0;
         private int _headOfQueue = 0;
-        private const int _defaultLength = 8;
+        private const int _defaultLength = 4;
 
         public int Count { get => _currentIndex; }
         public int InternalArraySize { get => _items.Length; }
@@ -49,14 +49,14 @@ namespace Module10.Task4
 
         public void Enqueue(T item)
         {
-            if (_items.Length < _defaultLength && _currentIndex >= _items.Length)
+            if (_items.Length < _defaultLength || _currentIndex >= _items.Length)
             {
                 throw new ArgumentOutOfRangeException(nameof(item), "Current item overflows default queue's size");
             }
 
             _items[_currentIndex++] = item;
 
-            if (_currentIndex == _items.Length && _items.Length >= 8 && OperationsWithElements.IsPowerOfTwo(_items.Length))
+            if (_currentIndex == _items.Length && _items.Length >= _defaultLength && OperationsWithElements.IsPowerOfTwo(_items.Length))
             {
                 Array.Resize<T>(ref _items, _items.Length * 2);
             }
