@@ -39,13 +39,7 @@ namespace Module10.Task4
             _currentIndex = _items.Length;
         }
 
-        public override IEnumerator<T> GetEnumerator()
-        {
-            foreach(var element in _items)
-            {
-                yield return element;
-            }
-        }
+        public override IEnumerator<T> GetEnumerator() => new MyQueueIterator<T>(this);
 
         public void Enqueue(T item)
         {
@@ -108,5 +102,16 @@ namespace Module10.Task4
 
             return false;
         }
+
+        public bool IsEmpty() => _currentIndex == 0;
+
+        public void Clear()
+        {
+            _items = new T[_defaultLength];
+            _headOfQueue = 0;
+            _currentIndex = 0;
+        }
+
+        internal T ItemByPosition(int position) => _items[position];
     }
 }

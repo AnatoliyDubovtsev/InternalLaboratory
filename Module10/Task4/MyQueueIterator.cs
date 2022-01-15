@@ -1,31 +1,32 @@
 ﻿using Module10.Iterator;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Module10.Task4
 {
     public class MyQueueIterator<T> : Iterator<T>
     {
-        private MyQueue<T> _collection;
+        private readonly MyQueue<T> _collection;
+        private int _position = -1;
 
         public MyQueueIterator(MyQueue<T> collection)
         {
             _collection = collection;
         }
 
-        public override T Current() => _collection.Peek();
+        public override T Current() => _collection.ItemByPosition(_position);
+
+        public override void Dispose() => Reset();
 
         public override bool MoveNext()
         {
-            throw new NotImplementedException();
+            if (_position < _collection.Count - 1)
+            {
+                _position++;
+                return true;
+            }
+
+            return false;
         }
 
-        public override void Reset()
-        {
-            throw new NotImplementedException();
-        }
+        public override void Reset() => _position = 0;
     }
 }

@@ -18,7 +18,7 @@ namespace Module10.Iterator
 
         public abstract T Current();
 
-        public void Dispose() => throw new System.NotImplementedException();
+        public abstract void Dispose();
 
         public abstract bool MoveNext();
 

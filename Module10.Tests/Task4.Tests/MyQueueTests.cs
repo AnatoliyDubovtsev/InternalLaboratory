@@ -18,10 +18,10 @@ namespace Module10.Tests.Task4.Tests
             }
 
             //act
-            var result = queue.Peek();
+            var actual = queue.Peek();
 
             //assert
-            Assert.AreEqual(expected, result);
+            Assert.AreEqual(expected, actual);
         }
 
         [TestCase(new int[] { 1, 2, 3 }, 1, 1)]
@@ -37,14 +37,14 @@ namespace Module10.Tests.Task4.Tests
             }
 
             //act
-            int result = 0;
+            int actual = 0;
             for(int i = 0; i < dequeueItems; i++)
             {
-                result = queue.Dequeue();
+                actual = queue.Dequeue();
             }
 
             //assert
-            Assert.AreEqual(expected, result);
+            Assert.AreEqual(expected, actual);
         }
 
         [TestCase(new int[] { 1, 2, 3, 4, 5, 6, 7 }, 8)]
@@ -96,10 +96,10 @@ namespace Module10.Tests.Task4.Tests
             var queue = new MyQueue<int>(array);
 
             //act
-            var result = queue.Contains(item);
+            var actual = queue.Contains(item);
 
             //assert
-            Assert.AreEqual(expected, result);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -111,10 +111,10 @@ namespace Module10.Tests.Task4.Tests
             var expected = true;
 
             //act
-            var result = queue.Contains(item);
+            var actual = queue.Contains(item);
 
             //assert
-            Assert.AreEqual(expected, result);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -126,10 +126,10 @@ namespace Module10.Tests.Task4.Tests
             var expected = true;
 
             //act
-            var result = queue.Contains(item);
+            var actual = queue.Contains(item);
 
             //assert
-            Assert.AreEqual(expected, result);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -141,10 +141,24 @@ namespace Module10.Tests.Task4.Tests
             var expected = false;
 
             //act
-            var result = queue.Contains(item);
+            var actual = queue.Contains(item);
 
             //assert
-            Assert.AreEqual(expected, result);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 1, 2, 3 }, false)]
+        [TestCase(new int[] { }, true)]
+        public void IsEmpty_ReturnsBoolean(int[] array, bool expected)
+        {
+            //arrange
+            var queue = new MyQueue<int>(array);
+
+            //act
+            var actual = queue.IsEmpty();
+
+            //assert
+            Assert.AreEqual(expected, actual);
         }
 
 
