@@ -1,9 +1,7 @@
-﻿using Module10.Iterator;
+﻿using Common;
+using Module10.Iterator;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Module10.Task5
 {
@@ -47,12 +45,8 @@ namespace Module10.Task5
 
         public T Pop()
         {
-            if (_headOfStack < 0)
-            {
-                throw new InvalidOperationException("Stack is empty");
-            }
-
-            T temp = _items[_headOfStack--];
+            T temp = Peek();
+            _headOfStack--;
             if (_headOfStack < _items.Length / 2 && _headOfStack > 0 && _items.Length > _defaultLength)
             {
                 T[] newArray = new T[_items.Length / 2];
@@ -66,13 +60,25 @@ namespace Module10.Task5
             return temp;
         }
 
-        public T Peek() => _items[_headOfStack];
+        public T Peek()
+        {
+            if (_headOfStack < 0)
+            {
+                throw new InvalidOperationException("Collection is empty");
+            }
+
+            return _items[_headOfStack];
+        }
 
         public void Push(T item)
         {
             if (item == null)
             {
                 throw new ArgumentNullException(nameof(item), "Item is a null");
+            }
+            else if (_headOfStack >= _items.Length - 1 && !OperationsWithElements.IsPowerOfTwo(_items.Length))
+            {
+                throw new ArgumentOutOfRangeException(nameof(item), "Current item overflows default stack's size");
             }
             else if (_headOfStack >= _items.Length - 1)
             {
@@ -82,7 +88,7 @@ namespace Module10.Task5
             _items[++_headOfStack] = item;
         }
 
-        public override IEnumerator<T> GetEnumerator() => new MyStackIterator<T>();
+        public override IEnumerator<T> GetEnumerator() => new MyStackIterator<T>(this);
 
         public bool Contains(T item)
         {
@@ -103,5 +109,16 @@ namespace Module10.Task5
         }
 
         public bool IsEmpty() => Count == -1;
+
+        public T[] ToArray()
+        {
+            T[] array = new T[_headOfStack + 1];
+            for(int i = 0; i <= _headOfStack; i++)
+            {
+                array[i] = _items[i];
+            }
+
+            return array;
+        }
     }
 }

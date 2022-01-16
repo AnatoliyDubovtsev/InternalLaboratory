@@ -1,10 +1,6 @@
 ﻿using Module10.Task5;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Module10.Tests.Task5.Tests
 {
@@ -161,5 +157,65 @@ namespace Module10.Tests.Task5.Tests
             //assert
             Assert.AreEqual(expected, actual);
         }
+
+        #region ThrowsExceptionTests
+
+        [TestCase(-1)]
+        public void MyStackCtor_InvalidCapacity_ThrowsArgumentOutOfRangeException(int capacity)
+            => Assert.Throws<ArgumentOutOfRangeException>(() => new MyStack<int>(capacity));
+
+        [TestCase(null)]
+        public void MyStackCtor_NullInputCollection_ThrowsArgumentNullException(int[] array)
+            => Assert.Throws<ArgumentNullException>(() => new MyStack<int>(array));
+
+        [Test]
+        public void MyStackCtor_InputCollectionContainsNulls_ThrowsArgumentNullException()
+        {
+            string[] array = new string[] { "1", null };
+            Assert.Throws<ArgumentNullException>(() => new MyStack<string>(array));
+        }
+
+        [TestCase(new int[] { 1 }, 0)]
+        [TestCase(new int[] { 1, 2, 3, 4 }, 3)]
+        public void Push_IndexOutOfDefaultRange_ThrowsArgumentOutOfRangeException(int[] array, int defaultLength)
+        {
+            var stack = new MyStack<int>(defaultLength);
+            Assert.Throws<ArgumentOutOfRangeException>(() =>
+            {
+                foreach(var item in array)
+                {
+                    stack.Push(item);
+                }
+            });
+        }
+
+        [TestCase("A", null)]
+        [TestCase(null)]
+        public void Push_NullItem_ThrowsArgumentNullException(params string[] items)
+        {
+            var stack = new MyStack<string>();
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                foreach(var item in items)
+                {
+                    stack.Push(item);
+                }
+            });
+        }
+
+        [TestCase(new int[] { 1, 2, 3 }, 3)]
+        [TestCase(new int[] { }, 0)]
+        public void Peek_EmptyCollection_ThrowsInvalidOperationException(int[] array, int popElements)
+        {
+            var stack = new MyStack<int>(array);
+            for (int i = 0; i < popElements; i++)
+            {
+                _ = stack.Pop();
+            }
+
+            Assert.Throws<InvalidOperationException>(() => stack.Peek());
+        }
+
+        #endregion
     }
 }

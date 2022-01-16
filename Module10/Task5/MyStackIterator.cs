@@ -1,32 +1,37 @@
 ﻿using Module10.Iterator;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Module10.Task5
 {
     public class MyStackIterator<T> : Iterator<T>
     {
-        public override T Current()
+        private readonly MyStack<T> _collection;
+        private readonly T[] _array;
+        private int _position = -1;
+
+        public MyStackIterator(MyStack<T> collection)
         {
-            throw new NotImplementedException();
+            _collection = collection;
+            _array = collection.ToArray();
         }
 
-        public override void Dispose()
-        {
-            throw new NotImplementedException();
-        }
+        public override T Current() => _array[_position];
+
+        public override void Dispose() => Reset();
 
         public override bool MoveNext()
         {
-            throw new NotImplementedException();
+            if (_position < _array.Length - 1)
+            {
+                _position++;
+                return true;
+            }
+
+            return false;
         }
 
         public override void Reset()
         {
-            throw new NotImplementedException();
+            _position = 0;
         }
     }
 }
