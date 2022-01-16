@@ -39,6 +39,7 @@ namespace Module10.Task5
                 {
                     throw new ArgumentNullException(nameof(collection), "Item in the input collection is null");
                 }
+
                 this.Push(item);
             }
         }

@@ -47,6 +47,20 @@ namespace Module10.Tests.Task4.Tests
             Assert.AreEqual(expected, actual);
         }
 
+        [TestCase(new int[] { 1, 2, 3 }, 1)]
+        [TestCase(new int[] { 5 }, 5)]
+        public void Peek_ReturnsHeadOfQueue(int[] array, int expected)
+        {
+            //arrange
+            var queue = new MyQueue<int>(array);
+
+            //act
+            var actual = queue.Peek();
+
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+
         [TestCase(new int[] { 1, 2, 3, 4, 5, 6, 7 }, 8)]
         [TestCase(new int[] { 1, 2, 3, 4, 5, 6, 7, 8 }, 16)]
         public void InternalArraySizeTests_AfterEnqueue(int[] array, int expectedSize)
@@ -88,6 +102,24 @@ namespace Module10.Tests.Task4.Tests
             Assert.AreEqual(expectedSize, actualSize);
         }
 
+        [TestCase(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, 1, 8)]
+        [TestCase(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }, 1, 16)]
+        public void InternalArraySizeTests_AfterDequeue_CreateCollectionUsingCtor(int[] array, int dequeueItems, int expectedSize)
+        {
+            //arrange
+            var queue = new MyQueue<int>(array);
+            for (int i = 0; i < dequeueItems; i++)
+            {
+                _ = queue.Dequeue();
+            }
+
+            //act
+            var actualSize = queue.InternalArraySize;
+
+            //assert
+            Assert.AreEqual(expectedSize, actualSize);
+        }
+
         [TestCase(new int[] { 1, 2, 3 }, 1, true)]
         [TestCase(new int[] { 1, 2, 3 }, 4, false)]
         public void Contains_ArrayOfIntegersInput_ReturnsBoolean(int[] array, int item, bool expected)
@@ -117,36 +149,6 @@ namespace Module10.Tests.Task4.Tests
             Assert.AreEqual(expected, actual);
         }
 
-        [Test]
-        public void Contains_ArrayOfStringsWithNullsInput_ItemParameterIsNull_ReturnsBoolean()
-        {
-            //arrange
-            var queue = new MyQueue<string>(new string[] { "A", null });
-            var item = default(string);
-            var expected = true;
-
-            //act
-            var actual = queue.Contains(item);
-
-            //assert
-            Assert.AreEqual(expected, actual);
-        }
-
-        [Test]
-        public void Contains_ArrayOfStringsWithNullsInput_ItemParameterIsNotNull_ReturnsBoolean()
-        {
-            //arrange
-            var queue = new MyQueue<string>(new string[] { "A", null });
-            var item = "B";
-            var expected = false;
-
-            //act
-            var actual = queue.Contains(item);
-
-            //assert
-            Assert.AreEqual(expected, actual);
-        }
-
         [TestCase(new int[] { 1, 2, 3 }, false)]
         [TestCase(new int[] { }, true)]
         public void IsEmpty_ReturnsBoolean(int[] array, bool expected)
@@ -163,17 +165,14 @@ namespace Module10.Tests.Task4.Tests
 
 
         #region ThrowsExceptionTests
+        [Test]
+        public void MyQueueCtor_InputArrayWithNulls_ThrowsArgumentNullException()
+            => Assert.Throws<ArgumentNullException>(() => new MyQueue<string>(new string[] { "A", null }));
+
         [TestCase(new int[] { })]
         public void PeekMethod_InputEmptyArray_ThrowsInvalidOperationException(int[] array)
         {
             var queue = new MyQueue<int>(array);
-            Assert.Throws<InvalidOperationException>(() => queue.Peek());
-        }
-        
-        [Test]
-        public void PeekMethod_InputArrayOfNulls_ThrowsInvalidOperationException()
-        {
-            var queue = new MyQueue<string>(new string[] { null });
             Assert.Throws<InvalidOperationException>(() => queue.Peek());
         }
 

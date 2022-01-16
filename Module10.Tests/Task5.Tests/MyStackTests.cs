@@ -81,7 +81,30 @@ namespace Module10.Tests.Task5.Tests
 
         [TestCase(new int[] { 1, 2, 3, 4, 5, 6 }, 2, 4)]
         [TestCase(new int[] { 1, 2, 3, 4, 5, 6 }, 1, 8)]
-        public void InternalArraySize_AfterPop(int[] array, int popElements, int expected)
+        public void InternalArraySize_AfterPop_CreateCollectionUsingPush(int[] array, int popElements, int expected)
+        {
+            //arrange
+            var stack = new MyStack<int>();
+            foreach(var item in array)
+            {
+                stack.Push(item);
+            }
+
+            for (int i = 0; i < popElements; i++)
+            {
+                _ = stack.Pop();
+            }
+
+            //act
+            var actual = stack.InternalArraySize;
+
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 1, 2, 3, 4, 5, 6 }, 2, 4)]
+        [TestCase(new int[] { 1, 2, 3, 4, 5, 6 }, 1, 8)]
+        public void InternalArraySize_AfterPop_CreateCollectionUsingCtor(int[] array, int popElements, int expected)
         {
             //arrange
             var stack = new MyStack<int>(array);

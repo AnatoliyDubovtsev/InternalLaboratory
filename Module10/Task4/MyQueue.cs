@@ -2,7 +2,6 @@
 using Module10.Iterator;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Module10.Task4
 {
@@ -35,8 +34,16 @@ namespace Module10.Task4
                 throw new ArgumentNullException(nameof(collection), "Collection parameter in the constructor is a null");
             }
 
-            _items = collection.ToArray();
-            _currentIndex = _items.Length;
+            _items = new T[_defaultLength];
+            foreach(var item in collection)
+            {
+                if (item == null)
+                {
+                    throw new ArgumentNullException(nameof(collection), "Item in the input collection is null");
+                }
+
+                this.Enqueue(item);
+            }
         }
 
         public override IEnumerator<T> GetEnumerator() => new MyQueueIterator<T>(this);
@@ -78,11 +85,7 @@ namespace Module10.Task4
 
         public T Peek()
         {
-            if (_items.Length == 0)
-            {
-                throw new InvalidOperationException("Collection is empty");
-            }
-            else if (_items[_headOfQueue] == null)
+            if (_items.Length == 0 || _currentIndex == 0)
             {
                 throw new InvalidOperationException("Collection is empty");
             }
