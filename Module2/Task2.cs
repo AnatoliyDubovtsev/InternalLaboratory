@@ -22,17 +22,13 @@ namespace Module2
             {
                 return current;
             }
-            else if (current >= arr[id])
+            else if (current < arr[id])
             {
-                id++;
-                return IsMax(arr, id, current);
+                current = arr[id];                
             }
-            else
-            {
-                current = arr[id];
-                id++;
-                return IsMax(arr, id, current);
-            }
+
+            id++;
+            return IsMax(arr, id, current);
         }
     }
 }
