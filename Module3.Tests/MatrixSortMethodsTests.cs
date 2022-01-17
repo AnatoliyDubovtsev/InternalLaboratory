@@ -106,7 +106,7 @@ namespace Module3.Tests
                 _ => null
             };
 
-        private int[][,] ReverseMatrix(int[][,] matrix)
+        private static int[][,] ReverseMatrix(int[][,] matrix)
         {
             int[][,] result = new int[matrix.Length][,];
             for(int outerRow = 0; outerRow < matrix.Length; outerRow++)

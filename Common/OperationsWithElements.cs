@@ -54,7 +54,7 @@ namespace Common
             string result;
             if (stringBuilder.Length > 64)
             {
-                result = stringBuilder.ToString().Substring(stringBuilder.Length - 63);
+                result = stringBuilder.ToString()[(stringBuilder.Length - 63)..];
             }
             else
             {

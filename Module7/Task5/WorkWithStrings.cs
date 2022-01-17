@@ -17,7 +17,7 @@ namespace Module7.Task5
                 input = input.Trim();
             }
 
-            StringBuilder result = new StringBuilder(input.Length);
+            StringBuilder result = new(input.Length);
             string[] words = input.Split(' ');
             for (int i = words.Length - 1; i >= 0; i--)
             {

@@ -54,7 +54,7 @@ namespace Module7.Task3
                 }
             }
 
-            StringBuilder result = new StringBuilder(url);
+            StringBuilder result = new(url);
             if (result[^1] != '?')
             {
                 result.Append('?');

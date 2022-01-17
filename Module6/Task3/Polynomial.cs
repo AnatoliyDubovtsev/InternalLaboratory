@@ -33,7 +33,7 @@ namespace Module6.Task3
 
         public override string ToString()
         {
-            StringBuilder resultString = new StringBuilder();
+            StringBuilder resultString = new();
             for (int i = 0; i < Coefficients.Length; i++)
             {
                 if (resultString.Length > 0 && Coefficients[i] >= 0)
@@ -49,8 +49,7 @@ namespace Module6.Task3
 
         public override bool Equals(object obj)
         {
-            Polynomial polynomial = obj as Polynomial;
-            if (polynomial == null)
+            if (obj is not Polynomial polynomial)
             {
                 throw new InvalidCastException("Invalid type");
             }
@@ -58,7 +57,7 @@ namespace Module6.Task3
             {
                 return false;
             }
-            
+
             for (int i = 0; i < this.Coefficients.Length; i++)
             {
                 if (this.Coefficients[i] != polynomial.Coefficients[i])
@@ -142,7 +141,7 @@ namespace Module6.Task3
                 shift++;
             }
 
-            Polynomial resultPolynomial = new Polynomial(new int[max]);
+            Polynomial resultPolynomial = new(new int[max]);
             for (int i = 0; i < resultArr.Length; i++)
             {
                 resultPolynomial += new Polynomial(resultArr[i]);

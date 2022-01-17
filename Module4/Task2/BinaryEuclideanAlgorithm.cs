@@ -8,7 +8,7 @@ namespace Module4.Task2
     {
         public int FindGcd(out double elapsedMilliseconds, params int[] numbers)
         {
-            Stopwatch stopwatch = new Stopwatch();
+            Stopwatch stopwatch = new();
             stopwatch.Start();
             if (numbers.Length < 2)
             {

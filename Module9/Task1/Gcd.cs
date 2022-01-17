@@ -27,7 +27,7 @@ namespace Module9.Task1
             }
 
             Delegate[] invocationList = gcdHandler?.GetInvocationList();
-            StringBuilder results = new StringBuilder();
+            StringBuilder results = new();
             int[] numbersForMethod = new int[numbers.Length];
             for(int i = 0; i < invocationList?.Length; i++)
             {

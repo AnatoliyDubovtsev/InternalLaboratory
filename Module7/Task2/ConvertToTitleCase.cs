@@ -23,7 +23,7 @@ namespace Module7.Task2
                 minorWords = minorWords.Trim();
             }
 
-            StringBuilder result = new StringBuilder(inputString.Length);
+            StringBuilder result = new(inputString.Length);
             string[] inputStringWords = inputString.ToLower().Split(' ');
             string[] minorWordsArray = string.IsNullOrEmpty(minorWords) ? Array.Empty<string>() : minorWords.ToLower().Split(' ');
             bool isAppended;

@@ -70,7 +70,7 @@ namespace Common
                 throw new ArgumentNullException(nameof(matrix), "Matrix is a null.");
             }
 
-            StringBuilder stringBuilder = new StringBuilder();
+            StringBuilder stringBuilder = new();
             for (int row = 0; row < matrix.GetLength(0); row++)
             {
                 for (int col = 0; col < matrix.GetLength(1); col++)
@@ -78,7 +78,7 @@ namespace Common
                     stringBuilder.Append(matrix[row, col]);
                     if (col != matrix.GetLength(1) - 1)
                     {
-                        stringBuilder.Append(" ");
+                        stringBuilder.Append(' ');
                     }
                 }
 
