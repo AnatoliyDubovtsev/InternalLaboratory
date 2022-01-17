@@ -16,12 +16,17 @@ namespace Module2.MSTests
         [TestMethod()]
         public void FilterDigit_ReturnsResultArr()
         {
+            //arrange
             string inputArrString = TestContext.DataRow["inputArray"].ToString();
             int digit = Convert.ToInt32(TestContext.DataRow["digit"]);
             string expectedString = TestContext.DataRow["outputArray"].ToString();
             int[] inputArr = FromStringArray(inputArrString);
             int[] expected = FromStringArray(expectedString);
+
+            //act
             int[] actual = Task6.FilterDigit(inputArr, digit);
+
+            //assert
             CollectionAssert.AreEqual(expected, actual);
         }
 

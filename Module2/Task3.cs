@@ -4,7 +4,7 @@
     {
         public static int IndexOfElementWithEqualSumOnBothSides(double[] arr)
         {
-            const double percent = 0.0001;
+            const double precision = 0.0001;
             double leftSum = 0;
             double rightSum = 0;
             for (int i = 1; i < arr.Length; i++)
@@ -17,7 +17,7 @@
             {
                 double max = leftSum > rightSum ? leftSum : rightSum;
                 double min = leftSum > rightSum ? rightSum : leftSum;
-                if (max - min <= max * percent)
+                if (max - min <= max * precision)
                 {
                     return index;
                 }

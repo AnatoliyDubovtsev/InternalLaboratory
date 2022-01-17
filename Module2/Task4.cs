@@ -16,11 +16,9 @@ namespace Module2
                 throw new ArgumentNullException(nameof(rightString), "Right string is null or empty");
             }
 
-            StringBuilder resultStringBuilder = new StringBuilder(leftString);
-            resultStringBuilder.Append(rightString);
+            StringBuilder resultStringBuilder = new StringBuilder(leftString + rightString);
             StringBuilder uniqueLetters = new StringBuilder();
             bool isFoundNewLetter;
-
             for (int i = 0; i < resultStringBuilder.Length; i++)
             {
                 isFoundNewLetter = true;
