@@ -53,7 +53,7 @@ namespace Module7.Task2
 
                 if (i != inputStringWords.Length - 1)
                 {
-                    result.Append(" ");
+                    result.Append(' ');
                 }
             }
 

@@ -14,19 +14,11 @@ namespace Module7.Task4
             }
 
             List<T> inputCollection = collection.ToList();
-            for (int i = 0; i < inputCollection.Count; i++)
+            for (int i = 0; i < inputCollection.Count - 1; i++)
             {
-                for (int j = i + 1; j < inputCollection.Count; j++)
+                if (inputCollection[i].Equals(inputCollection[i + 1]))
                 {
-                    if (inputCollection[i].Equals(inputCollection[j]))
-                    {
-                        inputCollection.RemoveAt(i--);
-                        break;
-                    }
-                    else
-                    {
-                        break;
-                    }
+                    inputCollection.RemoveAt(i--);
                 }
             }
 
