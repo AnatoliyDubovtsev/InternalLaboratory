@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Module2
 {
@@ -24,6 +25,20 @@ namespace Module2
             int[] resultArr = new int[countResultArraySize];
             Array.Copy(arr, resultArr, countResultArraySize);
             return resultArr;
+        }
+
+        public static int[] FilterDigitUsingList(int[] arr, int digit)
+        {
+            List<int> result = new List<int>();
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (IsContainsDigit(arr[i], digit))
+                {
+                    result.Add(arr[i]);
+                }
+            }
+
+            return result.ToArray();
         }
 
         internal static bool IsContainsDigit(int number, int digit)

@@ -17,6 +17,7 @@ namespace Module2.NUnitTests
         [TestCase(165743210, ExpectedResult = 167012345)]
         [TestCase(10, ExpectedResult = -1)]
         [TestCase(20, ExpectedResult = -1)]
+        [TestCase(1141, ExpectedResult = 1411)]
         public int FindNextBiggerNumber_ReturnsResultNumber(int number)
             => Task5.FindNextBiggerNumber(number, out double _);
 

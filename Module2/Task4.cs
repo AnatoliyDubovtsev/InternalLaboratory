@@ -21,12 +21,17 @@ namespace Module2
             bool isFoundNewLetter;
             for (int i = 0; i < resultStringBuilder.Length; i++)
             {
+                int symbolCode = (int)resultStringBuilder[i];
+                if ((symbolCode < 65 || (symbolCode > 90 && symbolCode < 97) || symbolCode > 122))
+                {
+                    throw new ArgumentException("Input strings cannot contain symbols which are not Latin alphabet");
+                }
+
                 isFoundNewLetter = true;
                 for (int j = 0; j < uniqueLetters.Length; j++)
                 {
                     if (resultStringBuilder[i] == uniqueLetters[j])
                     {
-                        resultStringBuilder.Remove(i--, 1);
                         isFoundNewLetter = false;
                         break;
                     }
@@ -38,7 +43,7 @@ namespace Module2
                 }
             }
 
-            return resultStringBuilder.ToString();
+            return uniqueLetters.ToString();
         }
     }
 }
