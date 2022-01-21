@@ -129,7 +129,7 @@ namespace Module10.Task6
             int[] newKeys = new int[_defaultLength];
             T[] newValues = new T[_defaultLength];
             int index = 0;
-            foreach(var item in collection)
+            foreach (var item in collection)
             {
                 if (item == null)
                 {
@@ -169,10 +169,7 @@ namespace Module10.Task6
                     throw new ArgumentNullException(nameof(collection), "Item in the input collection is a null");
                 }
 
-                if (!Contains(item))
-                {
-                    Add(item);
-                }
+                Add(item);
             }
         }
 
@@ -191,10 +188,7 @@ namespace Module10.Task6
                     throw new ArgumentNullException(nameof(collection), "Item in the input collection is a null");
                 }
 
-                if (Contains(item))
-                {
-                    Remove(item);
-                }
+                Remove(item);
             }
         }
 
@@ -213,11 +207,7 @@ namespace Module10.Task6
                     throw new ArgumentNullException(nameof(collection), "Item in the input collection is a null");
                 }
 
-                if (Contains(item))
-                {
-                    Remove(item);
-                }
-                else
+                if (!Remove(item))
                 {
                     Add(item);
                 }
