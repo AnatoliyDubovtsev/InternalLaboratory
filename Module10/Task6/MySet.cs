@@ -1,4 +1,5 @@
-﻿using Module10.Iterator;
+﻿using Common;
+using Module10.Iterator;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,7 +51,8 @@ namespace Module10.Task6
             }
             else if (_currentIndex >= _keys.Length)
             {
-                Resize();
+                Array.Resize<int>(ref _keys, _keys.Length * 2);
+                Array.Resize<T>(ref _values, _values.Length * 2);
             }
 
             int hashCode = item.GetHashCode();
@@ -90,38 +92,56 @@ namespace Module10.Task6
                 return false;
             }
 
-            Resize(index);
+            while (index <= _currentIndex && index < _keys.Length - 1)
+            {
+                OperationsWithElements.SwapElements<int>(ref _keys[index], ref _keys[index + 1]);
+                OperationsWithElements.SwapElements<T>(ref _values[index], ref _values[index + 1]);
+                index++;
+            }
+
+            _currentIndex--;
+            if (_currentIndex <= _keys.Length / 2 && _currentIndex > 0 && _keys.Length > _defaultLength)
+            {
+                int length = _keys.Length / 2;
+                int[] newKeys = new int[length];
+                T[] newValues = new T[length];
+                for (int i = 0; i < length; i++)
+                {
+                    newKeys[i] = _keys[i];
+                    newValues[i] = _values[i];
+                }
+
+                _keys = newKeys;
+                _values = newValues;
+            }
+
             return true;
         }
 
         public void IntersectWith(IEnumerable<T> collection)
         {
-
+            throw new NotImplementedException();
         }
 
         public void UnionWith(IEnumerable<T> collection)
         {
-
+            throw new NotImplementedException();
         }
         public void ExceptWith(IEnumerable<T> collection)
         {
-
+            throw new NotImplementedException();
         }
 
         public void SymmetricExceptWith(IEnumerable<T> collection)
         {
-
+            throw new NotImplementedException();
         }
 
-        public Dictionary<int, T> ToDictionary()
+        public T[] ToArray()
         {
-            Dictionary<int, T> dictionary = new Dictionary<int, T>();
-            for(int i = 0; i < _currentIndex; i++)
-            {
-                dictionary.Add(_keys[i], _values[i]);
-            }
-
-            return dictionary;
+            T[] array = new T[_currentIndex];
+            Array.Copy(_values, array, _currentIndex);
+            return array;
         }
 
         private int GetItemsId(T item)
@@ -138,39 +158,6 @@ namespace Module10.Task6
             }
 
             return index;
-        }
-
-        private void Resize(int index = -1)
-        {
-            int length;
-            if (index == -1 && _currentIndex > 0 && _keys.Length <= _currentIndex)
-            {
-                length = _keys.Length * 2;
-            }
-            else if (index != -1 && _currentIndex > 0 && _keys.Length / 2 >= _currentIndex)
-            {
-                length = _keys.Length / 2;
-            }
-            else
-            {
-                length = _keys.Length;
-            }
-
-            int[] newKeys = new int[length];
-            T[] newValues = new T[length];
-            int newArr = 0;
-            for (int oldArr = 0; oldArr < _keys.Length && newArr < length; oldArr++)
-            {
-                if (oldArr != index)
-                {
-                    newKeys[newArr] = _keys[oldArr];
-                    newValues[newArr] = _values[oldArr];
-                    newArr++;
-                }
-            }
-
-            _keys = newKeys;
-            _values = newValues;
         }
     }
 }

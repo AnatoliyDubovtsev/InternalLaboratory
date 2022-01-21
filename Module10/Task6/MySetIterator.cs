@@ -1,5 +1,4 @@
 ﻿using Module10.Iterator;
-using System.Linq;
 
 namespace Module10.Task6
 {
@@ -10,7 +9,7 @@ namespace Module10.Task6
 
         public MySetIterator(MySet<T> collection)
         {
-            _values = collection.ToDictionary().Values.ToArray();
+            _values = collection.ToArray();
         }
 
         public override T Current() => _values[_position];
