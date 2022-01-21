@@ -32,7 +32,7 @@ namespace Module10.Task6
             {
                 if (item == null)
                 {
-                    throw new ArgumentNullException(nameof(collection), "Item in the input collection is null");
+                    throw new ArgumentNullException(nameof(collection), "Item in the input collection is a null");
                 }
 
                 Add(item);
@@ -92,7 +92,7 @@ namespace Module10.Task6
                 return false;
             }
 
-            while (index <= _currentIndex && index < _keys.Length - 1)
+            while (index < _currentIndex - 1 && index < _keys.Length - 1)
             {
                 OperationsWithElements.SwapElements<int>(ref _keys[index], ref _keys[index + 1]);
                 OperationsWithElements.SwapElements<T>(ref _values[index], ref _values[index + 1]);
@@ -118,23 +118,110 @@ namespace Module10.Task6
             return true;
         }
 
+        //Удаляет элементы, которые не находятся сразу в двух наборах
         public void IntersectWith(IEnumerable<T> collection)
         {
-            throw new NotImplementedException();
+            if (collection == null)
+            {
+                throw new ArgumentNullException(nameof(collection), "Collection is a null");
+            }
+
+            int[] newKeys = new int[_defaultLength];
+            T[] newValues = new T[_defaultLength];
+            int index = 0;
+            foreach(var item in collection)
+            {
+                if (item == null)
+                {
+                    throw new ArgumentNullException(nameof(collection), "Item in the input collection is a null");
+                }
+                else if (Contains(item))
+                {
+                    newKeys[index] = item.GetHashCode();
+                    newValues[index] = item;
+                    index++;
+                }
+
+                if (index == newKeys.Length)
+                {
+                    Array.Resize<int>(ref newKeys, newKeys.Length * 2);
+                    Array.Resize<T>(ref newValues, newValues.Length * 2);
+                }
+            }
+
+            _keys = newKeys;
+            _values = newValues;
+            _currentIndex = index;
         }
 
+        //Добавляет все элементы из второго набора в исходный набор (исключая дубликаты)
         public void UnionWith(IEnumerable<T> collection)
         {
-            throw new NotImplementedException();
-        }
-        public void ExceptWith(IEnumerable<T> collection)
-        {
-            throw new NotImplementedException();
+            if (collection == null)
+            {
+                throw new ArgumentNullException(nameof(collection), "Collection is a null");
+            }
+
+            foreach (var item in collection)
+            {
+                if (item == null)
+                {
+                    throw new ArgumentNullException(nameof(collection), "Item in the input collection is a null");
+                }
+
+                if (!Contains(item))
+                {
+                    Add(item);
+                }
+            }
         }
 
+        //Удаляет указанные элементы из исходного набора
+        public void ExceptWith(IEnumerable<T> collection)
+        {
+            if (collection == null)
+            {
+                throw new ArgumentNullException(nameof(collection), "Collection is a null");
+            }
+
+            foreach (var item in collection)
+            {
+                if (item == null)
+                {
+                    throw new ArgumentNullException(nameof(collection), "Item in the input collection is a null");
+                }
+
+                if (Contains(item))
+                {
+                    Remove(item);
+                }
+            }
+        }
+
+        //Удаляет все элементы, кроме тех, которые являются уникальными в одном или другом наборе
         public void SymmetricExceptWith(IEnumerable<T> collection)
         {
-            throw new NotImplementedException();
+            if (collection == null)
+            {
+                throw new ArgumentNullException(nameof(collection), "Collection is a null");
+            }
+
+            foreach (var item in collection)
+            {
+                if (item == null)
+                {
+                    throw new ArgumentNullException(nameof(collection), "Item in the input collection is a null");
+                }
+
+                if (Contains(item))
+                {
+                    Remove(item);
+                }
+                else
+                {
+                    Add(item);
+                }
+            }
         }
 
         public T[] ToArray()
