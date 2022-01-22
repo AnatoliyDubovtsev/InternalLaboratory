@@ -3,8 +3,6 @@ using Module10.Iterator;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Module10.Task6
 {
@@ -16,6 +14,7 @@ namespace Module10.Task6
         private T[] _values;
 
         public int Count { get => _currentIndex; }
+        public int InternalArrayLength { get => _keys.Length; }
 
         public MySet() : this(Array.Empty<T>()) { }
 
@@ -25,16 +24,15 @@ namespace Module10.Task6
             {
                 throw new ArgumentNullException(nameof(collection), "Collection is a null");
             }
+            else if (InputCollectionContainsNull(collection))
+            {
+                throw new ArgumentNullException(nameof(collection), "Item in the input collection is a null");
+            }
 
             _keys = new int[_defaultLength];
             _values = new T[_defaultLength];
             foreach (var item in collection)
             {
-                if (item == null)
-                {
-                    throw new ArgumentNullException(nameof(collection), "Item in the input collection is a null");
-                }
-
                 Add(item);
             }
         }
@@ -111,14 +109,13 @@ namespace Module10.Task6
             {
                 throw new ArgumentNullException(nameof(collection), "Collection is a null");
             }
+            else if (InputCollectionContainsNull(collection))
+            {
+                throw new ArgumentNullException(nameof(collection), "Item in the input collection is a null");
+            }
 
             foreach (var item in collection)
             {
-                if (item == null)
-                {
-                    throw new ArgumentNullException(nameof(collection), "Item in the input collection is a null");
-                }
-
                 Add(item);
             }
         }
@@ -130,14 +127,13 @@ namespace Module10.Task6
             {
                 throw new ArgumentNullException(nameof(collection), "Collection is a null");
             }
+            else if (InputCollectionContainsNull(collection))
+            {
+                throw new ArgumentNullException(nameof(collection), "Item in the input collection is a null");
+            }
 
             foreach (var item in collection)
             {
-                if (item == null)
-                {
-                    throw new ArgumentNullException(nameof(collection), "Item in the input collection is a null");
-                }
-
                 Remove(item);
             }
         }
@@ -149,15 +145,14 @@ namespace Module10.Task6
             {
                 throw new ArgumentNullException(nameof(collection), "Collection is a null");
             }
+            else if (InputCollectionContainsNull(collection))
+            {
+                throw new ArgumentNullException(nameof(collection), "Item in the input collection is a null");
+            }
 
             int index;
             foreach (var item in collection)
             {
-                if (item == null)
-                {
-                    throw new ArgumentNullException(nameof(collection), "Item in the input collection is a null");
-                }
-
                 index = GetItemsId(item);
                 if (index != -1)
                 {
@@ -231,6 +226,19 @@ namespace Module10.Task6
                 _keys = newKeys;
                 _values = newValues;
             }
+        }
+
+        private bool InputCollectionContainsNull(IEnumerable<T> collection)
+        {
+            foreach(var item in collection)
+            {
+                if (item == null)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }
