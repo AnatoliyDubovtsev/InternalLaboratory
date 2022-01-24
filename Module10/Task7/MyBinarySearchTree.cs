@@ -8,8 +8,9 @@ namespace Module10.Task7
 {
     public class MyBinarySearchTree<T> where T : IComparable<T>
     {
-        private Node Root { get; set; } = null;
-        private Node Current { get; set; } = null;
+        private bool isCurrentEqualRoot = false;
+        public Node Root { get; set; } = null;
+        public Node Current { get; set; } = null;
 
         public MyBinarySearchTree() { }
 
@@ -23,44 +24,15 @@ namespace Module10.Task7
             if (Root == null)
             {
                 Root = new Node(item);
-                Current = Root;
                 return;
             }
-
-            if (item.CompareTo(Root.Value) > 0)
+            
+            if (!isCurrentEqualRoot)
             {
-                if (Root.RightChild == null)
-                {
-                    Root.RightChild = new Node(item);
-                }
-                else
-                {
-                    Current = Root.RightChild;
-                    AddItem(item);
-                }
-            }
-            else if (item.CompareTo(Root.Value) < 0)
-            {
-                if (Root.LeftChild == null)
-                {
-                    Root.LeftChild = new Node(item);
-                }
-                else
-                {
-                    Current = Root.LeftChild;
-                    AddItem(item);
-                }
-            }
-            else
-            {
-                Root.Quantity++;
+                Current = Root;
+                isCurrentEqualRoot = true;
             }
 
-           // Root = Current;
-        }
-
-        private void AddItem(T item)
-        {
             if (item.CompareTo(Current.Value) > 0)
             {
                 if (Current.RightChild == null)
@@ -70,7 +42,7 @@ namespace Module10.Task7
                 else
                 {
                     Current = Current.RightChild;
-                    AddItem(item);
+                    Add(item);
                 }
             }
             else if (item.CompareTo(Current.Value) < 0)
@@ -82,13 +54,15 @@ namespace Module10.Task7
                 else
                 {
                     Current = Current.LeftChild;
-                    AddItem(item);
-                }                
+                    Add(item);
+                }
             }
             else
             {
                 Current.Quantity++;
             }
+
+            isCurrentEqualRoot = false;
         }
 
         public bool Remove(T item)
@@ -97,7 +71,7 @@ namespace Module10.Task7
         }
 
 
-        private sealed class Node
+        public sealed class Node
         {
             public Node LeftChild { get; set; } = null;
             public Node RightChild { get; set; } = null;
