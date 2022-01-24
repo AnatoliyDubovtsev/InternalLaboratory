@@ -9,7 +9,7 @@ namespace Module10.Task7
     public class MyBinarySearchTree<T> where T : IComparable<T>
     {
         private bool isCurrentEqualRoot = false;
-        private string Elements = "";
+        private List<T> itemsForUser = new();
         public Node Root { get; set; } = null;
         public Node Current { get; set; } = null;
 
@@ -27,7 +27,7 @@ namespace Module10.Task7
                 Root = new Node(item);
                 return;
             }
-            
+
             if (!isCurrentEqualRoot)
             {
                 Current = Root;
@@ -68,30 +68,72 @@ namespace Module10.Task7
             isCurrentEqualRoot = false;
         }
 
-        public void InorderTraversal()
+        public List<T> InorderTraversal()
         {
-            if (!isCurrentEqualRoot)
+            itemsForUser.Clear();
+            Node current = Root;
+            Inorder(current);
+            return itemsForUser;
+        }
+
+        public List<T> PreorderTraversal()
+        {
+            itemsForUser.Clear();
+            Node current = Root;
+            Preorder(current);
+            return itemsForUser;
+        }
+
+        public List<T> PostorderTraversal()
+        {
+            itemsForUser.Clear();
+            Node current = Root;
+            Postorder(current);
+            return itemsForUser;
+        }
+
+        private void Postorder(Node current)
+        {
+            if (current.LeftChild != null)
             {
-                Current = Root;
-                isCurrentEqualRoot = true;
+                Postorder(current.LeftChild);
             }
 
-            if (Current.LeftChild != null)
+            if (current.RightChild != null)
             {
-                Current = Current.LeftChild;
-                InorderTraversal();
+                Postorder(current.RightChild);
             }
 
-            Elements += Current.Value;
+            itemsForUser.Add(current.Value);
+        }
 
-            if (Current.RightChild != null)
+        private void Preorder(Node current)
+        {
+            itemsForUser.Add(current.Value);
+
+            if (current.LeftChild != null)
             {
-                Current = Current.RightChild;
-                InorderTraversal();
-            }            
-            else if (Current.RightChild == null && Current.Parent != null)
+                Preorder(current.LeftChild);
+            }
+
+            if (current.RightChild != null)
             {
-                Current = Current.Parent;
+                Preorder(current.RightChild);
+            }
+        }
+
+        private void Inorder(Node current)
+        {
+            if (current.LeftChild != null)
+            {
+                Inorder(current.LeftChild);
+            }
+
+            itemsForUser.Add(current.Value);
+
+            if (current.RightChild != null)
+            {
+                Inorder(current.RightChild);
             }
         }
 
