@@ -25,5 +25,22 @@ namespace Module10.Tests.Task7.Tests
             //assert
             Assert.NotNull(tree);
         }
+
+        [TestCase(new int[] { 10, 8, 11, 12, 14, 7, 5, 4 })]
+        public void InorderTraversal_ReturnsAllTreesItems(int[] collection)
+        {
+            //arrange
+            var tree = new MyBinarySearchTree<int>();
+            foreach (var item in collection)
+            {
+                tree.Add(item);
+            }
+
+            //act
+            tree.InorderTraversal();
+
+            //assert
+            Assert.NotNull(tree);
+        }
     }
 }
