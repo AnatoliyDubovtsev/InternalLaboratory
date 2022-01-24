@@ -8,8 +8,8 @@ namespace Module10.Task7
 {
     public class MyBinarySearchTree<T> where T : IComparable<T>
     {
-        private bool isCurrentEqualRoot = false;
-        private List<T> itemsForUser = new();
+        private bool _isCurrentEqualsRoot = false;
+        private readonly List<T> _itemsForUser = new();
         public Node Root { get; set; } = null;
         public Node Current { get; set; } = null;
 
@@ -28,10 +28,10 @@ namespace Module10.Task7
                 return;
             }
 
-            if (!isCurrentEqualRoot)
+            if (!_isCurrentEqualsRoot)
             {
                 Current = Root;
-                isCurrentEqualRoot = true;
+                _isCurrentEqualsRoot = true;
             }
 
             if (item.CompareTo(Current.Value) > 0)
@@ -65,75 +65,45 @@ namespace Module10.Task7
                 Current.Quantity++;
             }
 
-            isCurrentEqualRoot = false;
+            _isCurrentEqualsRoot = false;
         }
 
-        public List<T> InorderTraversal()
+        public IEnumerable<T> Traversal(TraversalType traversalType)
         {
-            itemsForUser.Clear();
             Node current = Root;
-            Inorder(current);
-            return itemsForUser;
+            _itemsForUser.Clear();
+            GetItems(current, traversalType);
+            foreach (var item in _itemsForUser)
+            {
+                yield return item;
+            }
         }
 
-        public List<T> PreorderTraversal()
+        private void GetItems(Node current, TraversalType traversalType)
         {
-            itemsForUser.Clear();
-            Node current = Root;
-            Preorder(current);
-            return itemsForUser;
-        }
+            if (traversalType == TraversalType.Preorder)
+            {
+                _itemsForUser.Add(current.Value);
+            }
 
-        public List<T> PostorderTraversal()
-        {
-            itemsForUser.Clear();
-            Node current = Root;
-            Postorder(current);
-            return itemsForUser;
-        }
-
-        private void Postorder(Node current)
-        {
             if (current.LeftChild != null)
             {
-                Postorder(current.LeftChild);
+                GetItems(current.LeftChild, traversalType);
+            }
+
+            if (traversalType == TraversalType.Inorder)
+            {
+                _itemsForUser.Add(current.Value);
             }
 
             if (current.RightChild != null)
             {
-                Postorder(current.RightChild);
+                GetItems(current.RightChild, traversalType);
             }
 
-            itemsForUser.Add(current.Value);
-        }
-
-        private void Preorder(Node current)
-        {
-            itemsForUser.Add(current.Value);
-
-            if (current.LeftChild != null)
+            if (traversalType == TraversalType.Postorder)
             {
-                Preorder(current.LeftChild);
-            }
-
-            if (current.RightChild != null)
-            {
-                Preorder(current.RightChild);
-            }
-        }
-
-        private void Inorder(Node current)
-        {
-            if (current.LeftChild != null)
-            {
-                Inorder(current.LeftChild);
-            }
-
-            itemsForUser.Add(current.Value);
-
-            if (current.RightChild != null)
-            {
-                Inorder(current.RightChild);
+                _itemsForUser.Add(current.Value);
             }
         }
 
