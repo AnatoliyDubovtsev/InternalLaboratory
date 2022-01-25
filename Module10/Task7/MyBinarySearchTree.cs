@@ -3,16 +3,23 @@ using System.Collections.Generic;
 
 namespace Module10.Task7
 {
-    public class MyBinarySearchTree<T> where T : IComparable<T>
+    public class MyBinarySearchTree<T> : IComparer<T>
     {
         private bool _isCurrentEqualsRoot = false;
         private Node _root = null;
         private Node _current = null;
         private Node _temp = null;
+        
+        public bool UseInternalComparator { get; set; }
 
         public MyBinarySearchTree() { }
 
-        public MyBinarySearchTree(T value)
+        public MyBinarySearchTree(bool useInternalComparator)
+        {
+            UseInternalComparator = useInternalComparator;
+        }
+
+        public MyBinarySearchTree(T value, bool useInternalComparator = true)
         {
             if (value == null)
             {
@@ -20,6 +27,7 @@ namespace Module10.Task7
             }
 
             _root = new Node(value);
+            UseInternalComparator = useInternalComparator;
         }
 
         public void Add(T item)
@@ -39,8 +47,8 @@ namespace Module10.Task7
                 _current = _root;
                 _isCurrentEqualsRoot = true;
             }
-
-            if (item.CompareTo(_current.Value) > 0)
+            
+            if (CompareElements(item, _current.Value) > 0)
             {
                 if (_current.RightChild == null)
                 {
@@ -53,7 +61,7 @@ namespace Module10.Task7
                     Add(item);
                 }
             }
-            else if (item.CompareTo(_current.Value) < 0)
+            else if (CompareElements(item, _current.Value) < 0)
             {
                 if (_current.LeftChild == null)
                 {
@@ -137,22 +145,22 @@ namespace Module10.Task7
                 _isCurrentEqualsRoot = true;
             }
 
-            if (item.CompareTo(_current.Value) > 0 && _current.RightChild != null)
+            if (CompareElements(item, _current.Value) > 0 && _current.RightChild != null)
             {
                 _current = _current.RightChild;
                 return Remove(item);
             }
-            else if (item.CompareTo(_current.Value) < 0 && _current.LeftChild != null)
+            else if (CompareElements(item, _current.Value) < 0 && _current.LeftChild != null)
             {
                 _current = _current.LeftChild;
                 return Remove(item);
             }
-            else if (item.CompareTo(_current.Value) == 0)
+            else if (CompareElements(item, _current.Value) == 0)
             {
                 isFound = true;
                 if (_current.LeftChild == null && _current.RightChild == null)
                 {
-                    if (_current.Parent.RightChild != null && item.CompareTo(_current.Parent.RightChild.Value) == 0)
+                    if (_current.Parent.RightChild != null && CompareElements(item, _current.Parent.RightChild.Value) == 0)
                     {
                         _current.Parent.RightChild = null;
                     }
@@ -163,7 +171,7 @@ namespace Module10.Task7
                 }
                 else if (_current.LeftChild == null)
                 {
-                    if (_current.Parent.RightChild != null && item.CompareTo(_current.Parent.RightChild.Value) == 0)
+                    if (_current.Parent.RightChild != null && CompareElements(item, _current.Parent.RightChild.Value) == 0)
                     {
                         _current.Parent.RightChild = _current.RightChild;
                     }
@@ -174,7 +182,7 @@ namespace Module10.Task7
                 }
                 else if (_current.RightChild == null)
                 {
-                    if (_current.Parent.LeftChild != null && item.CompareTo(_current.Parent.LeftChild.Value) == 0)
+                    if (_current.Parent.LeftChild != null && CompareElements(item, _current.Parent.LeftChild.Value) == 0)
                     {
                         _current.Parent.LeftChild = _current.LeftChild;
                     }
@@ -204,6 +212,34 @@ namespace Module10.Task7
 
             _isCurrentEqualsRoot = false;
             return isFound;
+        }
+
+        public int Compare(T x, T y)
+        {
+            if (x.GetHashCode() > y.GetHashCode())
+            {
+                return 1;
+            }
+            else if (x.GetHashCode() < y.GetHashCode())
+            {
+                return -1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        public int CompareElements(T x, T y)
+        {
+            if (UseInternalComparator && x is IComparable<T> left)
+            {
+                return left.CompareTo(y);
+            }
+            else
+            {
+                return Compare(x, y);
+            }
         }
 
         public sealed class Node

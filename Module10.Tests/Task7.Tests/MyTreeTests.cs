@@ -1,11 +1,52 @@
 ﻿using Module10.Task7;
+using Module10.Task7.Objects;
 using NUnit.Framework;
 using System;
+using System.Collections;
 
 namespace Module10.Tests.Task7.Tests
 {
     public class MyTreeTests
     {
+        #region StringTestData
+        public static IEnumerable Add_String_TestCases
+        {
+            get
+            {
+                yield return new TestCaseData(new string[] { "C", "abc", "Bb", "Abc", "c", "b", "d" }, true, TraversalType.Inorder,
+                    new string[] { "Abc", "Bb", "C", "abc", "b", "c", "d" });
+                yield return new TestCaseData(new string[] { "C", "abc", "Bb", "Abc", "c", "b", "d" }, true, TraversalType.Preorder,
+                    new string[] { "C", "Bb", "Abc", "abc", "c", "b", "d" });
+                yield return new TestCaseData(new string[] { "C", "abc", "Bb", "Abc", "c", "b", "d" }, true, TraversalType.Preorder,
+                    new string[] { "C", "Bb", "Abc", "abc", "c", "b", "d" });
+            }
+        }
+
+        public static IEnumerable Remove_String_TestCases
+        {
+            get
+            {
+                yield return new TestCaseData(new string[] { "C", "abc", "Bb", "Abc", "c", "b", "d" }, "C", true, TraversalType.Inorder,
+                    new string[] { "Abc", "Bb", "abc", "b", "c", "d" }, true);
+                yield return new TestCaseData(new string[] { "C", "abc", "Bb", "Abc", "c", "b", "d" }, "d", true, TraversalType.Inorder,
+                    new string[] { "Abc", "Bb", "C", "abc", "b", "c" }, true);
+                yield return new TestCaseData(new string[] { "C", "abc", "Bb", "Abc", "c", "b", "d" }, "Bb", true, TraversalType.Inorder,
+                    new string[] { "Abc", "C", "abc", "b", "c", "d" }, true);
+                yield return new TestCaseData(new string[] { "C", "abc", "Bb", "Abc", "c", "b", "d" }, "c", true, TraversalType.Inorder,
+                    new string[] { "Abc", "Bb", "C", "abc", "b", "d" }, true);
+                yield return new TestCaseData(new string[] { "C", "abc", "Bb", "Abc", "c", "b", "d" }, "Z", true, TraversalType.Inorder,
+                    new string[] { "Abc", "Bb", "C", "abc", "b", "c", "d" }, false);
+            }
+        }
+        #endregion
+
+        #region BookClassTestData
+        #endregion
+
+        #region PointStructureTestData
+        #endregion
+
+        #region BasicMethodsUsingIntegersInput
         [TestCase(new int[] { 100, 80, 120, 70, 90, 85, 83, 86, 95, 93, 92, 94, 97, 98, 96 }, 95, TraversalType.Inorder,
             new int[] {70, 80, 83, 85, 86, 90, 92, 93, 94, 96, 97, 98, 100, 120 }, true)]
         [TestCase(new int[] { 100, 80, 120, 70, 90, 85, 83, 86, 95, 93, 92, 94, 97, 98, 96 }, 90, TraversalType.Inorder,
@@ -101,7 +142,91 @@ namespace Module10.Tests.Task7.Tests
             //assert
             CollectionAssert.AreEqual(expected, actual);
         }
+        #endregion
 
+        #region BasicMethodsUsingStringInput
+        
+        /*public void Remove_ReturnsBoolean(string[] collection, string deleteItem, bool isTreesComparator, TraversalType traversalType,
+            string[] expected, bool expectedBoolean)
+        {
+            //arrange
+            var tree = new MyBinarySearchTree<string>(isTreesComparator);
+            foreach (var item in collection)
+            {
+                tree.Add(item);
+            }
+
+            var index = 0;
+            var actualCollection = new string[expected.Length];
+
+            //act
+            var actualBoolean = tree.Remove(deleteItem);
+            var items = tree.Traversal(traversalType);
+            foreach (var item in items)
+            {
+                actualCollection[index++] = item.Value;
+            }
+
+            //assert
+            CollectionAssert.AreEqual(expected, actualCollection);
+            Assert.AreEqual(expectedBoolean, actualBoolean);
+        }
+
+        
+        public void Traversal_AfterAdd_ReturnsAllTreesItems(string[] collection, string[] expected, bool isTreesComparator, TraversalType traversalType)
+        {
+            //arrange
+            var tree = new MyBinarySearchTree<string>(isTreesComparator);
+            foreach (var item in collection)
+            {
+                tree.Add(item);
+            }
+
+            var index = 0;
+            var actual = new string[collection.Length];
+
+            //act
+            var items = tree.Traversal(traversalType);
+            foreach (var item in items)
+            {
+                actual[index++] = item.Value;
+            }
+
+            //assert
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
+        
+        public void Ctor_WithFirstNode_AddMethod_ReturnsAllItems(string first, string[] collection, bool isTreesComparator, TraversalType traversalType, string[] expected)
+        {
+            //arrange
+            var tree = new MyBinarySearchTree<string>(first, isTreesComparator);
+            foreach (var item in collection)
+            {
+                tree.Add(item);
+            }
+
+            var actual = new string[expected.Length];
+            var index = 0;
+
+            //act
+            foreach (var item in tree.Traversal(traversalType))
+            {
+                actual[index++] = item.Value;
+            }
+
+            //assert
+            CollectionAssert.AreEqual(expected, actual);
+        }*/
+        #endregion
+
+        #region BasicMethodsUsingBookClass
+        #endregion
+
+        #region BasicMethodsUsingPointStructure
+        #endregion
+
+        #region TestingExceptions
         [Test]
         public void Ctor_NullValue_ThrowsArgumentNullException()
             => Assert.Throws<ArgumentNullException>(() => new MyBinarySearchTree<string>(null));
@@ -113,5 +238,6 @@ namespace Module10.Tests.Task7.Tests
         [Test]
         public void Remove_NullValue_ReturnsFalse()
             => Assert.False(new MyBinarySearchTree<string>().Remove(null));
+        #endregion
     }
 }
