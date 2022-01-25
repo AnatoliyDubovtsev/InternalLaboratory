@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Module10.Task7
 {
@@ -11,6 +8,7 @@ namespace Module10.Task7
         private bool _isCurrentEqualsRoot = false;
         private Node _root = null;
         private Node _current = null;
+        private Node _temp = null;
 
         public MyBinarySearchTree() { }
 
@@ -117,9 +115,82 @@ namespace Module10.Task7
 
         public bool Remove(T item)
         {
-            return false;
-        }
+            bool isFound = false;
+            if (!_isCurrentEqualsRoot)
+            {
+                _current = _root;
+                _temp = _current;
+                _isCurrentEqualsRoot = true;
+            }
 
+            if (item.CompareTo(_current.Value) > 0 && _current.RightChild != null)
+            {
+                _current = _current.RightChild;
+                Remove(item);
+            }
+            else if (item.CompareTo(_current.Value) < 0 && _current.LeftChild != null)
+            {
+                _current = _current.LeftChild;
+                Remove(item);
+            }
+            else if (item.CompareTo(_current.Value) == 0)
+            {
+                isFound = true;
+                if (_current.LeftChild == null && _current.RightChild == null)
+                {
+                    if (item.CompareTo(_current.Parent.RightChild.Value) == 0)
+                    {
+                        _current.Parent.RightChild = null;
+                    }
+                    else
+                    {
+                        _current.Parent.LeftChild = null;
+                    }
+                }
+                else if (_current.LeftChild == null)
+                {
+                    if (item.CompareTo(_current.Parent.RightChild.Value) == 0)
+                    {
+                        _current.Parent.RightChild = _current.RightChild;
+                    }
+                    else
+                    {
+                        _current.Parent.LeftChild = _current.RightChild;
+                    }
+                }
+                else if (_current.RightChild == null)
+                {
+                    if (item.CompareTo(_current.Parent.LeftChild.Value) == 0)
+                    {
+                        _current.Parent.LeftChild = _current.LeftChild;
+                    }
+                    else
+                    {
+                        _current.Parent.RightChild = _current.LeftChild;
+                    }
+                }
+                else
+                {
+                    _temp = _current.LeftChild;
+                    while (true)
+                    {
+                        if (_temp.RightChild == null)
+                        {
+                            _current.Value = _temp.Value;
+                            _temp.Parent.RightChild = null;
+                            break;
+                        }
+                        else
+                        {
+                            _temp = _temp.RightChild;
+                        }
+                    }
+                }
+            }
+
+            _isCurrentEqualsRoot = false;
+            return isFound;
+        }
 
         public sealed class Node
         {
