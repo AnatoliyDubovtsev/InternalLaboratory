@@ -14,12 +14,21 @@ namespace Module10.Task7
 
         public MyBinarySearchTree(T value)
         {
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value), "Value is a null");
+            }
+
             _root = new Node(value);
         }
 
         public void Add(T item)
         {
-            if (_root == null)
+            if (item == null)
+            {
+                throw new ArgumentNullException(nameof(item), "Item is a null");
+            }
+            else if (_root == null)
             {
                 _root = new Node(item);
                 return;
@@ -115,6 +124,11 @@ namespace Module10.Task7
 
         public bool Remove(T item)
         {
+            if (item == null)
+            {
+                return false;
+            }
+
             bool isFound = false;
             if (!_isCurrentEqualsRoot)
             {
@@ -126,19 +140,19 @@ namespace Module10.Task7
             if (item.CompareTo(_current.Value) > 0 && _current.RightChild != null)
             {
                 _current = _current.RightChild;
-                Remove(item);
+                return Remove(item);
             }
             else if (item.CompareTo(_current.Value) < 0 && _current.LeftChild != null)
             {
                 _current = _current.LeftChild;
-                Remove(item);
+                return Remove(item);
             }
             else if (item.CompareTo(_current.Value) == 0)
             {
                 isFound = true;
                 if (_current.LeftChild == null && _current.RightChild == null)
                 {
-                    if (item.CompareTo(_current.Parent.RightChild.Value) == 0)
+                    if (_current.Parent.RightChild != null && item.CompareTo(_current.Parent.RightChild.Value) == 0)
                     {
                         _current.Parent.RightChild = null;
                     }
@@ -149,7 +163,7 @@ namespace Module10.Task7
                 }
                 else if (_current.LeftChild == null)
                 {
-                    if (item.CompareTo(_current.Parent.RightChild.Value) == 0)
+                    if (_current.Parent.RightChild != null && item.CompareTo(_current.Parent.RightChild.Value) == 0)
                     {
                         _current.Parent.RightChild = _current.RightChild;
                     }
@@ -160,7 +174,7 @@ namespace Module10.Task7
                 }
                 else if (_current.RightChild == null)
                 {
-                    if (item.CompareTo(_current.Parent.LeftChild.Value) == 0)
+                    if (_current.Parent.LeftChild != null && item.CompareTo(_current.Parent.LeftChild.Value) == 0)
                     {
                         _current.Parent.LeftChild = _current.LeftChild;
                     }

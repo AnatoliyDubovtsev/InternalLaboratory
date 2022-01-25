@@ -1,21 +1,28 @@
 ﻿using Module10.Task7;
 using NUnit.Framework;
+using System;
 
 namespace Module10.Tests.Task7.Tests
 {
     public class MyTreeTests
     {
         [TestCase(new int[] { 100, 80, 120, 70, 90, 85, 83, 86, 95, 93, 92, 94, 97, 98, 96 }, 95, TraversalType.Inorder,
-            new int[] {70, 80, 83, 85, 86, 90, 92, 93, 94, 96, 97, 98, 100, 120 })]
+            new int[] {70, 80, 83, 85, 86, 90, 92, 93, 94, 96, 97, 98, 100, 120 }, true)]
         [TestCase(new int[] { 100, 80, 120, 70, 90, 85, 83, 86, 95, 93, 92, 94, 97, 98, 96 }, 90, TraversalType.Inorder,
-            new int[] { 70, 80, 83, 85, 86, 92, 93, 94, 95, 96, 97, 98, 100, 120 })]
+            new int[] { 70, 80, 83, 85, 86, 92, 93, 94, 95, 96, 97, 98, 100, 120 }, true)]
         [TestCase(new int[] { 100, 80, 120, 70, 90, 85, 83, 86, 95, 93, 92, 94, 97, 98, 96 }, 120, TraversalType.Inorder,
-            new int[] { 70, 80, 83, 85, 86, 90, 92, 93, 94, 95, 96, 97, 98, 100 })]
+            new int[] { 70, 80, 83, 85, 86, 90, 92, 93, 94, 95, 96, 97, 98, 100 }, true)]
         [TestCase(new int[] { 100, 80, 120, 70, 90, 85, 83, 86, 95, 93, 92, 94, 97, 98, 96 }, 100, TraversalType.Inorder,
-            new int[] { 70, 80, 83, 85, 86, 90, 92, 93, 94, 95, 96, 97, 98, 120 })]
-        [TestCase(new int[] { 100, 80, 120, 70, 90, 130 }, 120, TraversalType.Inorder, new int[] { 70, 80, 90, 100, 130 })]
-        [TestCase(new int[] { 90, 100, 80, 120, 70, 130 }, 80, TraversalType.Inorder, new int[] { 70, 90, 100, 120, 130 })]
-        public void Remove_ReturnsBoolean(int[] collection, int deleteItem, TraversalType traversalType, int[] expected)
+            new int[] { 70, 80, 83, 85, 86, 90, 92, 93, 94, 95, 96, 97, 98, 120 }, true)]
+        [TestCase(new int[] { 100, 80, 120, 70, 90, 85, 83, 86, 95, 93, 92, 94, 97, 98, 96 }, 180, TraversalType.Inorder,
+            new int[] { 70, 80, 83, 85, 86, 90, 92, 93, 94, 95, 96, 97, 98, 100, 120 }, false)]
+        [TestCase(new int[] { 100, 80, 120, 70, 90, 130 }, 120, TraversalType.Inorder, new int[] { 70, 80, 90, 100, 130 }, true)]
+        [TestCase(new int[] { 90, 100, 80, 120, 70, 130 }, 80, TraversalType.Inorder, new int[] { 70, 90, 100, 120, 130 }, true)]
+        [TestCase(new int[] { 90, 100, 80, 120, 70, 130 }, 70, TraversalType.Inorder, new int[] { 80, 90, 100, 120, 130 }, true)]
+        [TestCase(new int[] { 90, 100, 80, 70, 120, 75, 130 }, 70, TraversalType.Inorder, new int[] { 75, 80, 90, 100, 120, 130 }, true)]
+        [TestCase(new int[] { 90, 100, 80, 120, 70, 130, 125 }, 130, TraversalType.Inorder, new int[] { 70, 80, 90, 100, 120, 125 }, true)]
+        [TestCase(new int[] { 90, 100, 80, 120, 70, 130, 125 }, 10, TraversalType.Inorder, new int[] { 70, 80, 90, 100, 120, 125, 130 }, false)]
+        public void Remove_ReturnsBoolean(int[] collection, int deleteItem, TraversalType traversalType, int[] expected, bool expectedBoolean)
         {
             //arrange
             var tree = new MyBinarySearchTree<int>();
@@ -25,18 +32,19 @@ namespace Module10.Tests.Task7.Tests
             }
 
             var index = 0;
-            var actual = new int[expected.Length];
+            var actualCollection = new int[expected.Length];
 
             //act
-            tree.Remove(deleteItem);
+            var actualBoolean = tree.Remove(deleteItem);
             var items = tree.Traversal(traversalType);
             foreach (var item in items)
             {
-                actual[index++] = item.Value;
+                actualCollection[index++] = item.Value;
             }
 
             //assert
-            CollectionAssert.AreEqual(expected, actual);
+            CollectionAssert.AreEqual(expected, actualCollection);
+            Assert.AreEqual(expectedBoolean, actualBoolean);
         }
 
         [TestCase(new int[] { 10, 8, 11, 12, 14, 7, 5, 4 }, new int[] { 10, 8, 7, 5, 4, 11, 12, 14 }, TraversalType.Preorder)]
@@ -93,5 +101,17 @@ namespace Module10.Tests.Task7.Tests
             //assert
             CollectionAssert.AreEqual(expected, actual);
         }
+
+        [Test]
+        public void Ctor_NullValue_ThrowsArgumentNullException()
+            => Assert.Throws<ArgumentNullException>(() => new MyBinarySearchTree<string>(null));
+
+        [Test]
+        public void Add_NullValue_ThrowsArgumentNullException()
+            => Assert.Throws<ArgumentNullException>(() => new MyBinarySearchTree<string>().Add(null));
+
+        [Test]
+        public void Remove_NullValue_ReturnsFalse()
+            => Assert.False(new MyBinarySearchTree<string>().Remove(null));
     }
 }
