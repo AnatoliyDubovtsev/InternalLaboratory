@@ -9,101 +9,109 @@ namespace Module10.Task7
     public class MyBinarySearchTree<T> where T : IComparable<T>
     {
         private bool _isCurrentEqualsRoot = false;
-        private readonly List<T> _itemsForUser = new();
-        public Node Root { get; set; } = null;
-        public Node Current { get; set; } = null;
+        private Node _root = null;
+        private Node _current = null;
 
         public MyBinarySearchTree() { }
 
         public MyBinarySearchTree(T value)
         {
-            Root = new Node(value);
+            _root = new Node(value);
         }
 
         public void Add(T item)
         {
-            if (Root == null)
+            if (_root == null)
             {
-                Root = new Node(item);
+                _root = new Node(item);
                 return;
             }
 
             if (!_isCurrentEqualsRoot)
             {
-                Current = Root;
+                _current = _root;
                 _isCurrentEqualsRoot = true;
             }
 
-            if (item.CompareTo(Current.Value) > 0)
+            if (item.CompareTo(_current.Value) > 0)
             {
-                if (Current.RightChild == null)
+                if (_current.RightChild == null)
                 {
-                    Current.RightChild = new Node(item);
-                    Current.RightChild.Parent = Current;
+                    _current.RightChild = new Node(item);
+                    _current.RightChild.Parent = _current;
                 }
                 else
                 {
-                    Current = Current.RightChild;
+                    _current = _current.RightChild;
                     Add(item);
                 }
             }
-            else if (item.CompareTo(Current.Value) < 0)
+            else if (item.CompareTo(_current.Value) < 0)
             {
-                if (Current.LeftChild == null)
+                if (_current.LeftChild == null)
                 {
-                    Current.LeftChild = new Node(item);
-                    Current.LeftChild.Parent = Current;
+                    _current.LeftChild = new Node(item);
+                    _current.LeftChild.Parent = _current;
                 }
                 else
                 {
-                    Current = Current.LeftChild;
+                    _current = _current.LeftChild;
                     Add(item);
                 }
             }
             else
             {
-                Current.Quantity++;
+                _current.Quantity++;
             }
 
             _isCurrentEqualsRoot = false;
         }
 
-        public IEnumerable<T> Traversal(TraversalType traversalType)
+        public IEnumerable<Node> Traversal(TraversalType traversalType)
         {
-            Node current = Root;
-            _itemsForUser.Clear();
-            GetItems(current, traversalType);
-            foreach (var item in _itemsForUser)
+            var items = GetItems(_root, traversalType);
+            foreach (var item in items)
             {
                 yield return item;
             }
         }
 
-        private void GetItems(Node current, TraversalType traversalType)
+        private IEnumerable<Node> GetItems(Node current, TraversalType traversalType)
         {
+            if (current == null)
+            {
+                yield break;
+            }
+
             if (traversalType == TraversalType.Preorder)
             {
-                _itemsForUser.Add(current.Value);
+                yield return current;
             }
 
             if (current.LeftChild != null)
             {
-                GetItems(current.LeftChild, traversalType);
+                foreach(var item in GetItems(current.LeftChild, traversalType))
+                {
+                    yield return item;
+                }
             }
 
             if (traversalType == TraversalType.Inorder)
             {
-                _itemsForUser.Add(current.Value);
+                yield return current;
             }
 
             if (current.RightChild != null)
             {
-                GetItems(current.RightChild, traversalType);
+                foreach (var item in GetItems(current.RightChild, traversalType))
+                {
+                    yield return item;
+                }
             }
 
             if (traversalType == TraversalType.Postorder)
             {
-                _itemsForUser.Add(current.Value);
+                yield return current;
             }
         }
 
