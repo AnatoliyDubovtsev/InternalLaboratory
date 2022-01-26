@@ -174,10 +174,12 @@ namespace Module10.Task7
                     if (_current.Parent.RightChild != null && CompareElements(item, _current.Parent.RightChild.Value) == 0)
                     {
                         _current.Parent.RightChild = _current.RightChild;
+                        _current.RightChild.Parent = _current.Parent;
                     }
                     else
                     {
                         _current.Parent.LeftChild = _current.RightChild;
+                        _current.RightChild.Parent = _current.Parent;
                     }
                 }
                 else if (_current.RightChild == null)
@@ -185,10 +187,12 @@ namespace Module10.Task7
                     if (_current.Parent.LeftChild != null && CompareElements(item, _current.Parent.LeftChild.Value) == 0)
                     {
                         _current.Parent.LeftChild = _current.LeftChild;
+                        _current.LeftChild.Parent = _current.Parent;
                     }
                     else
                     {
                         _current.Parent.RightChild = _current.LeftChild;
+                        _current.LeftChild.Parent = _current.Parent;
                     }
                 }
                 else
