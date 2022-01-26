@@ -1,9 +1,6 @@
 ﻿using Module10.Task7.Objects;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Module10.Task7
 {
@@ -41,7 +38,13 @@ namespace Module10.Task7
         {
             double leftPointHypotenuse = Hypotenuse(left);
             double rightPointHypotenuse = Hypotenuse(right);
-            return leftPointHypotenuse.CompareTo(rightPointHypotenuse);
+            int result = leftPointHypotenuse.CompareTo(rightPointHypotenuse);
+            if (result == 0)
+            {
+                result = left.X.CompareTo(right.X);
+            }
+
+            return result;
         }
 
         private double Hypotenuse(Point point)
