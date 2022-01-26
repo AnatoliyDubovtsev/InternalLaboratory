@@ -3,23 +3,23 @@ using System.Collections.Generic;
 
 namespace Module10.Task7
 {
-    public class MyBinarySearchTree<T> : IComparer<T>
+    public class MyBinarySearchTree<T>
     {
         private bool _isCurrentEqualsRoot = false;
         private Node _root = null;
         private Node _current = null;
         private Node _temp = null;
-        
-        public bool UseInternalComparator { get; set; }
+
+        public IComparer<T> Comparer { get; set; } = null;
 
         public MyBinarySearchTree() { }
 
-        public MyBinarySearchTree(bool useInternalComparator)
+        public MyBinarySearchTree(IComparer<T> comparer)
         {
-            UseInternalComparator = useInternalComparator;
+            Comparer = comparer;
         }
 
-        public MyBinarySearchTree(T value, bool useInternalComparator = true)
+        public MyBinarySearchTree(T value)
         {
             if (value == null)
             {
@@ -27,7 +27,11 @@ namespace Module10.Task7
             }
 
             _root = new Node(value);
-            UseInternalComparator = useInternalComparator;
+        }
+
+        public MyBinarySearchTree(T value, IComparer<T> comparer) : this(value)
+        {
+            Comparer = comparer;
         }
 
         public void Add(T item)
@@ -203,7 +207,15 @@ namespace Module10.Task7
                         if (_temp.RightChild == null)
                         {
                             _current.Value = _temp.Value;
-                            _temp.Parent.RightChild = null;
+                            if (CompareElements(_temp.Parent.RightChild.Value, _temp.Value) == 0)
+                            {
+                                _temp.Parent.RightChild = null;
+                            }
+                            else
+                            {
+                                _current.LeftChild = _temp.LeftChild;
+                            }
+
                             break;
                         }
                         else
@@ -218,31 +230,15 @@ namespace Module10.Task7
             return isFound;
         }
 
-        public int Compare(T x, T y)
-        {
-            if (x.GetHashCode() > y.GetHashCode())
-            {
-                return 1;
-            }
-            else if (x.GetHashCode() < y.GetHashCode())
-            {
-                return -1;
-            }
-            else
-            {
-                return 0;
-            }
-        }
-
         public int CompareElements(T x, T y)
         {
-            if (UseInternalComparator && x is IComparable<T> left)
+            if (Comparer == null && x is IComparable<T> left)
             {
                 return left.CompareTo(y);
             }
             else
             {
-                return Compare(x, y);
+                return Comparer.Compare(x, y);
             }
         }
 
