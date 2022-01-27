@@ -15,27 +15,27 @@ namespace Module10.Task8
             }
 
             CheckString(expression);            
-            int left = 0;
-            int right = 0;
+            int leftDigit = 0;
+            int rightDigit = 0;
             for (int i = 0; i < expression.Length; i++)
             {
                 if (_operators.Contains(expression[i]))
                 {
                     bool isFirstDigit = true;
-                    int index = i;
                     int rightBorder = i;
+                    int middleGapsIndex = 0;
                     int leftBorder = 0;
                     for (int j = rightBorder - 2; j >= 0; j--)
                     {
                         if (expression[j] == ' ' && isFirstDigit)
                         {
                             isFirstDigit = false;
-                            right = int.Parse(expression[j..(index-1)]);
-                            index = j;
+                            rightDigit = int.Parse(expression[j..(rightBorder-1)]);
+                            middleGapsIndex = j;
                         }
                         else if ((expression[j] == ' ' || j == 0) && !isFirstDigit)
                         {
-                            left = int.Parse(expression[j..index]);
+                            leftDigit = int.Parse(expression[j..middleGapsIndex]);
                             leftBorder = j == 0 ? -1 : j;
                             break;
                         }
@@ -43,10 +43,10 @@ namespace Module10.Task8
 
                     int result = expression[i] switch
                     {
-                        '+' => left + right,
-                        '-' => left - right,
-                        '*' => left * right,
-                        _ => left / right
+                        '+' => leftDigit + rightDigit,
+                        '-' => leftDigit - rightDigit,
+                        '*' => leftDigit * rightDigit,
+                        _ => leftDigit / rightDigit
                     };
 
                     expression = expression[..(leftBorder + 1)] + result + expression[(rightBorder + 1)..];
