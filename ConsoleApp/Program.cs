@@ -8,6 +8,7 @@ using Module9.Task1;
 using Module9.Task3;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace ConsoleApp
 {
@@ -87,7 +88,32 @@ namespace ConsoleApp
             //ExampleRun.Task3Run();
 
             //Module 10, Task 2
-            WorkWithFile.CountWordsInText();
+            //WorkWithFile.CountWordsInText();
+
+            //Module 2, Task 6
+            /*int[] arr1 = new int[1_000_000_000];
+            int[] arr2 = new int[arr1.Length];
+            Random rand = new Random();
+            for (int i = 0; i < arr1.Length; i++)
+            {
+                arr1[i] = rand.Next(0, arr1.Length);
+                arr2[i] = arr1[i];
+            }
+
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+            _ = Module2.Task6.FilterDigitUsingList(arr1, 7);
+            stopwatch.Stop();
+            Console.WriteLine($"With list: {stopwatch.ElapsedMilliseconds}");
+            
+            stopwatch.Reset();
+            
+            stopwatch.Start();
+            _ = Module2.Task6.FilterDigit(arr1, 7);
+            stopwatch.Stop();
+            Console.WriteLine($"With array: {stopwatch.ElapsedMilliseconds}");
+            
+            Console.ReadLine();*/
         }
     }
 }
