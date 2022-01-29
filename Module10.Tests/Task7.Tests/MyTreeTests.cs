@@ -69,6 +69,19 @@ namespace Module10.Tests.Task7.Tests
                 #endregion
             }
         }
+
+        public static IEnumerable SameElements_ChangingQuantity_TestCases
+        {
+            get
+            {
+                #region ComparatorIsNull
+                yield return new TestCaseData(new int[] { 1, 1, 1, 2, 2, 2, 2, 3, 3 }, new int[] { 3, 4, 2 }, 1, new int[] { 1, 2, 3 },
+                    new int[] { 2, 3, 1 }, TraversalType.Inorder);
+                yield return new TestCaseData(new int[] { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, new int[] { 9 }, 9, new int[] { 1 }, new int[] { },
+                    TraversalType.Inorder);
+                #endregion
+            }
+        }
         #endregion
 
         #region StringTestData
@@ -493,6 +506,44 @@ namespace Module10.Tests.Task7.Tests
 
             //assert
             CollectionAssert.AreEqual(expected, actual);
+        }
+
+        [TestCaseSource(typeof(MyTreeTests), nameof(MyTreeTests.SameElements_ChangingQuantity_TestCases))]
+        public void Add_Remove_DifferentQuantity(int[] collection, int[] expectedInitialQuantity, int loops, int[] itemsToRemove,
+            int[] expectedNewQuantity, TraversalType traversalType)
+        {
+            //arrange
+            var tree = new MyBinarySearchTree<int>();
+            foreach(var item in collection)
+            {
+                tree.Add(item);
+            }
+
+            var actualInitialQuantity = new List<int>();
+            var actualNewQuantity = new List<int>();
+
+            //act
+            foreach(var item in tree.Traversal(traversalType))
+            {
+                actualInitialQuantity.Add(item.Quantity);
+            }
+                        
+            for(int i = 0; i < loops; i++)
+            {
+                foreach(var item in itemsToRemove)
+                {
+                    tree.Remove(item);
+                }
+            }
+
+            foreach(var item in tree.Traversal(traversalType))
+            {
+                actualNewQuantity.Add(item.Quantity);
+            }
+
+            //assert
+            CollectionAssert.AreEqual(expectedInitialQuantity, actualInitialQuantity);
+            CollectionAssert.AreEqual(expectedNewQuantity, actualNewQuantity);
         }
         #endregion
 

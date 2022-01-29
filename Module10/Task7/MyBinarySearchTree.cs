@@ -162,7 +162,16 @@ namespace Module10.Task7
             else if (CompareElements(item, _current.Value) == 0)
             {
                 isFound = true;
-                if (_current.LeftChild == null && _current.RightChild == null)
+                if (_current.Quantity > 1)
+                {
+                    _current.Quantity--;
+                }
+                else if (_current.Parent == null && _current.LeftChild == null && _current.RightChild == null)
+                {
+                    _current = null;
+                    _root = null;
+                }
+                else if (_current.LeftChild == null && _current.RightChild == null)
                 {
                     if (_current.Parent.RightChild != null && CompareElements(item, _current.Parent.RightChild.Value) == 0)
                     {
