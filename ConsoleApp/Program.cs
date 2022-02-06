@@ -114,6 +114,19 @@ namespace ConsoleApp
             Console.WriteLine($"With array: {stopwatch.ElapsedMilliseconds}");
             
             Console.ReadLine();*/
+
+            Module11.Task1 task1 = new Module11.Task1();
+            var result = task1.GetTestResults();
+            foreach (var item in result)
+            {
+                Console.WriteLine(item);
+            }
+
+            var newResult = task1.ResultsWithAssessmentMoreThanInputValue(result, 6);
+            foreach (var item in newResult)
+            {
+                Console.WriteLine(item);
+            }
         }
     }
 }
