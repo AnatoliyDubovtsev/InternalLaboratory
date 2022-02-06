@@ -9,6 +9,7 @@ using Module9.Task3;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 namespace ConsoleApp
 {
@@ -121,6 +122,8 @@ namespace ConsoleApp
             {
                 Console.WriteLine(item);
             }
+
+            Console.WriteLine("---------------------------------------------------");
 
             var newResult = task1.ResultsWithAssessmentMoreThanInputValue(result, 6);
             foreach (var item in newResult)

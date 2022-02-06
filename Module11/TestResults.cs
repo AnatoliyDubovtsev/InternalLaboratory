@@ -11,7 +11,7 @@ namespace Module11
 
         public override string ToString()
         {
-            return $"Student: {StudentName}; Test: {TestName}; Date: {Date}; Assessment: {Assessment}";
+            return $"Student: {StudentName}; Test: {TestName}; Date: {Date.ToShortDateString()}; Assessment: {Assessment}";
         }
     }
 }

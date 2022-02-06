@@ -9,10 +9,10 @@ namespace Module11.Tests
 {
     public class Task1Tests
     {
-        [Test]
+        /*[Test]
         public void ReadFile()
         {
             var task = new Task1();
-        }
+        }*/
     }
 }

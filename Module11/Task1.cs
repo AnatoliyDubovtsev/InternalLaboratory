@@ -19,17 +19,21 @@ namespace Module11
 
         public IEnumerable<TestResults> GetTestResults()
         {
-            IEnumerable<TestResults> testResults = null;
-            TestResults testResult = new();
+            IEnumerable<TestResults> testResults = Array.Empty<TestResults>();
             using (var stream = new FileStream(_path, FileMode.Open))
             {
                 using (var reader = new BinaryReader(stream))
                 {
-                    testResult.StudentName = reader.ReadString();
-                    testResult.TestName = reader.ReadString();
-                    testResult.Date = DateTime.Parse(reader.ReadString());
-                    testResult.Assessment = reader.ReadInt32();
-                    testResults = testResults.Append<TestResults>(testResult);
+                    while (reader.PeekChar() != -1)
+                    {
+                        testResults = testResults.Append<TestResults>(new TestResults
+                        {
+                            StudentName = reader.ReadString(),
+                            TestName = reader.ReadString(),
+                            Date = DateTime.Parse(reader.ReadString()),
+                            Assessment = reader.ReadInt32()
+                        });
+                    }
                 }
             }
 
