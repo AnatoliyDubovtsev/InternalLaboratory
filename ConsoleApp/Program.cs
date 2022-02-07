@@ -117,16 +117,36 @@ namespace ConsoleApp
             Console.ReadLine();*/
 
             Module11.Task1 task1 = new Module11.Task1();
-            var result = task1.GetTestResults();
+            var result = task1.GetAllTestResults();
+            Console.WriteLine("All TestResults" + Environment.NewLine);
             foreach (var item in result)
             {
                 Console.WriteLine(item);
             }
 
-            Console.WriteLine("---------------------------------------------------");
+            Console.WriteLine(Environment.NewLine + "---------------------------------------------------" + Environment.NewLine);
 
+            Console.WriteLine("ResultsWithAssessmentsMoreThanInputValue");
             var newResult = task1.ResultsWithAssessmentMoreThanInputValue(result, 6);
             foreach (var item in newResult)
+            {
+                Console.WriteLine(item);
+            }
+
+            Console.WriteLine(Environment.NewLine + "---------------------------------------------------" + Environment.NewLine);
+
+            Console.WriteLine("GetTestResultsByQuantity");
+            var resultByQuantity = task1.GetTestResultsByQuantity(3);
+            foreach(var item in resultByQuantity)
+            {
+                Console.WriteLine(item);
+            }
+
+            Console.WriteLine(Environment.NewLine + "---------------------------------------------------" + Environment.NewLine);
+
+            Console.WriteLine("GetTestResultsByQuantity(MoreThanExistItems)");
+            var resultByQuantity2 = task1.GetTestResultsByQuantity(25);
+            foreach (var item in resultByQuantity2)
             {
                 Console.WriteLine(item);
             }

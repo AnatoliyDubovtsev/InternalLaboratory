@@ -17,24 +17,14 @@ namespace Module11
             InitializeFile();
         }
 
-        public IEnumerable<TestResults> GetTestResults()
+        public IEnumerable<TestResults> GetAllTestResults() => GetTestResultsByQuantity(-1);
+
+        public IEnumerable<TestResults> GetTestResultsByQuantity(int quantity)
         {
-            IEnumerable<TestResults> testResults = Array.Empty<TestResults>();
-            using (var stream = new FileStream(_path, FileMode.Open))
+            IEnumerable<TestResults> testResults = Array.Empty<TestResults>().AsEnumerable<TestResults>();
+            foreach(var item in GetTestResults(quantity))
             {
-                using (var reader = new BinaryReader(stream))
-                {
-                    while (reader.PeekChar() != -1)
-                    {
-                        testResults = testResults.Append<TestResults>(new TestResults
-                        {
-                            StudentName = reader.ReadString(),
-                            TestName = reader.ReadString(),
-                            Date = DateTime.Parse(reader.ReadString()),
-                            Assessment = reader.ReadInt32()
-                        });
-                    }
-                }
+                testResults = testResults.Append<TestResults>(item);
             }
 
             return testResults;
@@ -43,6 +33,38 @@ namespace Module11
         public IEnumerable<TestResults> ResultsWithAssessmentMoreThanInputValue(IEnumerable<TestResults> testResults, int assessmentValue)
         {
             return testResults.Where(x => x.Assessment > assessmentValue).OrderBy(x => x.StudentName).Select(x => x);
+        }
+
+        private IEnumerable<TestResults> GetTestResults(int quantity)
+        {
+            int counter = 0;
+            using (var stream = new FileStream(_path, FileMode.Open))
+            {
+                using (var reader = new BinaryReader(stream))
+                {
+                    Func<bool> predicate;
+                    if (quantity == -1)
+                    {
+                        predicate = () => reader.PeekChar() != -1;
+                    }
+                    else
+                    {
+                        predicate = () => reader.PeekChar() != -1 && counter < quantity;
+                    }
+
+                    while (predicate.Invoke())
+                    {
+                        counter++;
+                        yield return new TestResults
+                        {
+                            StudentName = reader.ReadString(),
+                            TestName = reader.ReadString(),
+                            Date = DateTime.Parse(reader.ReadString()),
+                            Assessment = reader.ReadInt32()
+                        };
+                    }
+                }
+            }
         }
 
         private void InitializeFile()
