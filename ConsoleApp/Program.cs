@@ -1,4 +1,5 @@
 ﻿using Module10.Task2;
+using Module11.Enums;
 using Module3.Task2;
 using Module4.Task2;
 using Module6.Task2;
@@ -126,9 +127,18 @@ namespace ConsoleApp
 
             Console.WriteLine(Environment.NewLine + "---------------------------------------------------" + Environment.NewLine);
 
-            Console.WriteLine("ResultsWithAssessmentsMoreThanInputValue");
-            var newResult = task1.ResultsWithAssessmentMoreThanInputValue(result, 6);
-            foreach (var item in newResult)
+            Console.WriteLine("Results filtered by assessment value (more than value)");
+            var moreThanValueResult = task1.ResultsFilteredByAssessmentValue(result, 6, true);
+            foreach (var item in moreThanValueResult)
+            {
+                Console.WriteLine(item);
+            }
+
+            Console.WriteLine(Environment.NewLine + "---------------------------------------------------" + Environment.NewLine);
+
+            Console.WriteLine("Results filtered by assessment value (less than value)");
+            var lessThanValueResult = task1.ResultsFilteredByAssessmentValue(result, 6, false);
+            foreach (var item in lessThanValueResult)
             {
                 Console.WriteLine(item);
             }
@@ -147,6 +157,24 @@ namespace ConsoleApp
             Console.WriteLine("GetTestResultsByQuantity(MoreThanExistItems)");
             var resultByQuantity2 = task1.GetTestResultsByQuantity(25);
             foreach (var item in resultByQuantity2)
+            {
+                Console.WriteLine(item);
+            }
+
+            Console.WriteLine(Environment.NewLine + "---------------------------------------------------" + Environment.NewLine);
+
+            Console.WriteLine("Sort test results by student name (ascending)");
+            var sortedByNameAsc = task1.SortTestResults(result, SortingTypes.ByStudentName, true);
+            foreach (var item in sortedByNameAsc)
+            {
+                Console.WriteLine(item);
+            }
+
+            Console.WriteLine(Environment.NewLine + "---------------------------------------------------" + Environment.NewLine);
+
+            Console.WriteLine("Sort test results by student name (descending)");
+            var sortedByNameDesc = task1.SortTestResults(result, SortingTypes.ByStudentName, false);
+            foreach (var item in sortedByNameDesc)
             {
                 Console.WriteLine(item);
             }

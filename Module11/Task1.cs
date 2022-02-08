@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections;
+﻿using Module11.Enums;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Module11
 {
@@ -17,12 +15,46 @@ namespace Module11
             InitializeFile();
         }
 
-        public IEnumerable<TestResults> GetAllTestResults() => GetTestResultsByQuantity(-1);
+        public IEnumerable<TestResults> GetAllTestResults()
+            => CombineIntoResponse(ReadingFileApproach.ReadAllData);
 
         public IEnumerable<TestResults> GetTestResultsByQuantity(int quantity)
+            => CombineIntoResponse(ReadingFileApproach.ReadExactQuantity, quantity);
+
+        public IEnumerable<TestResults> ResultsFilteredByAssessmentValue(IEnumerable<TestResults> testResults, int assessmentValue, bool isMoreThanValue)
+        {
+            if (testResults == null)
+            {
+                throw new ArgumentNullException(nameof(testResults), $"{nameof(testResults)} argument is a null");
+            }
+
+            testResults = isMoreThanValue ? testResults.Where(x => x.Assessment >= assessmentValue) : testResults.Where(x => x.Assessment <= assessmentValue);
+            testResults = testResults.OrderBy(x => x.Assessment).Select(x => x);
+            return testResults;
+        }
+
+        public IEnumerable<TestResults> SortTestResults(IEnumerable<TestResults> testResults, SortingTypes sortingType, bool isAscending)
+        {
+            testResults = sortingType switch
+            {
+                SortingTypes.ByStudentName => from tr in testResults orderby tr.StudentName select tr,
+                SortingTypes.ByTestName => from tr in testResults orderby tr.TestName select tr,
+                SortingTypes.ByDate => from tr in testResults orderby tr.Date select tr,
+                _ => from tr in testResults orderby tr.Assessment select tr
+            };
+
+            if (!isAscending)
+            {
+                testResults = testResults.Reverse();
+            }
+
+            return testResults;
+        }
+
+        private IEnumerable<TestResults> CombineIntoResponse(ReadingFileApproach readingFileApproach, int quantity = 0)
         {
             IEnumerable<TestResults> testResults = Array.Empty<TestResults>().AsEnumerable<TestResults>();
-            foreach(var item in GetTestResults(quantity))
+            foreach (var item in GetTestResults(quantity, readingFileApproach))
             {
                 testResults = testResults.Append<TestResults>(item);
             }
@@ -30,12 +62,7 @@ namespace Module11
             return testResults;
         }
 
-        public IEnumerable<TestResults> ResultsWithAssessmentMoreThanInputValue(IEnumerable<TestResults> testResults, int assessmentValue)
-        {
-            return testResults.Where(x => x.Assessment > assessmentValue).OrderBy(x => x.StudentName).Select(x => x);
-        }
-
-        private IEnumerable<TestResults> GetTestResults(int quantity)
+        private IEnumerable<TestResults> GetTestResults(int quantity, ReadingFileApproach readingFileApproach)
         {
             int counter = 0;
             using (var stream = new FileStream(_path, FileMode.Open))
@@ -43,7 +70,7 @@ namespace Module11
                 using (var reader = new BinaryReader(stream))
                 {
                     Func<bool> predicate;
-                    if (quantity == -1)
+                    if (readingFileApproach == ReadingFileApproach.ReadAllData)
                     {
                         predicate = () => reader.PeekChar() != -1;
                     }
