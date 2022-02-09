@@ -127,7 +127,52 @@ namespace ConsoleApp
 
             Console.WriteLine(Environment.NewLine + "---------------------------------------------------" + Environment.NewLine);
 
-            Console.WriteLine("Results filtered by assessment value (more than value)");
+            var studentsNames = task1.ExtractStudentNamesFromCollection(result);
+            Console.WriteLine("Students Names" + Environment.NewLine);
+            foreach (var item in studentsNames)
+            {
+                Console.WriteLine(item);
+            }
+
+            Console.WriteLine(Environment.NewLine + "---------------------------------------------------" + Environment.NewLine);
+
+            var studentsNamesAndAssessments = task1.ExtractStudentNamesAndAssessmentsFromCollection(result);
+            Console.WriteLine("Students Names and Assessments" + Environment.NewLine);
+            foreach (var item in studentsNamesAndAssessments)
+            {
+                Console.WriteLine(item);
+            }
+
+            Console.WriteLine(Environment.NewLine + "---------------------------------------------------" + Environment.NewLine);
+
+            var studentsNamesAssessmentsAndTestTitles = task1.ExtractStudentNamesAssessmentsAndTestTitlesFromCollection(result);
+            Console.WriteLine("Students Names, Assessments and Test Titles" + Environment.NewLine);
+            foreach (var item in studentsNamesAssessmentsAndTestTitles)
+            {
+                Console.WriteLine(item);
+            }
+            
+            Console.WriteLine(Environment.NewLine + "---------------------------------------------------" + Environment.NewLine);
+
+            var studentsNamesAssessmentsAndDates = task1.ExtractStudentNamesAssessmentsAndDatesFromCollection(result);
+            Console.WriteLine("Students Names, Assessments and Dates" + Environment.NewLine);
+            foreach (var item in studentsNamesAssessmentsAndDates)
+            {
+                Console.WriteLine(item);
+            }
+
+            Console.WriteLine(Environment.NewLine + "---------------------------------------------------" + Environment.NewLine);
+
+            var testTitleAndDate = task1.ExtractTestTitleAndDateFromCollection(result);
+            Console.WriteLine("Test title and Date" + Environment.NewLine);
+            foreach (var item in testTitleAndDate)
+            {
+                Console.WriteLine(item);
+            }
+
+            Console.WriteLine(Environment.NewLine + "---------------------------------------------------" + Environment.NewLine);
+
+            Console.WriteLine("Results filtered by assessment value (more than value)" + Environment.NewLine);
             var moreThanValueResult = task1.ResultsFilteredByAssessmentValue(result, 6, true);
             foreach (var item in moreThanValueResult)
             {
@@ -136,7 +181,7 @@ namespace ConsoleApp
 
             Console.WriteLine(Environment.NewLine + "---------------------------------------------------" + Environment.NewLine);
 
-            Console.WriteLine("Results filtered by assessment value (less than value)");
+            Console.WriteLine("Results filtered by assessment value (less than value)" + Environment.NewLine);
             var lessThanValueResult = task1.ResultsFilteredByAssessmentValue(result, 6, false);
             foreach (var item in lessThanValueResult)
             {
@@ -145,7 +190,7 @@ namespace ConsoleApp
 
             Console.WriteLine(Environment.NewLine + "---------------------------------------------------" + Environment.NewLine);
 
-            Console.WriteLine("GetTestResultsByQuantity");
+            Console.WriteLine("GetTestResultsByQuantity" + Environment.NewLine);
             var resultByQuantity = task1.GetTestResultsByQuantity(3);
             foreach(var item in resultByQuantity)
             {
@@ -154,7 +199,7 @@ namespace ConsoleApp
 
             Console.WriteLine(Environment.NewLine + "---------------------------------------------------" + Environment.NewLine);
 
-            Console.WriteLine("GetTestResultsByQuantity(MoreThanExistItems)");
+            Console.WriteLine("GetTestResultsByQuantity(MoreThanExistItems)" + Environment.NewLine);
             var resultByQuantity2 = task1.GetTestResultsByQuantity(25);
             foreach (var item in resultByQuantity2)
             {
@@ -163,7 +208,7 @@ namespace ConsoleApp
 
             Console.WriteLine(Environment.NewLine + "---------------------------------------------------" + Environment.NewLine);
 
-            Console.WriteLine("Sort test results by student name (ascending)");
+            Console.WriteLine("Sort test results by student name (ascending)" + Environment.NewLine);
             var sortedByNameAsc = task1.SortTestResults(result, SortingTypes.ByStudentName, true);
             foreach (var item in sortedByNameAsc)
             {
@@ -172,7 +217,7 @@ namespace ConsoleApp
 
             Console.WriteLine(Environment.NewLine + "---------------------------------------------------" + Environment.NewLine);
 
-            Console.WriteLine("Sort test results by student name (descending)");
+            Console.WriteLine("Sort test results by student name (descending)" + Environment.NewLine);
             var sortedByNameDesc = task1.SortTestResults(result, SortingTypes.ByStudentName, false);
             foreach (var item in sortedByNameDesc)
             {

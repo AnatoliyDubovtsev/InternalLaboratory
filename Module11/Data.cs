@@ -29,10 +29,10 @@ namespace Module11
 
         public List<DateTime> Dates { get; set; } = new List<DateTime>
         {
-            new DateTime(2001, 5, 20),
-            new DateTime(2001, 5, 21),
-            new DateTime(2001, 5, 22),
-            new DateTime(2001, 5, 23)
+            new DateTime(2001, 5, 20, 12, 0, 0),
+            new DateTime(2001, 5, 21, 9, 0, 0),
+            new DateTime(2001, 5, 22, 10, 0, 0),
+            new DateTime(2001, 5, 23, 13, 0, 0)
         };
 
         public List<int> Assessments { get; set; } = new List<int> { 9, 5, 10, 7, 8, 9, 4, 6, 3, 2 };

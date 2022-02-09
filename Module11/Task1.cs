@@ -1,4 +1,5 @@
 ﻿using Module11.Enums;
+using Module11.InformationExtraction;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,12 +16,50 @@ namespace Module11
             InitializeFile();
         }
 
-        public IEnumerable<TestResults> GetAllTestResults()
-            => CombineIntoResponse(ReadingFileApproach.ReadAllData);
+        #region InformationExtraction
+        public IEnumerable<TestResultsStudentName> ExtractStudentNamesFromCollection(IEnumerable<TestResults> testResults)
+            => from x in testResults
+               select new TestResultsStudentName
+               {
+                   StudentName = x.StudentName
+               };
 
-        public IEnumerable<TestResults> GetTestResultsByQuantity(int quantity)
-            => CombineIntoResponse(ReadingFileApproach.ReadExactQuantity, quantity);
+        public IEnumerable<TestResultsStudentNameAssessment> ExtractStudentNamesAndAssessmentsFromCollection(IEnumerable<TestResults> testResults)
+            => from x in testResults
+               select new TestResultsStudentNameAssessment
+               {
+                   StudentName = x.StudentName,
+                   Assessment = x.Assessment
+               };
 
+        public IEnumerable<TestResultsStudentNameTestTitleAssessment> ExtractStudentNamesAssessmentsAndTestTitlesFromCollection(IEnumerable<TestResults> testResults)
+            => from x in testResults
+               select new TestResultsStudentNameTestTitleAssessment
+               {
+                   StudentName = x.StudentName,
+                   Assessment = x.Assessment,
+                   TestTitle = x.TestTitle
+               };
+
+        public IEnumerable<TestResultsStudentNameAssessmentDate> ExtractStudentNamesAssessmentsAndDatesFromCollection(IEnumerable<TestResults> testResults)
+            => from x in testResults
+               select new TestResultsStudentNameAssessmentDate
+               {
+                   StudentName = x.StudentName,
+                   Assessment = x.Assessment,
+                   Date = x.Date
+               };
+
+        public IEnumerable<TestResultsTestTitleDate> ExtractTestTitleAndDateFromCollection(IEnumerable<TestResults> testResults)
+            => from x in testResults
+               select new TestResultsTestTitleDate
+               {
+                   TestTitle = x.TestTitle,
+                   Date = x.Date
+               };
+        #endregion
+
+        #region WorkingWithData
         public IEnumerable<TestResults> ResultsFilteredByAssessmentValue(IEnumerable<TestResults> testResults, int assessmentValue, bool isMoreThanValue)
         {
             if (testResults == null)
@@ -38,7 +77,7 @@ namespace Module11
             testResults = sortingType switch
             {
                 SortingTypes.ByStudentName => from tr in testResults orderby tr.StudentName select tr,
-                SortingTypes.ByTestName => from tr in testResults orderby tr.TestName select tr,
+                SortingTypes.ByTestName => from tr in testResults orderby tr.TestTitle select tr,
                 SortingTypes.ByDate => from tr in testResults orderby tr.Date select tr,
                 _ => from tr in testResults orderby tr.Assessment select tr
             };
@@ -50,6 +89,14 @@ namespace Module11
 
             return testResults;
         }
+        #endregion
+
+        #region FileReading
+        public IEnumerable<TestResults> GetAllTestResults()
+            => CombineIntoResponse(ReadingFileApproach.ReadAllData);
+
+        public IEnumerable<TestResults> GetTestResultsByQuantity(int quantity)
+            => CombineIntoResponse(ReadingFileApproach.ReadExactQuantity, quantity);
 
         private IEnumerable<TestResults> CombineIntoResponse(ReadingFileApproach readingFileApproach, int quantity = 0)
         {
@@ -69,15 +116,11 @@ namespace Module11
             {
                 using (var reader = new BinaryReader(stream))
                 {
-                    Func<bool> predicate;
-                    if (readingFileApproach == ReadingFileApproach.ReadAllData)
+                    Func<bool> predicate = readingFileApproach switch
                     {
-                        predicate = () => reader.PeekChar() != -1;
-                    }
-                    else
-                    {
-                        predicate = () => reader.PeekChar() != -1 && counter < quantity;
-                    }
+                        ReadingFileApproach.ReadAllData => () => reader.PeekChar() != -1,
+                        _ => () => reader.PeekChar() != -1 && counter < quantity
+                    };
 
                     while (predicate.Invoke())
                     {
@@ -85,7 +128,7 @@ namespace Module11
                         yield return new TestResults
                         {
                             StudentName = reader.ReadString(),
-                            TestName = reader.ReadString(),
+                            TestTitle = reader.ReadString(),
                             Date = DateTime.Parse(reader.ReadString()),
                             Assessment = reader.ReadInt32()
                         };
@@ -93,6 +136,7 @@ namespace Module11
                 }
             }
         }
+        #endregion
 
         private void InitializeFile()
         {
@@ -122,7 +166,7 @@ namespace Module11
                         writer.Write(data.StudentsNames[studentId]);
                         testId = testId == testsCount ? 0 : testId;
                         writer.Write(data.TestsNames[testId]);
-                        writer.Write(data.Dates[testId].ToShortDateString());
+                        writer.Write(data.Dates[testId].ToString());
                         writer.Write(data.Assessments[studentId]);
                     }
                 }
