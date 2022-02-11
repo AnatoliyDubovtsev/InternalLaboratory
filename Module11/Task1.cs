@@ -65,7 +65,8 @@ namespace Module11
         #endregion
 
         #region WorkingWithData
-        public IEnumerable<TestResults> ResultsFilteredByAssessmentValue(IEnumerable<TestResults> testResults, int assessmentValue, bool isMoreThanValue)
+        public IEnumerable<T> ResultsFilteredByAssessmentValue<T>(IEnumerable<T> testResults, int assessmentValue, bool isMoreThanValue)
+            where T : TestResultsStudentNameAssessment
         {
             if (testResults == null)
             {
