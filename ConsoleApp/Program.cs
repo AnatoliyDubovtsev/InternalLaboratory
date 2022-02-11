@@ -118,6 +118,7 @@ namespace ConsoleApp
             Console.ReadLine();*/
 
             Module11.Task1 task1 = new Module11.Task1();
+            task1.InitializeFile();
             var result = task1.GetAllTestResults();
             Console.WriteLine("All TestResults" + Environment.NewLine);
             foreach (var item in result)
@@ -220,6 +221,16 @@ namespace ConsoleApp
             Console.WriteLine("Sort test results by student name (descending)" + Environment.NewLine);
             var sortedByNameDesc = task1.SortTestResults(result, SortingTypes.ByStudentName, false);
             foreach (var item in sortedByNameDesc)
+            {
+                Console.WriteLine(item);
+            }
+
+            Console.WriteLine(Environment.NewLine + "---------------------------------------------------" + Environment.NewLine);
+
+            Console.WriteLine("Clear file");
+            task1.ClearFile();
+            var afterClear = task1.GetAllTestResults();
+            foreach(var item in afterClear)
             {
                 Console.WriteLine(item);
             }

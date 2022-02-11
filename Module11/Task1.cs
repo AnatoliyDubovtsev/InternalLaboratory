@@ -9,12 +9,17 @@ namespace Module11
 {
     public class Task1
     {
-        private const string _path = @"..\..\..\..\Module11\Results.txt";
+        private readonly string _path;
+        private const string _defaultPath = @"..\..\..\..\Module11\Results.txt";
+        private readonly Data _data;
 
-        public Task1()
+        public Task1(string path, Data data)
         {
-            InitializeFile();
+            _path = path;
+            _data = data;
         }
+
+        public Task1() : this(_defaultPath, new Data()) { }
 
         #region InformationExtraction
         public IEnumerable<TestResultsStudentName> ExtractStudentNamesFromCollection(IEnumerable<TestResults> testResults)
@@ -68,7 +73,7 @@ namespace Module11
             }
 
             testResults = isMoreThanValue ? testResults.Where(x => x.Assessment >= assessmentValue) : testResults.Where(x => x.Assessment <= assessmentValue);
-            testResults = testResults.OrderBy(x => x.Assessment).Select(x => x);
+            testResults = testResults.OrderBy(x => x.Assessment);
             return testResults;
         }
 
@@ -112,7 +117,7 @@ namespace Module11
         private IEnumerable<TestResults> GetTestResults(int quantity, ReadingFileApproach readingFileApproach)
         {
             int counter = 0;
-            using (var stream = new FileStream(_path, FileMode.Open))
+            using (var stream = new FileStream(_path, FileMode.OpenOrCreate))
             {
                 using (var reader = new BinaryReader(stream))
                 {
@@ -138,7 +143,7 @@ namespace Module11
         }
         #endregion
 
-        private void InitializeFile()
+        public void InitializeFile()
         {
             bool isEmpty;
             using (var stream = new FileStream(_path, FileMode.Open))
@@ -154,22 +159,29 @@ namespace Module11
                 return;
             }
 
-            Data data = new();
-            int studentsCount = data.StudentsNames.Count;
-            int testsCount = data.TestsNames.Count;
+            int studentsCount = _data.StudentsNames.Count;
+            int testsCount = _data.TestsTitles.Count;
             using (var stream = new FileStream(_path, FileMode.Open))
             {
                 using (var writer = new BinaryWriter(stream))
                 {
                     for (int studentId = 0, testId = 0; studentId < studentsCount; studentId++, testId++)
                     {
-                        writer.Write(data.StudentsNames[studentId]);
+                        writer.Write(_data.StudentsNames[studentId]);
                         testId = testId == testsCount ? 0 : testId;
-                        writer.Write(data.TestsNames[testId]);
-                        writer.Write(data.Dates[testId].ToString());
-                        writer.Write(data.Assessments[studentId]);
+                        writer.Write(_data.TestsTitles[testId]);
+                        writer.Write(_data.Dates[testId].ToString());
+                        writer.Write(_data.Assessments[studentId]);
                     }
                 }
+            }
+        }
+
+        public void ClearFile()
+        {
+            using (var stream = new FileStream(_path, FileMode.Open))
+            {
+                stream.SetLength(0);
             }
         }
     }

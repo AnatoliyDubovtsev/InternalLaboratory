@@ -19,7 +19,7 @@ namespace Module11
             "Student 10"
         };
 
-        public List<string> TestsNames { get; set; } = new List<string>
+        public List<string> TestsTitles { get; set; } = new List<string>
         {
             "Test 1",
             "Test 2",
@@ -36,5 +36,15 @@ namespace Module11
         };
 
         public List<int> Assessments { get; set; } = new List<int> { 9, 5, 10, 7, 8, 9, 4, 6, 3, 2 };
+
+        public Data(List<string> studentsNames, List<string> testTitles, List<DateTime> dates, List<int> assessments)
+        {
+            StudentsNames = studentsNames;
+            TestsTitles = testTitles;
+            Dates = dates;
+            Assessments = assessments;
+        }
+
+        public Data() { }
     }
 }
