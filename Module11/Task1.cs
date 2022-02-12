@@ -15,6 +15,15 @@ namespace Module11
 
         public Task1(string path, Data data)
         {
+            if (string.IsNullOrEmpty(path) || string.IsNullOrWhiteSpace(path))
+            {
+                throw new ArgumentException("File path is incorrect");
+            }
+            else if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data), $"Input '{data}' is a null");
+            }
+
             _path = path;
             _data = data;
         }
@@ -22,46 +31,87 @@ namespace Module11
         public Task1() : this(_defaultPath, new Data()) { }
 
         #region InformationExtraction
-        public IEnumerable<TestResultsStudentName> ExtractStudentNamesFromCollection(IEnumerable<TestResults> testResults)
-            => from x in testResults
-               select new TestResultsStudentName
-               {
-                   StudentName = x.StudentName
-               };
+        public IEnumerable<string> ExtractStudentNamesFromCollection(IEnumerable<TestResults> testResults)
+        {
+            if (testResults == null)
+            {
+                throw new ArgumentNullException(nameof(testResults), "Input collection is a null");
+            }
+
+            var extracted = from x in testResults
+                            select x.StudentName;
+            return extracted;
+        }
 
         public IEnumerable<TestResultsStudentNameAssessment> ExtractStudentNamesAndAssessmentsFromCollection(IEnumerable<TestResults> testResults)
-            => from x in testResults
-               select new TestResultsStudentNameAssessment
-               {
-                   StudentName = x.StudentName,
-                   Assessment = x.Assessment
-               };
+        {
+            if (testResults == null)
+            {
+                throw new ArgumentNullException(nameof(testResults), "Input collection is a null");
+            }
+
+            var extracted = from x in testResults
+                            select new TestResultsStudentNameAssessment
+                            {
+                                StudentName = x.StudentName,
+                                Assessment = x.Assessment
+                            };
+
+            return extracted;
+        }
 
         public IEnumerable<TestResultsStudentNameTestTitleAssessment> ExtractStudentNamesAssessmentsAndTestTitlesFromCollection(IEnumerable<TestResults> testResults)
-            => from x in testResults
-               select new TestResultsStudentNameTestTitleAssessment
-               {
-                   StudentName = x.StudentName,
-                   Assessment = x.Assessment,
-                   TestTitle = x.TestTitle
-               };
+        {
+            if (testResults == null)
+            {
+                throw new ArgumentNullException(nameof(testResults), "Input collection is a null");
+            }
+
+            var extracted = from x in testResults
+                            select new TestResultsStudentNameTestTitleAssessment
+                            {
+                                StudentName = x.StudentName,
+                                Assessment = x.Assessment,
+                                TestTitle = x.TestTitle
+                            };
+
+            return extracted;
+        }
 
         public IEnumerable<TestResultsStudentNameAssessmentDate> ExtractStudentNamesAssessmentsAndDatesFromCollection(IEnumerable<TestResults> testResults)
-            => from x in testResults
-               select new TestResultsStudentNameAssessmentDate
-               {
-                   StudentName = x.StudentName,
-                   Assessment = x.Assessment,
-                   Date = x.Date
-               };
+        {
+            if (testResults == null)
+            {
+                throw new ArgumentNullException(nameof(testResults), "Input collection is a null");
+            }
+
+            var extracted = from x in testResults
+                            select new TestResultsStudentNameAssessmentDate
+                            {
+                                StudentName = x.StudentName,
+                                Assessment = x.Assessment,
+                                Date = x.Date
+                            };
+
+            return extracted;
+        }
 
         public IEnumerable<TestResultsTestTitleDate> ExtractTestTitleAndDateFromCollection(IEnumerable<TestResults> testResults)
-            => from x in testResults
-               select new TestResultsTestTitleDate
-               {
-                   TestTitle = x.TestTitle,
-                   Date = x.Date
-               };
+        {
+            if (testResults == null)
+            {
+                throw new ArgumentNullException(nameof(testResults), "Input collection is a null");
+            }
+
+            var extracted = from x in testResults
+                            select new TestResultsTestTitleDate
+                            {
+                                TestTitle = x.TestTitle,
+                                Date = x.Date
+                            };
+
+            return extracted;
+        }
         #endregion
 
         #region WorkingWithData
@@ -80,6 +130,11 @@ namespace Module11
 
         public IEnumerable<TestResults> SortTestResults(IEnumerable<TestResults> testResults, SortingTypes sortingType, bool isAscending)
         {
+            if (testResults == null)
+            {
+                throw new ArgumentNullException(nameof(testResults), $"{nameof(testResults)} argument is a null");
+            }
+
             testResults = sortingType switch
             {
                 SortingTypes.ByStudentName => from tr in testResults orderby tr.StudentName select tr,
@@ -144,6 +199,7 @@ namespace Module11
         }
         #endregion
 
+        #region WorkWithFile
         public void InitializeFile()
         {
             bool isEmpty;
@@ -185,5 +241,6 @@ namespace Module11
                 stream.SetLength(0);
             }
         }
+        #endregion
     }
 }

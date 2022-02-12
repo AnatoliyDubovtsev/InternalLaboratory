@@ -11,6 +11,7 @@ namespace Module11.Tests
 {
     public class Task1Tests
     {
+        #region PrivateData
         private const string _path = @"..\..\..\..\Module11.Tests\Tests.txt";
         
         private static Data _testsData = new Data
@@ -53,12 +54,10 @@ namespace Module11.Tests
                         }
                     };
 
-        private static TestResultsStudentName[] _testResultsStudentNames = new TestResultsStudentName[]
+        private static string[] _testResultsStudentNames = new string[]
                     {
-                        new TestResultsStudentName { StudentName = _testsData.StudentsNames[0] },
-                        new TestResultsStudentName { StudentName = _testsData.StudentsNames[1] },
-                        new TestResultsStudentName { StudentName = _testsData.StudentsNames[2] },
-                        new TestResultsStudentName { StudentName = _testsData.StudentsNames[3] }
+                        _testsData.StudentsNames[0],  _testsData.StudentsNames[1],
+                        _testsData.StudentsNames[2], _testsData.StudentsNames[3]
                     };
 
         private static TestResultsStudentNameAssessment[] _testResultsStudentNamesAssessments = new TestResultsStudentNameAssessment[]
@@ -164,7 +163,18 @@ namespace Module11.Tests
                             Date = _testsData.Dates[1]
                         }
                     };
+        #endregion
 
+        #region TestCases
+        public static IEnumerable Constructor_IncorrectPath_TestCases
+        {
+            get
+            {
+                yield return new TestCaseData(default(string));
+                yield return new TestCaseData("");
+                yield return new TestCaseData("   ");
+            }
+        }
 
         public static IEnumerable GetAllTestResults_TestCases
         {
@@ -321,6 +331,40 @@ namespace Module11.Tests
             }
         }
 
+        public static IEnumerable ExtractStudentNamesAndAssessmentsFromCollection_TestCases
+        {
+            get
+            {
+                yield return new TestCaseData(_testResults, _testResultsStudentNamesAssessments);
+            }
+        }
+
+        public static IEnumerable ExtractStudentNamesAssessmentsAndTestTitlesFromCollection_TestCases
+        {
+            get
+            {
+                yield return new TestCaseData(_testResults, _testResultsStudentNamesTestTitlesAssessments);
+            }
+        }
+
+        public static IEnumerable ExtractStudentNamesAssessmentsAndDatesFromCollection
+        {
+            get
+            {
+                yield return new TestCaseData(_testResults, _testResultsStudentNamesAssessmentsDates);
+            }
+        }
+
+        public static IEnumerable ExtractTestTitleAndDateFromCollection
+        {
+            get
+            {
+                yield return new TestCaseData(_testResults, _testResultsTestTitlesDates);
+            }
+        }
+        #endregion
+
+        #region TestsWithCorrectInput
         [Test]
         public void Initialize_FillingTheFile()
         {
@@ -415,8 +459,8 @@ namespace Module11.Tests
             CollectionAssert.AreEqual(expected, actual);
         }
 
-        /*[TestCaseSource(typeof(Task1Tests), nameof(Task1Tests.ExtractStudentNamesFromCollection_TestCases))]
-        public void ExtractStudentNamesFromCollection_ReturnsCollection(TestResults[] testResults, TestResultsStudentName[] expected)
+        [TestCaseSource(typeof(Task1Tests), nameof(Task1Tests.ExtractStudentNamesFromCollection_TestCases))]
+        public void ExtractStudentNamesFromCollection_ReturnsNewCollection(TestResults[] testResults, string[] expected)
         {
             //arrange
             var task = new Task1();
@@ -426,8 +470,99 @@ namespace Module11.Tests
 
             //assert
             CollectionAssert.AreEqual(expected, actual);
-        }*/
+        }
 
-        //TODO ImplementIComparableInterfaceForInformationExtractionClasses
+        [TestCaseSource(typeof(Task1Tests), nameof(Task1Tests.ExtractStudentNamesAndAssessmentsFromCollection_TestCases))]
+        public void ExtractStudentNamesAndAssessmentsFromCollection_ReturnsNewCollection(TestResults[] testResults, TestResultsStudentNameAssessment[] expected)
+        {
+            //arrange
+            var task = new Task1();
+
+            //act
+            var actual = task.ExtractStudentNamesAndAssessmentsFromCollection(testResults).ToArray();
+
+            //assert
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
+        [TestCaseSource(typeof(Task1Tests), nameof(Task1Tests.ExtractStudentNamesAssessmentsAndTestTitlesFromCollection_TestCases))]
+        public void ExtractStudentNamesAssessmentsAndTestTitlesFromCollection_ReturnNewCollection(TestResults[] testResults,
+            TestResultsStudentNameTestTitleAssessment[] expected)
+        {
+            //arrange
+            var task = new Task1();
+
+            //act
+            var actual = task.ExtractStudentNamesAssessmentsAndTestTitlesFromCollection(testResults).ToArray();
+
+            //assert
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
+        [TestCaseSource(typeof(Task1Tests), nameof(Task1Tests.ExtractStudentNamesAssessmentsAndDatesFromCollection))]
+        public void ExtractStudentNamesAssessmentsAndDatesFromCollection_ReturnsNewCollection(TestResults[] testResults,
+            TestResultsStudentNameAssessmentDate[] expected)
+        {
+            //arrange
+            var task = new Task1();
+
+            //act
+            var actual = task.ExtractStudentNamesAssessmentsAndDatesFromCollection(testResults).ToArray();
+
+            //assert
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
+        [TestCaseSource(typeof(Task1Tests), nameof(Task1Tests.ExtractTestTitleAndDateFromCollection))]
+        public void ExtractTestTitleAndDateFromCollection_ReturnsNewCollection(TestResults[] testResults, TestResultsTestTitleDate[] expected)
+        {
+            //arrange
+            var task = new Task1();
+
+            //act
+            var actual = task.ExtractTestTitleAndDateFromCollection(testResults).ToArray();
+
+            //assert
+            CollectionAssert.AreEqual(expected, actual);
+        }
+        #endregion
+
+        #region TestWithIncorrectInputExceptions
+        [TestCaseSource(typeof(Task1Tests), nameof(Task1Tests.Constructor_IncorrectPath_TestCases))]
+        public void Constructor_PathIsNullOrEmptyOrWhitespace_ThrowsArgumentException(string path)
+            => Assert.Throws<ArgumentException>(() => new Task1(path, _testsData));
+
+        [Test]
+        public void Constructor_DataIsNull_ThrowsArgumentNullException()
+            => Assert.Throws<ArgumentNullException>(() => new Task1(_path, null));
+
+        [Test]
+        public void ExtractStudentNamesFromCollection_NullInput_ThrowsArgumentNullException()
+            => Assert.Throws<ArgumentNullException>(() => new Task1().ExtractStudentNamesFromCollection(null));
+
+        [Test]
+        public void ExtractStudentNamesAndAssessmentsFromCollection_NullInput_ThrowsArgumentNullException()
+            => Assert.Throws<ArgumentNullException>(() => new Task1().ExtractStudentNamesAndAssessmentsFromCollection(null));
+
+        [Test]
+        public void ExtractStudentNamesAssessmentsAndTestTitlesFromCollection_NullInput_ThrowsArgumentNullException()
+            => Assert.Throws<ArgumentNullException>(() => new Task1().ExtractStudentNamesAssessmentsAndTestTitlesFromCollection(null));
+
+        [Test]
+        public void ExtractStudentNamesAssessmentsAndDatesFromCollection_NullInput_ThrowsArgumentNullException()
+            => Assert.Throws<ArgumentNullException>(() => new Task1().ExtractStudentNamesAssessmentsAndDatesFromCollection(null));
+
+        [Test]
+        public void ExtractTestTitleAndDateFromCollection_NullInput_ThrowsArgumentNullException()
+            => Assert.Throws<ArgumentNullException>(() => new Task1().ExtractTestTitleAndDateFromCollection(null));
+
+        [Test]
+        public void ResultsFilteredByAssessmentValue_NullInput_ThrowsArgumentNullException()
+            => Assert.Throws<ArgumentNullException>(() => new Task1().ResultsFilteredByAssessmentValue<TestResults>(null, 1, true));
+
+        [Test]
+        public void SortTestResults_NullInput_ThrowsArgumentNullException()
+            => Assert.Throws<ArgumentNullException>(() => new Task1().SortTestResults(null, SortingTypes.ByAssessment, true));
+        #endregion
     }
 }
