@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Module11
+namespace Module11.Implementation
 {
     public class Data
     {

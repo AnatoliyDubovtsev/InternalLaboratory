@@ -1,4 +1,5 @@
 ﻿using Module11.Enums;
+using Module11.Implementation;
 using Module11.InformationExtraction;
 using NUnit.Framework;
 using System;
@@ -226,9 +227,9 @@ namespace Module11.Tests
                 yield return new TestCaseData(_testResults, SortingTypes.ByStudentName, false,
                     new TestResults[] { _testResults[3], _testResults[2], _testResults[1], _testResults[0] });
 
-                yield return new TestCaseData(_testResults, SortingTypes.ByTestName, true,
+                yield return new TestCaseData(_testResults, SortingTypes.ByTestTitle, true,
                     new TestResults[] { _testResults[0], _testResults[2], _testResults[1], _testResults[3] });
-                yield return new TestCaseData(_testResults, SortingTypes.ByTestName, false,
+                yield return new TestCaseData(_testResults, SortingTypes.ByTestTitle, false,
                     new TestResults[] { _testResults[3], _testResults[1], _testResults[2], _testResults[0] });
             }
         }

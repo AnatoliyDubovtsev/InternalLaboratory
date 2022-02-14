@@ -1,5 +1,7 @@
 ﻿using Module10.Task2;
 using Module11.Enums;
+using Module11.Implementation;
+using Module11.InformationExtraction;
 using Module3.Task2;
 using Module4.Task2;
 using Module6.Task2;
@@ -117,123 +119,8 @@ namespace ConsoleApp
             
             Console.ReadLine();*/
 
-            Module11.Task1 task1 = new Module11.Task1();
-            task1.InitializeFile();
-            var result = task1.GetAllTestResults();
-            Console.WriteLine("All TestResults" + Environment.NewLine);
-            foreach (var item in result)
-            {
-                Console.WriteLine(item);
-            }
-
-            Console.WriteLine(Environment.NewLine + "---------------------------------------------------" + Environment.NewLine);
-
-            var studentsNames = task1.ExtractStudentNamesFromCollection(result);
-            Console.WriteLine("Students Names" + Environment.NewLine);
-            foreach (var item in studentsNames)
-            {
-                Console.WriteLine(item);
-            }
-
-            Console.WriteLine(Environment.NewLine + "---------------------------------------------------" + Environment.NewLine);
-
-            var studentsNamesAndAssessments = task1.ExtractStudentNamesAndAssessmentsFromCollection(result);
-            Console.WriteLine("Students Names and Assessments" + Environment.NewLine);
-            foreach (var item in studentsNamesAndAssessments)
-            {
-                Console.WriteLine(item);
-            }
-
-            Console.WriteLine(Environment.NewLine + "---------------------------------------------------" + Environment.NewLine);
-
-            var studentsNamesAssessmentsAndTestTitles = task1.ExtractStudentNamesAssessmentsAndTestTitlesFromCollection(result);
-            Console.WriteLine("Students Names, Assessments and Test Titles" + Environment.NewLine);
-            foreach (var item in studentsNamesAssessmentsAndTestTitles)
-            {
-                Console.WriteLine(item);
-            }
-            
-            Console.WriteLine(Environment.NewLine + "---------------------------------------------------" + Environment.NewLine);
-
-            var studentsNamesAssessmentsAndDates = task1.ExtractStudentNamesAssessmentsAndDatesFromCollection(result);
-            Console.WriteLine("Students Names, Assessments and Dates" + Environment.NewLine);
-            foreach (var item in studentsNamesAssessmentsAndDates)
-            {
-                Console.WriteLine(item);
-            }
-
-            Console.WriteLine(Environment.NewLine + "---------------------------------------------------" + Environment.NewLine);
-
-            var testTitleAndDate = task1.ExtractTestTitleAndDateFromCollection(result);
-            Console.WriteLine("Test title and Date" + Environment.NewLine);
-            foreach (var item in testTitleAndDate)
-            {
-                Console.WriteLine(item);
-            }
-
-            Console.WriteLine(Environment.NewLine + "---------------------------------------------------" + Environment.NewLine);
-
-            Console.WriteLine("Results filtered by assessment value (more than value)" + Environment.NewLine);
-            var moreThanValueResult = task1.ResultsFilteredByAssessmentValue(result, 6, true);
-            foreach (var item in moreThanValueResult)
-            {
-                Console.WriteLine(item);
-            }
-
-            Console.WriteLine(Environment.NewLine + "---------------------------------------------------" + Environment.NewLine);
-
-            Console.WriteLine("Results filtered by assessment value (less than value)" + Environment.NewLine);
-            var lessThanValueResult = task1.ResultsFilteredByAssessmentValue(result, 6, false);
-            foreach (var item in lessThanValueResult)
-            {
-                Console.WriteLine(item);
-            }
-
-            Console.WriteLine(Environment.NewLine + "---------------------------------------------------" + Environment.NewLine);
-
-            Console.WriteLine("GetTestResultsByQuantity" + Environment.NewLine);
-            var resultByQuantity = task1.GetTestResultsByQuantity(3);
-            foreach(var item in resultByQuantity)
-            {
-                Console.WriteLine(item);
-            }
-
-            Console.WriteLine(Environment.NewLine + "---------------------------------------------------" + Environment.NewLine);
-
-            Console.WriteLine("GetTestResultsByQuantity(MoreThanExistItems)" + Environment.NewLine);
-            var resultByQuantity2 = task1.GetTestResultsByQuantity(25);
-            foreach (var item in resultByQuantity2)
-            {
-                Console.WriteLine(item);
-            }
-
-            Console.WriteLine(Environment.NewLine + "---------------------------------------------------" + Environment.NewLine);
-
-            Console.WriteLine("Sort test results by student name (ascending)" + Environment.NewLine);
-            var sortedByNameAsc = task1.SortTestResults(result, SortingTypes.ByStudentName, true);
-            foreach (var item in sortedByNameAsc)
-            {
-                Console.WriteLine(item);
-            }
-
-            Console.WriteLine(Environment.NewLine + "---------------------------------------------------" + Environment.NewLine);
-
-            Console.WriteLine("Sort test results by student name (descending)" + Environment.NewLine);
-            var sortedByNameDesc = task1.SortTestResults(result, SortingTypes.ByStudentName, false);
-            foreach (var item in sortedByNameDesc)
-            {
-                Console.WriteLine(item);
-            }
-
-            Console.WriteLine(Environment.NewLine + "---------------------------------------------------" + Environment.NewLine);
-
-            Console.WriteLine("Clear file");
-            task1.ClearFile();
-            var afterClear = task1.GetAllTestResults();
-            foreach(var item in afterClear)
-            {
-                Console.WriteLine(item);
-            }
+            Module11.ConsoleApplication.ConsoleApplication app = new Module11.ConsoleApplication.ConsoleApplication();
+            app.App();
         }
     }
 }

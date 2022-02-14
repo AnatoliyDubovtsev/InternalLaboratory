@@ -5,12 +5,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace Module11
+namespace Module11.Implementation
 {
     public class Task1
     {
         private readonly string _path;
-        private const string _defaultPath = @"..\..\..\..\Module11\Results.txt";
+        private const string _defaultPath = @"..\..\..\..\Module11\Implementation\Results.txt";
         private readonly Data _data;
 
         public Task1(string path, Data data)
@@ -138,7 +138,7 @@ namespace Module11
             testResults = sortingType switch
             {
                 SortingTypes.ByStudentName => from tr in testResults orderby tr.StudentName select tr,
-                SortingTypes.ByTestName => from tr in testResults orderby tr.TestTitle select tr,
+                SortingTypes.ByTestTitle => from tr in testResults orderby tr.TestTitle select tr,
                 SortingTypes.ByDate => from tr in testResults orderby tr.Date select tr,
                 _ => from tr in testResults orderby tr.Assessment select tr
             };

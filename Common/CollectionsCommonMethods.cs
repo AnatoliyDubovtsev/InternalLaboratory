@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Common
 {
     public static class CollectionsCommonMethods
     {
-        public static void ShowCollectionItems<T>(T[] collection)
+        public static void ShowCollectionItems<T>(IEnumerable<T> collection)
         {
             if (collection == null)
             {

@@ -3,7 +3,7 @@
     public enum SortingTypes : byte
     {
         ByStudentName = 0,
-        ByTestName = 1,
+        ByTestTitle = 1,
         ByDate = 2,
         ByAssessment = 3
     }
