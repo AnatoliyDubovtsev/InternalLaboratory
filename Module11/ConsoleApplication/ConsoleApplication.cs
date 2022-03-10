@@ -2,6 +2,7 @@
 using Module11.Implementation;
 using Module11.InformationExtraction;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace Module11.ConsoleApplication
@@ -10,7 +11,7 @@ namespace Module11.ConsoleApplication
     {
         public void App()
         {
-            Task1 task1 = new Task1();
+            Task1 task1 = new();
             task1.InitializeFile();
             bool repeat = true;
             while (repeat)
@@ -33,7 +34,7 @@ namespace Module11.ConsoleApplication
             Console.WriteLine($"1 - read all test results{Environment.NewLine}2 - read necessary quantity of test results");
             string answer = Console.ReadLine();
             int quantity;
-            IEnumerable<TestResults> results = null;
+            IEnumerable<TestResults> results;
             if (answer == "1")
             {
                 results = task1.GetAllTestResults();
@@ -47,7 +48,7 @@ namespace Module11.ConsoleApplication
             else
             {
                 Console.WriteLine("Incorrect input. Please, try again");
-                return null;
+                return Enumerable.Empty<TestResults>();
             }
 
             Console.WriteLine($"1 - Show test results{Environment.NewLine}2 - Continue");
@@ -129,7 +130,7 @@ namespace Module11.ConsoleApplication
                     $"6 - Continue");
             int extractionType = int.Parse(Console.ReadLine());
             IEnumerable<string> extractedString = null;
-            IEnumerable<TestResultsStudentNameAssessment> extractedStudentData = null;
+            IEnumerable<TestResultsStudentNameAssessment> extractedStudentData;
             IEnumerable<TestResultsTestTitleDate> extractedTestData = null;
             if (extractionType == 1)
             {

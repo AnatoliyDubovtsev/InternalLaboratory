@@ -161,7 +161,7 @@ namespace Module11.Implementation
 
         private IEnumerable<TestResults> CombineIntoResponse(ReadingFileApproach readingFileApproach, int quantity = 0)
         {
-            IEnumerable<TestResults> testResults = Array.Empty<TestResults>().AsEnumerable<TestResults>();
+            IEnumerable<TestResults> testResults = Enumerable.Empty<TestResults>();
             foreach (var item in GetTestResults(quantity, readingFileApproach))
             {
                 testResults = testResults.Append<TestResults>(item);
