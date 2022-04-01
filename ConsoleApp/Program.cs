@@ -9,6 +9,8 @@ using Module6.Task2.Implementations;
 using Module6.Task3;
 using Module9.Task1;
 using Module9.Task3;
+using EmployeeM12 = Module12.Implementation.Employee;
+using Point2DM12 = Module12.Implementation.Point2D;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -119,8 +121,34 @@ namespace ConsoleApp
             
             Console.ReadLine();*/
 
-            Module11.ConsoleApplication.ConsoleApplication app = new Module11.ConsoleApplication.ConsoleApplication();
-            app.App();
+            //Module 11
+            /*Module11.ConsoleApplication.ConsoleApplication app = new Module11.ConsoleApplication.ConsoleApplication();
+            app.App();*/
+
+            //Module 12
+            Module12.App app = new Module12.App();
+            
+            /*app.WorkWithReferentialType(new EmployeeM12[] {
+                new EmployeeM12("Name 1", "Surname 1"),
+                new EmployeeM12("Name 2", "Surname 2")
+            });*/
+            
+            /*app.WorkWithValueType(new Point2DM12[] { 
+                new Point2DM12(1, 1),
+                new Point2DM12(2, 2)
+            });*/
+            
+            /*var point = new Module12.Implementation.Point2D(1, 1);
+            Console.WriteLine("Before 1 'Console.Readline'");
+            Console.ReadLine();
+            Console.WriteLine("After 1 'Console.Readline'");
+            point.ShowTime();
+            Console.WriteLine("Before 2 'Console.Readline'");
+            Console.ReadLine();
+            point.ToString();
+            Console.WriteLine("After 2 'Console.Readline'");*/
+
+            Console.ReadLine();
         }
     }
 }
